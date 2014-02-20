@@ -113,6 +113,7 @@ def plot_ms_bars(sfr_sample):
 
     fig = plt.figure(2)
     fig.clf()
+    fig.subplots_adjust(left=0.08,bottom=0.15,right=0.9,hspace=0,wspace=0)
 
     mass,sfr = get_mass_sfr(sfr_sample)
     mass_bins,sfr_bins = bins()
@@ -124,24 +125,33 @@ def plot_ms_bars(sfr_sample):
     unbarred = sfr_sample[notedgeon & (sfr_sample['t03_bar_a06_bar_debiased'] < 0.4)] 
 
     bar_data = (barred,unbarred)
+    bar_text = ('Barred','Unbarred')
     color = ('blue','red')
 
     # Plot barred and unbarred
-    for idx, (b,c) in enumerate(zip(bar_data,color)):
+    for idx, (b,c,t) in enumerate(zip(bar_data,color,bar_text)):
 
         ax = fig.add_subplot(1,2,idx+1)
         h = ax.hist2d(mass,sfr,bins=50,cmap = cm.gray_r, norm=LogNorm())
-        ax.set_xlim(6,13)
-        ax.set_ylim(-5,2)
+        ax.set_xlim(6,11.5)
+        ax.set_ylim(-4,2)
         ax.set_xlabel('Stellar mass (log'+r'$M/M_\odot$)',fontsize=20)
-        ax.set_ylabel('Star formation rate'+r'$M_\odot/yr$',fontsize=20)
-        fig.colorbar(h[3], ax=ax)
+
+        if idx == 0:
+            ax.set_ylabel('SFR '+r'$[M_\odot/\mathrm{yr}]$',fontsize=16)
+        else:
+            ax.get_yaxis().set_ticks([])
 
         ax.scatter(b['MEDIAN_MASS'],b['MEDIAN_SFR'], s=2, color=c, marker='o')
 
-    fig.tight_layout()
-    fig.savefig('%s/ms_bar.pdf' % fig_path, dpi=200)
+        ax.text(6.2,1.4,t,color=c,fontsize=18)
 
+    box = ax.get_position()
+    axColorbar = plt.axes([box.x0*1.05 + box.width * 0.95, box.y0, 0.01, box.height])
+    cb = plt.colorbar(h[3],cax = axColorbar, orientation="vertical")
+    cb.set_label(r'$N_\mathrm{star-forming\/galaxies}$' ,fontsize=16)
+
+    fig.savefig('%s/ms_bar.pdf' % fig_path, dpi=200)
 
     return None
     
