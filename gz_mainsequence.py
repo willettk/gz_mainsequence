@@ -12,6 +12,7 @@ plt.ion()
 
 gz_path = '/Users/willettk/Astronomy/Research/GalaxyZoo'
 ms_path = '%s/gz_mainsequence' % gz_path
+fig_path = '%s/gz_mainsequence/figures' % gz_path
 fits_path = '%s/fits' % gz_path
 
 
@@ -102,7 +103,7 @@ def plot_ms_arms_number(sfr_sample):
     cb = plt.colorbar(h[3],cax = axColorbar, orientation="vertical")
     cb.set_label(r'$N_\mathrm{star-forming\/galaxies}$' ,fontsize=16)
 
-    fig.savefig('%s/ms_arms_number.pdf' % ms_path, dpi=200)
+    fig.savefig('%s/ms_arms_number.pdf' % fig_path, dpi=200)
 
     return None
 
@@ -139,7 +140,7 @@ def plot_ms_bars(sfr_sample):
         ax.scatter(b['MEDIAN_MASS'],b['MEDIAN_SFR'], s=2, color=c, marker='o')
 
     fig.tight_layout()
-    fig.savefig('%s/ms_bar.pdf' % ms_path, dpi=200)
+    fig.savefig('%s/ms_bar.pdf' % fig_path, dpi=200)
 
 
     return None
@@ -193,7 +194,7 @@ def plot_ms_arms_winding(sfr_sample):
     cb.set_label(r'$N_\mathrm{star-forming\/galaxies}$' ,fontsize=16)
 
     #fig.tight_layout()
-    fig.savefig('%s/ms_arms_winding.pdf' % ms_path, dpi=200)
+    fig.savefig('%s/ms_arms_winding.pdf' % fig_path, dpi=200)
 
     return None
 
