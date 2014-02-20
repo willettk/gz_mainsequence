@@ -1,0 +1,103 @@
+\begin{thebibliography}{}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{{Abazajian} {et~al.}(2009){Abazajian}, {Adelman-McCarthy},
+  {Ag{\"u}eros}, {Allam}, {Allende Prieto}, {An}, {Anderson}, {Anderson},
+  {Annis}, {Bahcall}, \& et~al.}]{aba09}
+{Abazajian}, K.~N., {Adelman-McCarthy}, J.~K., {Ag{\"u}eros}, M.~A., {et~al.}
+  2009, \apjs, 182, 543
+
+\bibitem[{{Baldwin} {et~al.}(1981){Baldwin}, {Phillips}, \&
+  {Terlevich}}]{bal81}
+{Baldwin}, J.~A., {Phillips}, M.~M., \& {Terlevich}, R. 1981, \pasp, 93, 5
+
+\bibitem[{{Bouch{\'e}} {et~al.}(2010){Bouch{\'e}}, {Dekel}, {Genzel}, {Genel},
+  {Cresci}, {F{\"o}rster Schreiber}, {Shapiro}, {Davies}, \& {Tacconi}}]{bou10}
+{Bouch{\'e}}, N., {Dekel}, A., {Genzel}, R., {et~al.} 2010, \apj, 718, 1001
+
+\bibitem[{{Brinchmann} {et~al.}(2004){Brinchmann}, {Charlot}, {White},
+  {Tremonti}, {Kauffmann}, {Heckman}, \& {Brinkmann}}]{bri04}
+{Brinchmann}, J., {Charlot}, S., {White}, S.~D.~M., {et~al.} 2004, \mnras, 351,
+  1151
+
+\bibitem[{{Kauffmann} {et~al.}(2003{\natexlab{a}}){Kauffmann}, {Heckman},
+  {White}, {Charlot}, {Tremonti}, {Brinchmann}, {Bruzual}, {Peng}, {Seibert},
+  {Bernardi}, {Blanton}, {Brinkmann}, {Castander}, {Cs{\'a}bai}, {Fukugita},
+  {Ivezic}, {Munn}, {Nichol}, {Padmanabhan}, {Thakar}, {Weinberg}, \&
+  {York}}]{kau03a}
+{Kauffmann}, G., {Heckman}, T.~M., {White}, S.~D.~M., {et~al.}
+  2003{\natexlab{a}}, \mnras, 341, 33
+
+\bibitem[{{Kauffmann} {et~al.}(2003{\natexlab{b}}){Kauffmann}, {Heckman},
+  {Tremonti}, {Brinchmann}, {Charlot}, {White}, {Ridgway}, {Brinkmann},
+  {Fukugita}, {Hall}, {Ivezi{\'c}}, {Richards}, \& {Schneider}}]{kau03}
+{Kauffmann}, G., {Heckman}, T.~M., {Tremonti}, C., {et~al.} 2003{\natexlab{b}},
+  \mnras, 346, 1055
+
+\bibitem[{{Lilly} {et~al.}(2013){Lilly}, {Carollo}, {Pipino}, {Renzini}, \&
+  {Peng}}]{lil13}
+{Lilly}, S.~J., {Carollo}, C.~M., {Pipino}, A., {Renzini}, A., \& {Peng}, Y.
+  2013, \apj, 772, 119
+
+\bibitem[{{Lintott} {et~al.}(2011){Lintott}, {Schawinski}, {Bamford}, {Slosar},
+  {Land}, {Thomas}, {Edmondson}, {Masters}, {Nichol}, {Raddick}, {Szalay},
+  {Andreescu}, {Murray}, \& {Vandenberg}}]{lin11}
+{Lintott}, C., {Schawinski}, K., {Bamford}, S., {et~al.} 2011, \mnras, 410, 166
+
+\bibitem[{{Lintott} {et~al.}(2008){Lintott}, {Schawinski}, {Slosar}, {Land},
+  {Bamford}, {Thomas}, {Raddick}, {Nichol}, {Szalay}, {Andreescu}, {Murray}, \&
+  {Vandenberg}}]{lin08}
+{Lintott}, C.~J., {Schawinski}, K., {Slosar}, A., {et~al.} 2008, \mnras, 389,
+  1179
+
+\bibitem[{{Omand} {et~al.}(2014){Omand}, {Balogh}, \& {Poggianti}}]{oma14}
+{Omand}, C., {Balogh}, M., \& {Poggianti}, B. 2014, ArXiv e-prints,
+  arXiv:1402.3394
+
+\bibitem[{{Strauss} {et~al.}(2002){Strauss}, {Weinberg}, {Lupton}, {Narayanan},
+  {Annis}, {Bernardi}, {Blanton}, {Burles}, {Connolly}, {Dalcanton}, {Doi},
+  {Eisenstein}, {Frieman}, {Fukugita}, {Gunn}, {Ivezi{\'c}}, {Kent}, {Kim},
+  {Knapp}, {Kron}, {Munn}, {Newberg}, {Nichol}, {Okamura}, {Quinn}, {Richmond},
+  {Schlegel}, {Shimasaku}, {SubbaRao}, {Szalay}, {Vanden Berk}, {Vogeley},
+  {Yanny}, {Yasuda}, {York}, \& {Zehavi}}]{str02}
+{Strauss}, M.~A., {Weinberg}, D.~H., {Lupton}, R.~H., {et~al.} 2002, \aj, 124,
+  1810
+
+\bibitem[{{Taylor}(2005)}]{tay05}
+{Taylor}, M.~B. 2005, in Astronomical Society of the Pacific Conference Series,
+  Vol. 347, Astronomical Data Analysis Software and Systems XIV, ed.
+  P.~{Shopbell}, M.~{Britton}, \& R.~{Ebert}, 29
+
+\bibitem[{{Willett} {et~al.}(2013){Willett}, {Lintott}, {Bamford}, {Masters},
+  {Simmons}, {Casteels}, {Edmondson}, {Fortson}, {Kaviraj}, {Keel}, {Melvin},
+  {Nichol}, {Raddick}, {Schawinski}, {Simpson}, {Skibba}, {Smith}, \&
+  {Thomas}}]{wil13}
+{Willett}, K.~W., {Lintott}, C.~J., {Bamford}, S.~P., {et~al.} 2013, \mnras,
+  435, 2835
+
+\bibitem[{{York} {et~al.}(2000){York}, {Adelman}, {Anderson}, {Anderson},
+  {Annis}, {Bahcall}, {Bakken}, {Barkhouser}, {Bastian}, {Berman}, {Boroski},
+  {Bracker}, {Briegel}, {Briggs}, {Brinkmann}, {Brunner}, {Burles}, {Carey},
+  {Carr}, {Castander}, {Chen}, {Colestock}, {Connolly}, {Crocker}, {Csabai},
+  {Czarapata}, {Davis}, {Doi}, {Dombeck}, {Eisenstein}, {Ellman}, {Elms},
+  {Evans}, {Fan}, {Federwitz}, {Fiscelli}, {Friedman}, {Frieman}, {Fukugita},
+  {Gillespie}, {Gunn}, {Gurbani}, {de Haas}, {Haldeman}, {Harris}, {Hayes},
+  {Heckman}, {Hennessy}, {Hindsley}, {Holm}, {Holmgren}, {Huang}, {Hull},
+  {Husby}, {Ichikawa}, {Ichikawa}, {Ivezi{\'c}}, {Kent}, {Kim}, {Kinney},
+  {Klaene}, {Kleinman}, {Kleinman}, {Knapp}, {Korienek}, {Kron}, {Kunszt},
+  {Lamb}, {Lee}, {Leger}, {Limmongkol}, {Lindenmeyer}, {Long}, {Loomis},
+  {Loveday}, {Lucinio}, {Lupton}, {MacKinnon}, {Mannery}, {Mantsch}, {Margon},
+  {McGehee}, {McKay}, {Meiksin}, {Merelli}, {Monet}, {Munn}, {Narayanan},
+  {Nash}, {Neilsen}, {Neswold}, {Newberg}, {Nichol}, {Nicinski}, {Nonino},
+  {Okada}, {Okamura}, {Ostriker}, {Owen}, {Pauls}, {Peoples}, {Peterson},
+  {Petravick}, {Pier}, {Pope}, {Pordes}, {Prosapio}, {Rechenmacher}, {Quinn},
+  {Richards}, {Richmond}, {Rivetta}, {Rockosi}, {Ruthmansdorfer}, {Sandford},
+  {Schlegel}, {Schneider}, {Sekiguchi}, {Sergey}, {Shimasaku}, {Siegmund},
+  {Smee}, {Smith}, {Snedden}, {Stone}, {Stoughton}, {Strauss}, {Stubbs},
+  {SubbaRao}, {Szalay}, {Szapudi}, {Szokoly}, {Thakar}, {Tremonti}, {Tucker},
+  {Uomoto}, {Vanden Berk}, {Vogeley}, {Waddell}, {Wang}, {Watanabe},
+  {Weinberg}, {Yanny}, {Yasuda}, \& {SDSS Collaboration}}]{yor00}
+{York}, D.~G., {Adelman}, J., {Anderson}, Jr., J.~E., {et~al.} 2000, \aj, 120,
+  1579
+
+\end{thebibliography}
