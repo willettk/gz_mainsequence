@@ -60,37 +60,48 @@ Figure: example images of: 1-5 arms, plus arm tightness, plus barred vs. non-bar
 
 Table~\ref{tbl-fits}: fits for all star forming galaxies and then split by different morphologies
 
-\begin{table}
- \begin{tabular}{@{}lrcl}
+\begin{table} \caption{Basic properties of the $M_\star-SFR$ linear fit for GZ2 star-forming galaxies.}
+ \begin{tabular}{@{}lrrrll}
  \hline
 \multicolumn{1}{c}{Sample} &
+\multicolumn{1}{c}{$N$} &
 \multicolumn{1}{c}{$\alpha$} &
 \multicolumn{1}{c}{$\beta$} &
-\multicolumn{1}{c}{$\sigma$} 
-\\ 
+\multicolumn{1}{c}{$\sigma_\alpha$} &
+\multicolumn{1}{c}{$\sigma_\beta$} 
 \\ 
 \hline
 \hline						
-%Main (original + extra)       & 273,783 & 43  & 17.0   \\     % 43.1
-All star-forming galaxies  & & & \\
+SF galaxies  & 52,685  & 0.81  & $-7.91$   & $7.94\times10^{-3}$   & $4.40\times10^{-4}$  \\
 \hline
-$N_{arms} = 1$ & & & \\
-$N_{arms} = 2$ & & & \\
-$N_{arms} = 3$ & & & \\
-$N_{arms} = 4$ & & & \\
-$N_{arms} = 5$ & & & \\
-$N_{arms} = ?$ & & & \\
+1 arm        &         & 0.73  & $ -6.83$  &  $7.94\times10^{-3}$  & $8.11\times10^{-1}$  \\
+2 arms       &         & 1.50  & $-15.04$  &  $3.96\times10^{-4}$  & $4.42\times10^{-2}$  \\
+3 arms       &         & 0.38  & $ -3.34$  &  $3.34\times10^{-3}$  & $3.67\times10^{-1}$  \\
+4 arms       &         & 0.55  & $ -5.24$  &  $5.52\times10^{-2}$  & $5.69\times10^{0 }$  \\
+5+ arms      &         & 0.56  & $ -5.72$  &  $2.93\times10^{-2}$  & $2.93\times10^{0 }$  \\
+can't tell   &         & 1.19  & $-12.11$  &  $2.56\times10^{-2}$  & $2.65\times10^{0 }$  \\
 \hline
-Tight & & & \\
-Medium & & & \\
-Loose & & & \\
+tight arms   &         & 0.53  & $-5.11$   &  $7.19\times10^{-4}$  & $7.55\times10^{-2}$  \\
+medium arms  &         & 0.67  & $-6.47$   &  $4.36\times10^{-3}$  & $4.75\times10^{-1}$  \\
+loose arms   &         & 0.99  & $-9.65$   &  $2.28\times10^{-3}$  & $2.46\times10^{-1}$  \\
 \hline
-Barred & & & \\
-Unbarred & & & \\
+barred       &         & 1.17  & $-11.58$  &  $1.98\times10^{-4}$  & $2.22\times10^{-2}$  \\
+unbarred     &         & 0.67  & $ -6.59$  &  $3.78\times10^{-5}$  & $3.85\times10^{-3}$  \\
 \hline
  \end{tabular}
- \caption{Basic properties of the $M_\star-SFR$ linear fit for GZ2 star-forming galaxies. \label{tbl-fits}}
+\tablecomments{Parameters are according to Equation~\ref{eqn-linearfit}.\label{tbl-fits}}
 \end{table}
+
+The linear fits to the data in Table~\ref{tbl-fits} are in the form:
+
+\begin{equation}
+SFR = \alpha(M_\star/M_\odot) + \beta \hspace{20pt}[M_\odot/yr]
+\label{eqn-linearfit}
+\end{equation}
+
+\noindent where $\alpha$ and $\beta$ are parameters fit by least-squares algorithm.
+
+\emph{Left to do: revise fits so that galaxy samples are for more robust results (ie, majority response vs. just the set flag) and re-run the fits. Also come up with a more sensible measure of the uncertainty - the formal covariance elements clearly don't represent the dispersion in the main sequence.}
 
 Figure~\ref{fig-number}: $M_\star-SFR$ for arm multiplicity \\
 Figure~\ref{fig-winding}: $M_\star-SFR$ for pitch angle ($\phi$) \\
