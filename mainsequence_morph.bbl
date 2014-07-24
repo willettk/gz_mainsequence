@@ -7,6 +7,11 @@
 {Abazajian}, K.~N., {Adelman-McCarthy}, J.~K., {Ag{\"u}eros}, M.~A., {et~al.}
   2009, \apjs, 182, 543
 
+\bibitem[{{Abramson} {et~al.}(2014){Abramson}, {Kelson}, {Dressler},
+  {Poggianti}, {Gladders}, {Oemler}, \& {Vulcani}}]{abr14}
+{Abramson}, L.~E., {Kelson}, D.~D., {Dressler}, A., {et~al.} 2014, ArXiv
+  e-prints, arXiv:1402.7076
+
 \bibitem[{{Baldwin} {et~al.}(1981){Baldwin}, {Phillips}, \&
   {Terlevich}}]{bal81}
 {Baldwin}, J.~A., {Phillips}, M.~M., \& {Terlevich}, R. 1981, \pasp, 93, 5
@@ -19,6 +24,56 @@
   {Tremonti}, {Kauffmann}, {Heckman}, \& {Brinkmann}}]{bri04}
 {Brinchmann}, J., {Charlot}, S., {White}, S.~D.~M., {et~al.} 2004, \mnras, 351,
   1151
+
+\bibitem[{{Cardamone} {et~al.}(2009){Cardamone}, {Schawinski}, {Sarzi},
+  {Bamford}, {Bennert}, {Urry}, {Lintott}, {Keel}, {Parejko}, {Nichol},
+  {Thomas}, {Andreescu}, {Murray}, {Raddick}, {Slosar}, {Szalay}, \&
+  {Vandenberg}}]{car09}
+{Cardamone}, C., {Schawinski}, K., {Sarzi}, M., {et~al.} 2009, \mnras, 399,
+  1191
+
+\bibitem[{{Carpineti} {et~al.}(2012){Carpineti}, {Kaviraj}, {Darg}, {Lintott},
+  {Schawinski}, \& {Shabala}}]{car12}
+{Carpineti}, A., {Kaviraj}, S., {Darg}, D., {et~al.} 2012, \mnras, 420, 2139
+
+\bibitem[{{Casteels} {et~al.}(2013){Casteels}, {Bamford}, {Skibba}, {Masters},
+  {Lintott}, {Keel}, {Schawinski}, {Nichol}, \& {Smith}}]{cas13}
+{Casteels}, K.~R.~V., {Bamford}, S.~P., {Skibba}, R.~A., {et~al.} 2013, \mnras,
+  429, 1051
+
+\bibitem[{{Daddi} {et~al.}(2010){Daddi}, {Elbaz}, {Walter}, {Bournaud},
+  {Salmi}, {Carilli}, {Dannerbauer}, {Dickinson}, {Monaco}, \&
+  {Riechers}}]{dad10}
+{Daddi}, E., {Elbaz}, D., {Walter}, F., {et~al.} 2010, \apjl, 714, L118
+
+\bibitem[{{Darg} {et~al.}(2010){Darg}, {Kaviraj}, {Lintott}, {Schawinski},
+  {Sarzi}, {Bamford}, {Silk}, {Proctor}, {Andreescu}, {Murray}, {Nichol},
+  {Raddick}, {Slosar}, {Szalay}, {Thomas}, \& {Vandenberg}}]{dar10a}
+{Darg}, D.~W., {Kaviraj}, S., {Lintott}, C.~J., {et~al.} 2010, \mnras, 401,
+  1043
+
+\bibitem[{{Elbaz} {et~al.}(2011){Elbaz}, {Dickinson}, {Hwang},
+  {D{\'{\i}}az-Santos}, {Magdis}, {Magnelli}, {Le Borgne}, {Galliano},
+  {Pannella}, {Chanial}, {Armus}, {Charmandaris}, {Daddi}, {Aussel}, {Popesso},
+  {Kartaltepe}, {Altieri}, {Valtchanov}, {Coia}, {Dannerbauer}, {Dasyra},
+  {Leiton}, {Mazzarella}, {Alexander}, {Buat}, {Burgarella}, {Chary}, {Gilli},
+  {Ivison}, {Juneau}, {Le Floc'h}, {Lutz}, {Morrison}, {Mullaney}, {Murphy},
+  {Pope}, {Scott}, {Brodwin}, {Calzetti}, {Cesarsky}, {Charlot}, {Dole},
+  {Eisenhardt}, {Ferguson}, {F{\"o}rster Schreiber}, {Frayer}, {Giavalisco},
+  {Huynh}, {Koekemoer}, {Papovich}, {Reddy}, {Surace}, {Teplitz}, {Yun}, \&
+  {Wilson}}]{elb11}
+{Elbaz}, D., {Dickinson}, M., {Hwang}, H.~S., {et~al.} 2011, \aap, 533, A119
+
+\bibitem[{{Hoyle} {et~al.}(2011){Hoyle}, {Masters}, {Nichol}, {Edmondson},
+  {Smith}, {Lintott}, {Scranton}, {Bamford}, {Schawinski}, \& {Thomas}}]{hoy11}
+{Hoyle}, B., {Masters}, K.~L., {Nichol}, R.~C., {et~al.} 2011, \mnras, 415,
+  3627
+
+\bibitem[{{Jarrett} {et~al.}(2013){Jarrett}, {Masci}, {Tsai}, {Petty},
+  {Cluver}, {Assef}, {Benford}, {Blain}, {Bridge}, {Donoso}, {Eisenhardt},
+  {Koribalski}, {Lake}, {Neill}, {Seibert}, {Sheth}, {Stanford}, \&
+  {Wright}}]{jar13}
+{Jarrett}, T.~H., {Masci}, F., {Tsai}, C.~W., {et~al.} 2013, \aj, 145, 6
 
 \bibitem[{{Kauffmann} {et~al.}(2003{\natexlab{a}}){Kauffmann}, {Heckman},
   {White}, {Charlot}, {Tremonti}, {Brinchmann}, {Bruzual}, {Peng}, {Seibert},
@@ -53,6 +108,42 @@
 \bibitem[{{Omand} {et~al.}(2014){Omand}, {Balogh}, \& {Poggianti}}]{oma14}
 {Omand}, C., {Balogh}, M., \& {Poggianti}, B. 2014, ArXiv e-prints,
   arXiv:1402.3394
+
+\bibitem[{{Peng} {et~al.}(2014){Peng}, {Lilly}, {Renzini}, \&
+  {Carollo}}]{pen14a}
+{Peng}, Y., {Lilly}, S.~J., {Renzini}, A., \& {Carollo}, C.~M. 2014, ArXiv
+  e-prints, arXiv:1406.7291
+
+\bibitem[{{Peng} \& {Maiolino}(2014)}]{pen14}
+{Peng}, Y., \& {Maiolino}, R. 2014, ArXiv e-prints, arXiv:1402.5964
+
+\bibitem[{{Peng} {et~al.}(2012){Peng}, {Lilly}, {Renzini}, \&
+  {Carollo}}]{pen12}
+{Peng}, Y.-j., {Lilly}, S.~J., {Renzini}, A., \& {Carollo}, M. 2012, \apj, 757,
+  4
+
+\bibitem[{{Peng} {et~al.}(2010){Peng}, {Lilly}, {Kova{\v c}}, {Bolzonella},
+  {Pozzetti}, {Renzini}, {Zamorani}, {Ilbert}, {Knobel}, {Iovino}, {Maier},
+  {Cucciati}, {Tasca}, {Carollo}, {Silverman}, {Kampczyk}, {de Ravel},
+  {Sanders}, {Scoville}, {Contini}, {Mainieri}, {Scodeggio}, {Kneib}, {Le
+  F{\`e}vre}, {Bardelli}, {Bongiorno}, {Caputi}, {Coppa}, {de la Torre},
+  {Franzetti}, {Garilli}, {Lamareille}, {Le Borgne}, {Le Brun}, {Mignoli},
+  {Perez Montero}, {Pello}, {Ricciardelli}, {Tanaka}, {Tresse}, {Vergani},
+  {Welikala}, {Zucca}, {Oesch}, {Abbas}, {Barnes}, {Bordoloi}, {Bottini},
+  {Cappi}, {Cassata}, {Cimatti}, {Fumana}, {Hasinger}, {Koekemoer},
+  {Leauthaud}, {Maccagni}, {Marinoni}, {McCracken}, {Memeo}, {Meneux}, {Nair},
+  {Porciani}, {Presotto}, \& {Scaramella}}]{pen10a}
+{Peng}, Y.-j., {Lilly}, S.~J., {Kova{\v c}}, K., {et~al.} 2010, \apj, 721, 193
+
+\bibitem[{{Rodighiero} {et~al.}(2011){Rodighiero}, {Daddi}, {Baronchelli},
+  {Cimatti}, {Renzini}, {Aussel}, {Popesso}, {Lutz}, {Andreani}, {Berta},
+  {Cava}, {Elbaz}, {Feltre}, {Fontana}, {F{\"o}rster Schreiber},
+  {Franceschini}, {Genzel}, {Grazian}, {Gruppioni}, {Ilbert}, {Le Floch},
+  {Magdis}, {Magliocchetti}, {Magnelli}, {Maiolino}, {McCracken}, {Nordon},
+  {Poglitsch}, {Santini}, {Pozzi}, {Riguccini}, {Tacconi}, {Wuyts}, \&
+  {Zamorani}}]{rod11}
+{Rodighiero}, G., {Daddi}, E., {Baronchelli}, I., {et~al.} 2011, \apjl, 739,
+  L40
 
 \bibitem[{{Strauss} {et~al.}(2002){Strauss}, {Weinberg}, {Lupton}, {Narayanan},
   {Annis}, {Bernardi}, {Blanton}, {Burles}, {Connolly}, {Dalcanton}, {Doi},
