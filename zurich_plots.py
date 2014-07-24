@@ -1,12 +1,15 @@
-from astropy.io import fits as pyfits
-import matplotlib
+import numpy as np
+
+from astropy.io import fits as fits
 from matplotlib import pyplot as plt
 from matplotlib.font_manager import FontProperties
-import numpy as np
+
+gzdir = '/Users/willettk/Astronomy/Research/GalaxyZoo'
+figdir = '%s/gzmainsequence/zurich_figs' % gzdir
 
 def get_mpadata():
 
-    p = pyfits.open('/Users/willettk/Astronomy/Research/GalaxyZoo/fits/mpajhu_gz2.fits')
+    p = fits.open('%s/fits/mpajhu_gz2.fits' % gzdir)
     mpajhu = p[1].data
     p.close()
 
@@ -145,13 +148,13 @@ def fit_lines(savefig=False):
     
     fig.tight_layout()
     if savefig:
-        fig.savefig('/Users/willettk/Astronomy/Research/GalaxyZoo/zurich/mainsequence_spiraltightness.pdf', dpi=200)
+        fig.savefig('%s/mainsequence_spiraltightness.pdf' % figdir, dpi=200)
 
     return None
 
 def get_lackner():
 
-    p = pyfits.open('/Users/willettk/Astronomy/Research/GalaxyZoo/fits/lackner_mpa_gz2.fits')
+    p = fits.open('/Users/willettk/Astronomy/Research/GalaxyZoo/fits/lackner_mpa_gz2.fits')
     lackner = p[1].data
     p.close()
 
@@ -218,14 +221,8 @@ def plot_bt_dispersion(savefig=False):
     
     fig.tight_layout()
     if savefig:
-        fig.savefig('/Users/willettk/Astronomy/Research/GalaxyZoo/zurich/bulgeratio_morph.pdf', dpi=200)
+        fig.savefig('%s/bulgeratio_morph.pdf' % figdir, dpi=200)
 
     return None
-
-
-
-
-
-    
 
 
