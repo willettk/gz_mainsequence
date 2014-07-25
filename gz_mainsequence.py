@@ -156,13 +156,14 @@ def plot_ms_arms_number(sfr_sample):
 
     return None
 
-def plot_ms_bars(sfr_sample):
+def plot_ms_bars(sfr_sample,contour=False):
 
     # Plot
 
     fig = plt.figure(2,(11,6))
     fig.clf()
     fig.subplots_adjust(left=0.08,bottom=0.15,right=0.9,hspace=0,wspace=0)
+    filestr=''
 
     mass,sfr,sfr_err = get_mass_sfr(sfr_sample)
     mass_bins,sfr_bins = bins()
@@ -181,7 +182,7 @@ def plot_ms_bars(sfr_sample):
     for idx, (b,c,t) in enumerate(zip(bar_data,color,bar_text)):
 
         ax = fig.add_subplot(1,2,idx+1)
-        h = ax.hist2d(mass,sfr,bins=50,cmap = cm.gray_r, norm=LogNorm())
+        h2 = ax.hist2d(mass,sfr,bins=50,cmap = cm.gray_r, norm=LogNorm())
         ax.set_xlim(6,11.5)
         ax.set_ylim(-4,2)
         ax.set_xlabel('Stellar mass (log'+r'$\/M/M_\odot$)',fontsize=20)
@@ -191,7 +192,15 @@ def plot_ms_bars(sfr_sample):
         else:
             ax.get_yaxis().set_ticks([])
 
-        ax.scatter(b['MEDIAN_MASS'],b['MEDIAN_SFR'], s=2, color=c, marker='o')
+        # Try a contour plot??
+
+        if contour:
+            hb,xb,yb = np.histogram2d(b['MEDIAN_MASS'],b['MEDIAN_SFR'],bins=(mass_bins,sfr_bins))
+            levels=10**(np.linspace(0,2,8))
+            CS = ax.contour(mass_bins[1:],sfr_bins[1:],hb.T,levels,colors=c)
+            filestr='_contour'
+        else:
+            ax.scatter(b['MEDIAN_MASS'],b['MEDIAN_SFR'], s=2, color=c, marker='o')
 
         ax.text(6.2,1.4,t,color=c,fontsize=18)
 
@@ -203,19 +212,20 @@ def plot_ms_bars(sfr_sample):
 
     box = ax.get_position()
     axColorbar = plt.axes([box.x0*1.05 + box.width * 0.95, box.y0, 0.01, box.height])
-    cb = plt.colorbar(h[3],cax = axColorbar, orientation="vertical")
+    cb = plt.colorbar(h2[3],cax = axColorbar, orientation="vertical")
     cb.set_label(r'$N_\mathrm{star-forming\/galaxies}$' ,fontsize=16)
 
-    fig.savefig('%s/ms_bar.pdf' % fig_path, dpi=200)
+    fig.savefig('%s/ms_bar%s.pdf' % (fig_path,filestr), dpi=200)
 
     return None
     
-def plot_ms_arms_winding(sfr_sample):
+def plot_ms_arms_winding(sfr_sample,weight_by_pmed=False):
 
     # Plot
 
     fig = plt.figure(3,(10,4))
     fig.clf()
+    filestr=''
 
     fig.subplots_adjust(left=0.08,bottom=0.15,hspace=0,wspace=0)
 
@@ -223,10 +233,7 @@ def plot_ms_arms_winding(sfr_sample):
     mass_bins,sfr_bins = bins()
     h,xedges,yedges = np.histogram2d(mass,sfr,bins=(mass_bins,sfr_bins))
 
-    #ax.scatter(mass,sfr,marker='o',color='cyan')
-    #ax.contour(mass_bins[:-1],sfr_bins[:-1],h)
-
-    # Plot each one
+    # Plot each morphological category
 
     arm_tasks = ('a28_tight','a29_medium','a30_loose')
     colors = ('red','green','blue')
@@ -240,14 +247,22 @@ def plot_ms_arms_winding(sfr_sample):
             ax.set_ylabel('SFR '+r'$[M_\odot/\mathrm{yr}]$',fontsize=16)
         if idx == 1:
             ax.set_xlabel('Stellar mass [log '+r'$\/M/M_\odot$]',fontsize=16)
-        #fig.colorbar(h[3], ax=ax)
 
         if idx > 0:
             ax.get_yaxis().set_ticks([])
 
         spiral = (sfr_sample['t01_smooth_or_features_a02_features_or_disk_debiased'] > 0.430) & (sfr_sample['t02_edgeon_a05_no_debiased'] > 0.715) & (sfr_sample['t04_spiral_a08_spiral_weight'] >= 20) & (sfr_sample['t04_spiral_a08_spiral_debiased'] > 0.619)
         n1 = sfr_sample[spiral & (sfr_sample['t10_arms_winding_%s_flag' % a] == 1)] 
-        ax.scatter(n1['MEDIAN_MASS'],n1['MEDIAN_SFR'], s = 2, color=c, marker='o')
+
+        # Two sets of plots: one weights histogram by debiased vote fraction per galaxy; other shows discrete categories from GZ2 flags.
+        if weight_by_pmed:
+            spirals = sfr_sample[spiral]
+            h = ax.hist2d(spirals['MEDIAN_MASS'],spirals['MEDIAN_SFR'],bins=50,cmap = cm.RdYlGn, weights=spirals['t10_arms_winding_%s_debiased' % a],vmin=0.01,vmax=100.,norm=LogNorm())
+            filestr='_weighted_pmed'
+            cb_label = r'$w_\mathrm{\phi}$'
+        else:
+            ax.scatter(n1['MEDIAN_MASS'],n1['MEDIAN_SFR'], s = 2, color=c, marker='o')
+            cb_label = r'$N_\mathrm{star-forming\/galaxies}$'
 
         arm_label = a[4:]
         ax.text(6.2,1.3,r'$\phi_{arms} = $%s' % arm_label, color='k')
@@ -260,11 +275,11 @@ def plot_ms_arms_winding(sfr_sample):
     # Set the colorbar and labels at the end
 
     box = ax.get_position()
-    axColorbar = plt.axes([box.x0*1.05 + box.width * 0.95, box.y0, 0.01, box.height])
+    axColorbar = plt.axes([box.x0*1.05 + box.width * 0.93, box.y0, 0.01, box.height])
     cb = plt.colorbar(h[3],cax = axColorbar, orientation="vertical")
-    cb.set_label(r'$N_\mathrm{star-forming\/galaxies}$' ,fontsize=16)
+    cb.set_label(cb_label,fontsize=16)
 
-    fig.savefig('%s/ms_arms_winding.pdf' % fig_path, dpi=200)
+    fig.savefig('%s/ms_arms_winding%s.pdf' % (fig_path,filestr), dpi=200)
 
     return None
 
@@ -342,73 +357,6 @@ def plot_ms_mergers(sfr_sample):
 
 def plot_ms_merger_fraction(sfr_sample):
 
-    # Plot
-
-    fig = plt.figure(4,(10,8))
-    fig.clf()
-
-    fig.subplots_adjust(left=0.08,bottom=0.15,hspace=0,wspace=0)
-
-    mass,sfr,sfr_err = get_mass_sfr(sfr_sample)
-    mass_bins,sfr_bins = bins()
-    h,xedges,yedges = np.histogram2d(mass,sfr,bins=(mass_bins,sfr_bins))
-
-    # Plot star-forming galaxies
-
-    ax = fig.add_subplot(111)
-    h = ax.hist2d(mass,sfr,bins=50,cmap = cm.gray_r, norm=LogNorm())
-    ax.set_xlim(6,11.5)
-    ax.set_ylim(-4,2)
-    ax.set_ylabel('log SFR '+r'$[M_\odot/\mathrm{yr}]$',fontsize=16)
-    ax.set_xlabel('Stellar mass [log '+r'$\/M/M_\odot$]',fontsize=16)
-
-    # Plot mergers data
-
-    with fits.open('%s/mergers/mergers_mpajhu_bpt.fits' % ms_path) as f:
-        data = f[1].data
-
-    #sf_mergers = data[(data['bpt'] == 1) & (data['mass_ratio'] <= 3)]
-    sf_mergers = data[(data['bpt'] == 1)]
-
-    sc = ax.scatter(sf_mergers['MEDIAN_MASS'],sf_mergers['MEDIAN_SFR'], c=sf_mergers['mass_ratio'], edgecolor='none',s = 50, marker='.', cmap=matplotlib.cm.RdBu, vmin=1.,vmax=10.)
-
-    ax.text(6.2,1.3,'Mergers', color='black')
-
-    # Plot the best linear fits
-
-    #au,bu = plot_fits('Mergers',sf_mergers,ax,'red',lw=2,legend=False)
-    a1,a0 = plot_fits('Star-forming galaxies',sfr_sample,ax,'black',lw=1,legend=False)
-
-    # How many mergers fall above and below?
-
-    diff = sf_mergers['MEDIAN_SFR'] - (a0 + a1*sf_mergers['MEDIAN_MASS'])
-
-    # Fix same slope but different offset. What's the average difference between SF MS and mergers?
-
-    mass,sfr,sfr_err = get_mass_sfr(sf_mergers)
-
-    rms = []
-    xarr = np.linspace(0,1,100)
-    for x in xarr:
-        rms.append(np.sqrt(np.sum((sfr - (a0 + x + a1*mass))**2)))
-
-    offset = xarr[(np.abs(rms)).argmin()]
-    uline = ax.plot(np.linspace(6,12,100),np.polyval([a1,a0+offset],np.linspace(6,12,100)),color='red',linestyle='--',linewidth=1)
-
-    ax.text(6.2,0.9,'Offset = %.3f dex' % offset, color='black',fontsize=15)
-
-    # Set the colorbars and labels
-
-    box = ax.get_position()
-    axColorbar = plt.axes([box.x0 + box.width * 1.02, box.y0, 0.01, box.height])
-    cb = plt.colorbar(h[3],cax = axColorbar, orientation="vertical")
-    cb.set_label(r'$N_\mathrm{star-forming\/galaxies}$' ,fontsize=16)
-
-    axcb2 = plt.axes([0.75, 0.20, 0.03, 0.25]) 
-    cb2 = plt.colorbar(sc,cax = axcb2, orientation="vertical",ticks=[1,3,5,10])
-    cb2.set_label('Merger ratio',fontsize=14)
-
-    fig.savefig('%s/ms_mergers.pdf' % fig_path, dpi=200)
 
     return None
 

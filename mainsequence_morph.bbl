@@ -46,11 +46,16 @@
   {Riechers}}]{dad10}
 {Daddi}, E., {Elbaz}, D., {Walter}, F., {et~al.} 2010, \apjl, 714, L118
 
-\bibitem[{{Darg} {et~al.}(2010){Darg}, {Kaviraj}, {Lintott}, {Schawinski},
-  {Sarzi}, {Bamford}, {Silk}, {Proctor}, {Andreescu}, {Murray}, {Nichol},
-  {Raddick}, {Slosar}, {Szalay}, {Thomas}, \& {Vandenberg}}]{dar10a}
-{Darg}, D.~W., {Kaviraj}, S., {Lintott}, C.~J., {et~al.} 2010, \mnras, 401,
-  1043
+\bibitem[{{Darg} {et~al.}(2010{\natexlab{a}}){Darg}, {Kaviraj}, {Lintott},
+  {Schawinski}, {Sarzi}, {Bamford}, {Silk}, {Proctor}, {Andreescu}, {Murray},
+  {Nichol}, {Raddick}, {Slosar}, {Szalay}, {Thomas}, \& {Vandenberg}}]{dar10a}
+{Darg}, D.~W., {Kaviraj}, S., {Lintott}, C.~J., {et~al.} 2010{\natexlab{a}},
+  \mnras, 401, 1043
+
+\bibitem[{{Darg} {et~al.}(2010{\natexlab{b}}){Darg}, {Kaviraj}, {Lintott},
+  {Schawinski}, {Sarzi}, {Bamford}, {Silk}, {Andreescu}, {Murray}, {Nichol},
+  {Raddick}, {Slosar}, {Szalay}, {Thomas}, \& {Vandenberg}}]{dar10}
+---. 2010{\natexlab{b}}, \mnras, 401, 1552
 
 \bibitem[{{Elbaz} {et~al.}(2011){Elbaz}, {Dickinson}, {Hwang},
   {D{\'{\i}}az-Santos}, {Magdis}, {Magnelli}, {Le Borgne}, {Galliano},
@@ -104,6 +109,12 @@
   {Vandenberg}}]{lin08}
 {Lintott}, C.~J., {Schawinski}, K., {Slosar}, A., {et~al.} 2008, \mnras, 389,
   1179
+
+\bibitem[{{Masters} {et~al.}(2011){Masters}, {Nichol}, {Hoyle}, {Lintott},
+  {Bamford}, {Edmondson}, {Fortson}, {Keel}, {Schawinski}, {Smith}, \&
+  {Thomas}}]{mas11c}
+{Masters}, K.~L., {Nichol}, R.~C., {Hoyle}, B., {et~al.} 2011, \mnras, 411,
+  2026
 
 \bibitem[{{Omand} {et~al.}(2014){Omand}, {Balogh}, \& {Poggianti}}]{oma14}
 {Omand}, C., {Balogh}, M., \& {Poggianti}, B. 2014, ArXiv e-prints,
