@@ -74,7 +74,7 @@ def fit_mass_sfr(sample,weighted=True):
 
     return a,b,v
 
-def plot_fits(label,data,axis,color,lw=2,ls='--',legend=True,verbose=False,weighted=True):
+def plot_fits(label,data,axis,color,lw=2,ls='--',legend=False,verbose=False,weighted=True):
 
     if weighted:
         prefix = ''
@@ -144,8 +144,15 @@ def plot_ms_arms_number(sfr_sample):
         ax.text(6.2,1.0,r'$N_{arms} = $%s' % al, color='k',fontsize=18)
 
         # Plot the linear fits
-        plot_fits(al,n1,ax,c,legend=False,verbose=True,weighted=True)
-        plot_fits('SF galaxies',sfr_sample,ax,'black',lw=1,ls='-',legend=False,weighted=True)
+        plot_fits(al,n1,ax,c)
+        plot_fits('SF galaxies',sfr_sample,ax,'black',lw=1,ls='-')
+
+        '''
+        # Print number of galaxies in each category
+
+        print '%i %s galaxies' % (len(n1),a)
+        '''
+
 
     box = ax.get_position()
     axColorbar = plt.axes([box.x0*1.05 + box.width * 0.95, box.y0, 0.01, box.height*2])
@@ -206,8 +213,14 @@ def plot_ms_bars(sfr_sample,contour=False):
 
         # Plot the best linear fit
 
-        plot_fits(t,b,ax,c,legend=False)
-        plot_fits(t,sfr_sample,ax,'black',lw=1,legend=False)
+        plot_fits(t,b,ax,c)
+        plot_fits(t,sfr_sample,ax,'black',lw=1,ls='-')
+
+        '''
+        # Print counts
+
+        print '%6i %s galaxies' % (len(b),t)
+        '''
 
 
     box = ax.get_position()
@@ -269,8 +282,14 @@ def plot_ms_arms_winding(sfr_sample,weight_by_pmed=False):
 
         # Plot the best linear fits
 
-        plot_fits(arm_label,n1,ax,c,legend=False)
-        plot_fits(arm_label,sfr_sample,ax,'black',lw=1,legend=False)
+        plot_fits(arm_label,n1,ax,c)
+        plot_fits(arm_label,sfr_sample,ax,'black',lw=1,ls='-')
+
+        '''
+        # Print number of galaxies in each category
+
+        print '%i %s galaxies' % (len(n1),a)
+        '''
 
     # Set the colorbar and labels at the end
 
@@ -319,8 +338,8 @@ def plot_ms_mergers(sfr_sample):
 
     # Plot the best linear fits
 
-    #au,bu = plot_fits('Mergers',sf_mergers,ax,'red',lw=2,legend=False)
-    a1,a0 = plot_fits('Star-forming galaxies',sfr_sample,ax,'black',lw=1,legend=False)
+    #au,bu = plot_fits('Mergers',sf_mergers,ax,'red')
+    a1,a0 = plot_fits('Star-forming galaxies',sfr_sample,ax,'black',lw=1,ls='-')
 
     # How many mergers fall above and below?
 
