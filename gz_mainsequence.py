@@ -403,38 +403,17 @@ def plot_ms_greenpeas(sfr_sample):
 
     # Plot green peas
 
-    with fits.open('%s/mergers/mergers_mpajhu_bpt.fits' % ms_path) as f:
+    with fits.open('%s/greenpeas.fits' % ms_path) as f:
         data = f[1].data
 
-    #sf_mergers = data[(data['bpt'] == 1) & (data['mass_ratio'] <= 3)]
-    sf_mergers = data[(data['bpt'] == 1)]
+    sc = ax.scatter(data['M_STELLAR'],np.log10(data['SFR']), color='green',s = 10, marker='o')
 
-    sc = ax.scatter(sf_mergers['MEDIAN_MASS'],sf_mergers['MEDIAN_SFR'], c=sf_mergers['mass_ratio'], edgecolor='none',s = 50, marker='.', cmap=matplotlib.cm.RdBu, vmin=1.,vmax=10.)
-
-    ax.text(6.2,1.3,'Mergers', color='black')
+    ax.text(6.2,1.3,'Green peas', color='green')
 
     # Plot the best linear fits
 
     #au,bu = plot_fits('Mergers',sf_mergers,ax,'red')
     a1,a0 = plot_fits('Star-forming galaxies',sfr_sample,ax,'black',lw=1,ls='-')
-
-    # How many mergers fall above and below?
-
-    diff = sf_mergers['MEDIAN_SFR'] - (a0 + a1*sf_mergers['MEDIAN_MASS'])
-
-    # Fix same slope but different offset. What's the average difference between SF MS and mergers?
-
-    mass,sfr,sfr_err = get_mass_sfr(sf_mergers)
-
-    rms = []
-    xarr = np.linspace(0,1,100)
-    for x in xarr:
-        rms.append(np.sqrt(np.sum((sfr - (a0 + x + a1*mass))**2)))
-
-    offset = xarr[(np.abs(rms)).argmin()]
-    uline = ax.plot(np.linspace(6,12,100),np.polyval([a1,a0+offset],np.linspace(6,12,100)),color='red',linestyle='--',linewidth=1)
-
-    ax.text(6.2,0.9,'Offset = %.3f dex' % offset, color='black',fontsize=15)
 
     # Set the colorbars and labels
 
@@ -443,10 +422,6 @@ def plot_ms_greenpeas(sfr_sample):
     cb = plt.colorbar(h[3],cax = axColorbar, orientation="vertical")
     cb.set_label(r'$N_\mathrm{star-forming\/galaxies}$' ,fontsize=16)
 
-    axcb2 = plt.axes([0.75, 0.20, 0.03, 0.25]) 
-    cb2 = plt.colorbar(sc,cax = axcb2, orientation="vertical",ticks=[1,3,5,10])
-    cb2.set_label('Merger ratio',fontsize=14)
-
-    fig.savefig('%s/ms_mergers.pdf' % fig_path, dpi=200)
+    fig.savefig('%s/ms_greenpeas.pdf' % fig_path, dpi=200)
 
     return None
