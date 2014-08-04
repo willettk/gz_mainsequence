@@ -379,3 +379,49 @@ def plot_ms_merger_fraction(sfr_sample):
 
     return None
 
+def plot_ms_greenpeas(sfr_sample):
+
+    # Plot
+
+    fig = plt.figure(4,(10,8))
+    fig.clf()
+
+    fig.subplots_adjust(left=0.08,bottom=0.15,hspace=0,wspace=0)
+
+    mass,sfr,sfr_err = get_mass_sfr(sfr_sample)
+    mass_bins,sfr_bins = bins()
+    h,xedges,yedges = np.histogram2d(mass,sfr,bins=(mass_bins,sfr_bins))
+
+    # Plot star-forming galaxies
+
+    ax = fig.add_subplot(111)
+    h = ax.hist2d(mass,sfr,bins=50,cmap = cm.gray_r, norm=LogNorm())
+    ax.set_xlim(6,11.5)
+    ax.set_ylim(-4,2)
+    ax.set_ylabel('log SFR '+r'$[M_\odot/\mathrm{yr}]$',fontsize=16)
+    ax.set_xlabel('Stellar mass [log '+r'$\/M/M_\odot$]',fontsize=16)
+
+    # Plot green peas
+
+    with fits.open('%s/greenpeas.fits' % ms_path) as f:
+        data = f[1].data
+
+    sc = ax.scatter(data['M_STELLAR'],np.log10(data['SFR']), color='green',s = 10, marker='o')
+
+    ax.text(6.2,1.3,'Green peas', color='green')
+
+    # Plot the best linear fits
+
+    #au,bu = plot_fits('Mergers',sf_mergers,ax,'red')
+    a1,a0 = plot_fits('Star-forming galaxies',sfr_sample,ax,'black',lw=1,ls='-')
+
+    # Set the colorbars and labels
+
+    box = ax.get_position()
+    axColorbar = plt.axes([box.x0 + box.width * 1.02, box.y0, 0.01, box.height])
+    cb = plt.colorbar(h[3],cax = axColorbar, orientation="vertical")
+    cb.set_label(r'$N_\mathrm{star-forming\/galaxies}$' ,fontsize=16)
+
+    fig.savefig('%s/ms_greenpeas.pdf' % fig_path, dpi=200)
+
+    return None
