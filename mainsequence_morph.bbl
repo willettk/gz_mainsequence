@@ -32,14 +32,15 @@
 {Cardamone}, C., {Schawinski}, K., {Sarzi}, M., {et~al.} 2009, \mnras, 399,
   1191
 
-\bibitem[{{Carpineti} {et~al.}(2012){Carpineti}, {Kaviraj}, {Darg}, {Lintott},
-  {Schawinski}, \& {Shabala}}]{car12}
-{Carpineti}, A., {Kaviraj}, S., {Darg}, D., {et~al.} 2012, \mnras, 420, 2139
-
 \bibitem[{{Casteels} {et~al.}(2013){Casteels}, {Bamford}, {Skibba}, {Masters},
   {Lintott}, {Keel}, {Schawinski}, {Nichol}, \& {Smith}}]{cas13}
 {Casteels}, K.~R.~V., {Bamford}, S.~P., {Skibba}, R.~A., {et~al.} 2013, \mnras,
   429, 1051
+
+\bibitem[{{Daddi} {et~al.}(2007){Daddi}, {Dickinson}, {Morrison}, {Chary},
+  {Cimatti}, {Elbaz}, {Frayer}, {Renzini}, {Pope}, {Alexander}, {Bauer},
+  {Giavalisco}, {Huynh}, {Kurk}, \& {Mignoli}}]{dad07}
+{Daddi}, E., {Dickinson}, M., {Morrison}, G., {et~al.} 2007, \apj, 670, 156
 
 \bibitem[{{Daddi} {et~al.}(2010){Daddi}, {Elbaz}, {Walter}, {Bournaud},
   {Salmi}, {Carilli}, {Dannerbauer}, {Dickinson}, {Monaco}, \&
@@ -73,16 +74,15 @@
   {Mendel}, \& {Simard}}]{ell11}
 {Ellison}, S.~L., {Nair}, P., {Patton}, D.~R., {et~al.} 2011, \mnras, 416, 2182
 
+\bibitem[{{Hopkins} {et~al.}(2008){Hopkins}, {Hernquist}, {Cox}, \& {Kere{\v
+  s}}}]{hop08}
+{Hopkins}, P.~F., {Hernquist}, L., {Cox}, T.~J., \& {Kere{\v s}}, D. 2008,
+  \apjs, 175, 356
+
 \bibitem[{{Hoyle} {et~al.}(2011){Hoyle}, {Masters}, {Nichol}, {Edmondson},
   {Smith}, {Lintott}, {Scranton}, {Bamford}, {Schawinski}, \& {Thomas}}]{hoy11}
 {Hoyle}, B., {Masters}, K.~L., {Nichol}, R.~C., {et~al.} 2011, \mnras, 415,
   3627
-
-\bibitem[{{Jarrett} {et~al.}(2013){Jarrett}, {Masci}, {Tsai}, {Petty},
-  {Cluver}, {Assef}, {Benford}, {Blain}, {Bridge}, {Donoso}, {Eisenhardt},
-  {Koribalski}, {Lake}, {Neill}, {Seibert}, {Sheth}, {Stanford}, \&
-  {Wright}}]{jar13}
-{Jarrett}, T.~H., {Masci}, F., {Tsai}, C.~W., {et~al.} 2013, \aj, 145, 6
 
 \bibitem[{{Kauffmann} {et~al.}(2003{\natexlab{a}}){Kauffmann}, {Heckman},
   {White}, {Charlot}, {Tremonti}, {Brinchmann}, {Bruzual}, {Peng}, {Seibert},
@@ -97,6 +97,13 @@
   {Fukugita}, {Hall}, {Ivezi{\'c}}, {Richards}, \& {Schneider}}]{kau03}
 {Kauffmann}, G., {Heckman}, T.~M., {Tremonti}, C., {et~al.} 2003{\natexlab{b}},
   \mnras, 346, 1055
+
+\bibitem[{{Lang} {et~al.}(2014){Lang}, {Wuyts}, {Somerville}, {F{\"o}rster
+  Schreiber}, {Genzel}, {Bell}, {Brammer}, {Dekel}, {Faber}, {Ferguson},
+  {Grogin}, {Kocevski}, {Koekemoer}, {Lutz}, {McGrath}, {Momcheva}, {Nelson},
+  {Primack}, {Rosario}, {Skelton}, {Tacconi}, {van Dokkum}, \&
+  {Whitaker}}]{lan14}
+{Lang}, P., {Wuyts}, S., {Somerville}, R.~S., {et~al.} 2014, \apj, 788, 11
 
 \bibitem[{{Lilly} {et~al.}(2013){Lilly}, {Carollo}, {Pipino}, {Renzini}, \&
   {Peng}}]{lil13}
@@ -114,11 +121,24 @@
 {Lintott}, C.~J., {Schawinski}, K., {Slosar}, A., {et~al.} 2008, \mnras, 389,
   1179
 
+\bibitem[{{Martig} {et~al.}(2009){Martig}, {Bournaud}, {Teyssier}, \&
+  {Dekel}}]{mar09}
+{Martig}, M., {Bournaud}, F., {Teyssier}, R., \& {Dekel}, A. 2009, \apj, 707,
+  250
+
 \bibitem[{{Masters} {et~al.}(2011){Masters}, {Nichol}, {Hoyle}, {Lintott},
   {Bamford}, {Edmondson}, {Fortson}, {Keel}, {Schawinski}, {Smith}, \&
   {Thomas}}]{mas11c}
 {Masters}, K.~L., {Nichol}, R.~C., {Hoyle}, B., {et~al.} 2011, \mnras, 411,
   2026
+
+\bibitem[{{Noeske} {et~al.}(2007){Noeske}, {Weiner}, {Faber}, {Papovich},
+  {Koo}, {Somerville}, {Bundy}, {Conselice}, {Newman}, {Schiminovich}, {Le
+  Floc'h}, {Coil}, {Rieke}, {Lotz}, {Primack}, {Barmby}, {Cooper}, {Davis},
+  {Ellis}, {Fazio}, {Guhathakurta}, {Huang}, {Kassin}, {Martin}, {Phillips},
+  {Rich}, {Small}, {Willmer}, \& {Wilson}}]{noe07}
+{Noeske}, K.~G., {Weiner}, B.~J., {Faber}, S.~M., {et~al.} 2007, \apjl, 660,
+  L43
 
 \bibitem[{{Omand} {et~al.}(2014){Omand}, {Balogh}, \& {Poggianti}}]{oma14}
 {Omand}, C., {Balogh}, M., \& {Poggianti}, B. 2014, ArXiv e-prints,
@@ -159,6 +179,12 @@
   {Zamorani}}]{rod11}
 {Rodighiero}, G., {Daddi}, E., {Baronchelli}, I., {et~al.} 2011, \apjl, 739,
   L40
+
+\bibitem[{{Schawinski} {et~al.}(2014){Schawinski}, {Urry}, {Simmons},
+  {Fortson}, {Kaviraj}, {Keel}, {Lintott}, {Masters}, {Nichol}, {Sarzi},
+  {Skibba}, {Treister}, {Willett}, {Wong}, \& {Yi}}]{sch14}
+{Schawinski}, K., {Urry}, C.~M., {Simmons}, B.~D., {et~al.} 2014, \mnras, 440,
+  889
 
 \bibitem[{{Strauss} {et~al.}(2002){Strauss}, {Weinberg}, {Lupton}, {Narayanan},
   {Annis}, {Bernardi}, {Blanton}, {Burles}, {Connolly}, {Dalcanton}, {Doi},
