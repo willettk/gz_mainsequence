@@ -129,7 +129,7 @@ def plot_ms_arms_number(sfr_sample):
         if idx < 3:
             ax.get_xaxis().set_ticks([])
         if idx == 0 or idx == 3:
-            ax.set_ylabel('SFR '+r'$[M_\odot/\mathrm{yr}]$',fontsize=16)
+            ax.set_ylabel('SFR '+r'$[\log\/M_\odot/\mathrm{yr}]$',fontsize=16)
         else:
             ax.get_yaxis().set_ticks([])
 
@@ -189,10 +189,10 @@ def plot_ms_bars(sfr_sample,contour=False):
         h2 = ax.hist2d(mass,sfr,bins=50,cmap = cm.gray_r, norm=LogNorm())
         ax.set_xlim(6,11.5)
         ax.set_ylim(-4,2)
-        ax.set_xlabel('Stellar mass (log'+r'$\/M/M_\odot$)',fontsize=20)
+        ax.set_xlabel('Stellar mass (log '+r'$M/M_\odot$)',fontsize=20)
 
         if idx == 0:
-            ax.set_ylabel('SFR '+r'$[M_\odot/\mathrm{yr}]$',fontsize=16)
+            ax.set_ylabel('SFR '+r'$[\log\/M_\odot/\mathrm{yr}]$',fontsize=20)
         else:
             ax.get_yaxis().set_ticks([])
 
@@ -223,7 +223,7 @@ def plot_ms_bars(sfr_sample,contour=False):
     box = ax.get_position()
     axColorbar = plt.axes([box.x0*1.05 + box.width * 0.95, box.y0, 0.01, box.height])
     cb = plt.colorbar(h2[3],cax = axColorbar, orientation="vertical")
-    cb.set_label(r'$N_\mathrm{star-forming\/galaxies}$' ,fontsize=16)
+    cb.set_label(r'$N_\mathrm{star-forming\/galaxies}$' ,fontsize=18)
 
     fig.savefig('%s/ms_bar%s.pdf' % (fig_path,filestr), dpi=200)
 
@@ -254,7 +254,7 @@ def plot_ms_arms_winding(sfr_sample,weight_by_pmed=False):
         ax.set_xlim(6,11.5)
         ax.set_ylim(-4,2)
         if idx == 0:
-            ax.set_ylabel('SFR '+r'$[M_\odot/\mathrm{yr}]$',fontsize=16)
+            ax.set_ylabel('SFR '+r'$[\log\/M_\odot/\mathrm{yr}]$',fontsize=16)
         if idx == 1:
             ax.set_xlabel('Stellar mass [log '+r'$\/M/M_\odot$]',fontsize=16)
 
