@@ -1,0 +1,133 @@
+Round 1 of comments on GZ SFMS paper; August 2014
+-------------------------------------------------------------------
+
+Ramin Skibba
+
+- In my personal opinion, the term "main sequence" is kind of a misnomer, but it's popular now.  I think "star-forming sequence" would be sufficient, but if you want to include the "main" in there, I'll understand and that's fine with me.
+
+    I'd like to stick with star-forming main sequence,  but could be talked out of it.
+
+    Stats: 235 papers on ADS from 2009-2014 with "star forming sequence"
+           267 papers on ADS from 2009-2014 with "star forming main sequence"
+
+- I know Kevin might be a fan of the Peng et al. papers, but in my opinion, they weren't very impressive, and the terms "mass quenching" and "environment quenching" don't really explain much and have only served to muddle the field.  There are better papers on the subject out there, and a particularly good one is De Lucia et al. (2012, MNRAS, 423, 1277).
+
+    Ask Ramin to write a sentence or two on this incorporating the De Lucia et al. results (or any other relevant ones).
+
+- You should state somewhere (e.g., at the end of the intro.) what your assumed values of Omega_m and h are, what the assumed IMF is, etc.
+
+    Updated cosmology. Initial mass function is in the MPA-JHU models, but I believe it uses the Kroupa (2001) universal IMF (rather than the Chabrier). Discuss on telecon?
+
+- Since you're using the updated Brinchmann et al. SFRs (right?), you should mention and cite Salim et al. (2007, ApJS, 173, 267), since the results in that paper motivated those updates.
+
+    OK. 
+
+- Have you tested whether your results change at all if you use photometrically calibrated stellar masses rather than the Kauffmann et al. spectroscopic ones?  It's not necessary for the paper, but I was just curious.
+
+    Not yet, but a reasonable suggestion. 
+
+- Is it possible to estimate errors on the parameters in Table 1?  If so, it's worth going through the effort of calculating them and including them (and expanding the table to both columns, if necessary).
+
+    The elements given are the formal errors; however, there must be a better way to do this. The formal least-squares errors seem way too small. Maybe resampling many times with subsets and looking at the dispersion in the fits for the sample? Another good question for telecon.
+
+- Since you have so few galaxies with 4 or 5+ spiral arms, it might be better to remove those panels from Fig. 1 and only briefly discuss them in the text.  It's up to you though.
+
+    I'd like to keep them, if only to highlight their paucity. A deeper result might be to weight the galaxies with the GZ probability for each spiral arm and then perform the same fits, like I did for the spiral arm tightnesses. Not as sure if it's relevant (since arms aren't a continuum), but should be straightforward - just supply them as weights to each point. 
+
+- It might improve the discussion to add something about environmental (or DM halo) dependencies, maybe in the context of the results in my and Steven's GZ papers.  If you agree, I'd be happy to help write that.
+
+    Much appreciated - will ask Ramin to contribute a bit. 
+
+- What do you mean when you say that mergers and green peas may be "driven" above the SFMS?  Do you mean that mergers with gas-rich galaxies can trigger starbursts and boost the galaxies' SFRs?  That sounds reasonable to me.  The offset of nearly 0.3 dex in Fig. 4 is a neat result.
+
+    Yep - mass doesn't increase significantly, but relative amount of star formation (for short time periods) do. It is a neat result - already known, I think, but I haven't seen it in quite this context before.
+
+- By the way, in that context, check out the lower panel of Fig. 4 of Skibba et al. (2009): we saw that close pairs of GZ galaxies definitely have much higher P_mg and sSFR than average.
+
+    Nice - cited.
+
+-------------------------------------------------------------------
+
+Ivy Wong
+
+Out of curiousity, I'd be interested to know the "fracdev" distribution for each class of your objects even though you have selected out the early-types. Willett et al 2013 does show the bulge-disk ratio to be an important driver so I'm wondering if the spirals without clear arms are also those with bigger B/D ratios...
+
+I reckon that the SFR is driven by the disk potential and the disk stability so I think that your findings make sense.  How do your bar results compare to those that Karen has been publishing?  Didn't she find that redder galaxies are more likely to host bars?
+
+-------------------------------------------------------------------
+
+Tom Melvin
+
+It is a very interesting result, suggesting that a galaxy is able to self regulate so that it generally falls on the SFMS, unless it is in the process of merging. I remember in my masters thesis exploring the SFRs of mergers in galaxy clusters in the Millennium Simulations, and the idea there was that they increased by at least an order of magnitude, much greater than the observations of galaxy mergers in clusters. This seems to be a much more conclusive piece of work to suggest the same thing, that galaxy simulations don't quite get the properties of merging galaxies right.
+
+I think in Figure 1 it could be worth grouping galaxies with 4 and 5 spiral arms together maybe? I'd say add the unknown arms too, but they could be completely different animals! Either way, the main point of no deviation from the SFMS would stand (just a few more numbers in a sample!).
+
+I would be interested to see what the relationships for 1 armed spirals and merging galaxies would look like for barred and unbarred versions of the two. As there is the idea that mergers can induce bars, do merging disk galaxies with bars deviate further from the SFMS or not? I'm not sure of the numbers for each of the samples once plit into barred and unbarred, but it will probably be dependent of mass ratios (as you use in Fig 4), as 1-to-1 mergers would probably have no bars!
+
+Not sure if this is something worth doing, but as you have looked at bars, would it be worth looking at bulges in this way too? I know Brooke did something similar (or completely identical, I can't quite remember!) with bulgeless disks. 
+
+-------------------------------------------------------------------
+
+Bob Nichol
+
+My first science question regards dust/reddening and inclination angle on the sky. Could you check for the subset of near face-on spirals (maybe not all subclasses but ones where you have the numbers)
+
+-------------------------------------------------------------------
+
+Karen Masters
+
+    Attached as separate annotated PDF (Willett_SFMS_morph1_klmcomments.pdf)
+
+-------------------------------------------------------------------
+
+Sugata Kaviraj
+
+---------
+ 
+ABSTRACT
+ 
+'significant reduction over the increase'
+ 
+I am not sure this is statement is altogether correct. At z>1 the enhacement in star formation in mergers can actually be milder because the background level of star formation in galaxies is already very high. Mergers tend to proprtionally enhance SF more at lower redshifts. see: http://adsabs.harvard.edu/abs/2013MNRAS.429L..40K
+ 
+----
+ 
+I found the last two sentences in the abstract a bit cryptic e.g. 'quenching relation', 'filling factor of the disk', 'strong dynamical forcing'. 
+ 
+----
+ 
+RESULTS
+ 
+Would be good to show some examples of spirals with different numbers of arms so readers can get a feel for what types of systems are being discussed. This would be especially important for the 1-armed spirals which might be tidal tails (as you say in the text) and 3+ armed spirals which are rare and readers might wonder what these systems actually look like. It would also help the discussion in the second last para of page 2 where you discuss the morphology of galaxies with an uncertain number of spirals arms and how that affects their position on the SF main sequence. Some example images might make it easier for the reader to follow the explanation in this para.
+ 
+----
+ 
+DISCUSSION
+ 
+'Thus while the overall bulge strength does affect the position of a galaxy on the SFMS (Martig et al. 2009; Lang et al. 2014; Omand et al. 2014), the structure of the disk itself does not.'
+ 
+I looked at bulge quenching in some detail in a recent paper. Would you mind adding it to this list?
+ 
+http://adsabs.harvard.edu/abs/2014MNRAS.440.2944K
+ 
+----
+ 
+'This increase in star formation for mergers does show a strong evolution in redshift out to at least 1:5 < z < 2:5, likely due to the higher gas fractionsinvolved (Daddi et al. 2010; Rodighiero et al. 2011).'
+ 
+Might want to be a bit careful here. Rodighiero et al. 2011's 'starbursts' i.e. those that lie above the SF main sequence are not necesarily mergers (in fact a lot of them are probably not). They didnt do any morphological analysis but simply assumed that these starbursts were mergers. When one does things morphologically, most of the mergers share the same parameter space as normal starbursts at these redshifts e.g. http://adsabs.harvard.edu/abs/2013MNRAS.429L..40K
+ 
+----
+ 
+'Almost all simulations of galaxy mergers predict a steep increase in the star formation rate during both firrst passage and final coalescence (eg, Hopkins et al. 2008). The magnitude of this increase often depends on the details of the simulation, but can range from a factor of 10 to 100. In the low-redshift universe sampled by SDSS and Galaxy Zoo, we find no evidence for an enhancement of such magnitude. This in turn suggests that the current generation of galaxy merger simulations misses critical feedback mechanisms that prevent runaway peaks in star formation rates during mergers.'
+ 
+This is very true (although note that the simulations do often involve feedback and still get it wrong!). I looked at this issue from an observational viewpoint using deep images from the Stripe 82 to pick out mergers in spiral galaxies (so a similar population to what you are studying here):
+ 
+http://adsabs.harvard.edu/abs/2014MNRAS.440.2944K
+ 
+The observationally determined star formation enchancements (at final coalescence where the enhancements are likely to peak) are between a factor of 2 and 6, consistent with your results. I think its better to mention these observational results rather than (or in addition to) simulations which depend critically on the setup used (as you say in the text).
+ 
+----
+ 
+GENERAL STUFF
+ 
+Do the results remain the same if one looked at specific SFR vs stellar mass instead of stellar mass? Looking at the position of the galaxies in Figure 1, I am guessing there is no change. A sentence saying this somewhere in the results section would be useful in case the referee queries it.

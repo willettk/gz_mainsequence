@@ -20,11 +20,23 @@
 \title{The dependence of spiral disk morphology on the star formation-stellar mass relation}
 
 \author{Kyle Willett\altaffilmark{1}, Kevin Schawinski\altaffilmark{2}, etc.}
+% People who want to be co-authors:
+% Ivy Wong
+% Karen Masters
+% Ramin Skibba
+% Bob Nichol
+% Tom Melvin
+% Edmond Cheung
+% Chris Lintott
+% Bill Keel
+% Sugata Kaviraj
 
 \altaffiltext{1}{School of Physics and Astronomy, University of Minnesota, Minneapolis, MN 55455, USA}
 \altaffiltext{2}{Institute for Astronomy, Department of Physics, ETH Z\"urich, Wolfgang-Pauli-Strasse 16, CH-8093, Z\"urich, Switzerland}
 
 % Hello, @overheardonastroph!
+
+%@arxiver{ms_bar_contour.pdf,ms_mergers_both.pdf}
 
 %%%%%%%%%%%%
 %%% ABSTRACT
@@ -48,7 +60,7 @@ As star-forming galaxies exhibit a wide range of physical appearances in optical
 
 The fact that star-forming galaxies live on the SFMS is one of the key observations that has been driving the development of new descriptions of how galaxies evolve. \citet{pen10a,pen12} argue that galaxies grow in stellar mass during their life as star-forming galaxies on the main sequence before being quenched either by an external mechanism (environment or satellite quenching) or by an internal mechanism (mass quenching). This life on the main sequence is thus governed by the action of the regulator balancing gas in- and outflows \citet{lil13}, making it the central process in galaxy evolution.
 
-In this paper, we use the Sloan Digital Sky Survey \citep{yor00,str02,aba09} in combination with the largest database of visual classifications of galaxy structure and morphology ever assembled from the Galaxy Zoo citizen science projects \citep{lin08,lin11,wil13} to test whether galaxy structure affects their star formation properties.
+In this paper, we use the Sloan Digital Sky Survey \citep{yor00,str02,aba09} in combination with the largest database of visual classifications of galaxy structure and morphology ever assembled from the Galaxy Zoo citizen science projects \citep{lin08,lin11,wil13} to test whether galaxy structure affects their star formation properties. We use the WMAP9 cosmology parameters of $(\Omega_m,\Omega_\Lambda,h)=(0.258,0.718,0.697)$ \citep{hin13}.
 
 %%%%%%%%%%%%
 %%% Data
@@ -60,7 +72,7 @@ Data for all galaxies in this paper comes from optical observations in the SDSS~
 
 Spiral galaxies are selected according to the following thresholds in the spectroscopic GZ2 sample, where $p$ is the debiased vote fraction and $N$ the weighted number of total votes: $p_\textrm{features/disk} > 0.430$, $p_\textrm{not~edgeon} > 0.715$, $p_\textrm{spiral}>0.619$, and $N_\textrm{spiral}>20$. We identify sub-classes of spiral structure using the morphology flags as given in the GZ2 catalog; these are designed to be conservative cuts, including only robust examples of each morphological class. 
 
-Stellar masses and star formation rates are computed from optical diagnostics and taken from the MPA-JHU catalogue \citep{kau03a,bri04}. We use updated masses and activity classifications from the DR7 database.\footnote{\url{http://home.strw.leidenuniv.nl/\mytilde jarle/SDSS/}} We separate star-forming galaxies from other emission-line galaxies using the standard BPT classification \citep{bal81} below the \citet{kau03} demarcation. Galaxies with low signal-to-noise ratio $(S/N > 3)$ galaxies are removed. For both $M_\star$ and $SFR$, we use median values extracted from the PDF.
+Stellar masses and star formation rates are computed from optical diagnostics and taken from the MPA-JHU catalogue \citep{kau03a,bri04,sal07}. We use updated masses and activity classifications from the DR7 database.\footnote{\url{http://home.strw.leidenuniv.nl/\mytilde jarle/SDSS/}} We separate star-forming galaxies from other emission-line galaxies using the standard BPT classification \citep{bal81} below the \citet{kau03} demarcation. Galaxies with low signal-to-noise ratio $(S/N > 3)$ galaxies are removed. For both $M_\star$ and $SFR$, we use median values extracted from the PDF.
 
 %How many galaxies are there in the total sample? What is the mass, color, and redshift range?
 The total sample analyzed contains 52,685 star-forming galaxies. These are selected from the GZ2 spectroscopic sample with $z<0.1$, $M_r<-19.5$, and classified as actively star-forming ($BPT=1$) from the MPA-JHU emission line measurements. The average color for the star-forming galaxies is relatively blue, with $(u-r)=1.7\pm0.6$. 
@@ -173,7 +185,7 @@ The lack of any difference in SFR as a function of mass for barred vs. unbarred 
 
 Amongst individual galaxies that lie significantly off the SFMS, compact starburst galaxies show the largest increase in SFR at a given mass \citep{elb11}. In the local Universe, these include optically-identified ``green pea'' galaxies, which have unusually high sSFR and can lie more than 1~dex above the SFMS \citep{car09}. While few known green pea galaxies have detailed imaging available, their most common morphology is in a clumpy arrangement with knots of bright star formation. There is thus little evidence for a dynamically-settled disk (in any arrangment) for galaxies in the local Universe lying significantly above the SFMS. 
 
-As a comparison to the kpc-scale structures discussed above, we analyze the impact of the most significant forcing event to a galaxy system known -- a major galaxy merger (Figure~\ref{fig-mergers}). In these systems (which are in various stages of coalescence) the star formation rates are increased by only an average of 0.29~dex, corresponding to less than a factor of two overall. \citet{dar10} showed that in the local ($z<0.1$) Universe, galaxies with intense bursts of star formation are limited to only the spiral (disc) galaxies. This increase in star formation for mergers does show a strong evolution in redshift out to at least $1.5<z<2.5$, likely due to the higher gas fractions involved \citep{dad10,rod11}. 
+As a comparison to the kpc-scale structures discussed above, we analyze the impact of the most significant forcing event to a galaxy system known -- a major galaxy merger (Figure~\ref{fig-mergers}). In these systems (which are in various stages of coalescence) the star formation rates are increased by only an average of 0.29~dex, corresponding to less than a factor of two overall. \citet{dar10} showed that in the local ($z<0.1$) Universe, galaxies with intense bursts of star formation are limited to only the spiral (disc) galaxies. This increase in star formation for mergers does show a strong evolution in redshift out to at least $1.5<z<2.5$, likely due to the higher gas fractions involved \citep{dad10,rod11}. The projected separation between galaxies in which this occurs, based on both the observed merger fraction and sSFR is $\sim0.1$~Mpc$/h$ \citep{ski09}.
 
 The location of mergers on the present-day SFMS shows just how stable the regulatory system in galaxies really is. Almost all simulations of galaxy mergers predict a steep increase in the star formation rate during both first passage and final coalescence \citep[eg,][]{hop08}. The magnitude of this increase often depends on the details of the simulation, but can range from a factor of 10 to 100. In the low-redshift universe sampled by SDSS and Galaxy~Zoo, we find no evidence for an enhancement of such magnitude. This in turn suggests that the current generation of galaxy merger simulations misses critical feedback mechanisms that prevent runaway peaks in star formation rates during mergers.
 
@@ -191,7 +203,7 @@ The uniformity of disk galaxies along the SFMS, regardless of their kpc-scale st
 
 The data in this paper are the result of the efforts of the Galaxy~Zoo volunteers, without whom none of this work would be possible. Their efforts are individually acknowledged at \url{http://authors.galaxyzoo.org}. Please contact the authors to request access to research materials discussed in this paper. 
 
-We thank Rory Smith and Lucio Mayer for useful discussions. This research made use of TOPCAT, an interactive graphical viewer and editor for tabular data \citep{tay05}. 
+We thank Rory Smith and Lucio Mayer for useful discussions. This research made use of TOPCAT, an interactive graphical viewer and editor for tabular data \citep{tay05} and Astropy, a community-developed core Python package for astronomy \citep{ast13}. 
 %The development of Galaxy Zoo 2 was supported by The Leverhulme Trust. KWW and LFF would like to acknowledge support from the US National Science Foundation under grant DRL-0941610. CJL acknowledges support from the Science and Technology Facilities Council (STFC) Science in Society program. KS gratefully acknowledges support from Swiss National Science Foundation Grant PP00P2\_138979/1. TM acknowledges funding from the STFC ST/J500665/1. RCN was partially supported by STFC grant ST/K00090X/1. BDS acknowledges support from Worcester College, Oxford, and from the Oxford Martin School program on computational cosmology.
 
 KS gratefully acknowledges support from Swiss National Science Foundation Grant PP00P2\_138979/1.
