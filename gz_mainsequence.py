@@ -7,12 +7,13 @@ from matplotlib import cm
 from matplotlib.colors import LogNorm
 from matplotlib.font_manager import FontProperties
 from astropy.io import fits
+from scipy.linalg.basic import LinAlgError
 
 plt.ion()
 
 gz_path = '/Users/willettk/Astronomy/Research/GalaxyZoo'
-ms_path = '%s/gzmainsequence' % gz_path
-fig_path = '%s/gzmainsequence/figures' % gz_path
+gzm_path = '%s/gzmainsequence' % gz_path
+fig_path = '%s/paper/figures' % gzm_path
 fits_path = '%s/fits' % gz_path
 
 def get_data():
@@ -55,15 +56,28 @@ def bins(mass_min=6,mass_max=13,sfr_min=-5,sfr_max=2,nbins=50):
 
     return mass_bins,sfr_bins
     
-def fit_mass_sfr(sample,weighted=True):
+def fit_mass_sfr(sample,morph,wbe=False,wbm=False):
 
     # Retrieve mass, star formation rate, and error for subsample from MPA-JHU catalog
     mass,sfr,sfr_err = get_mass_sfr(sample)
 
-    # Use mean difference between 16th and 84th percentiles to the median value for the weights on fit
+    assert wbe != wbm or wbm == False, \
+        'Cannot weight both by error and morphology'
 
-    w = 1./(sfr_err**2)
-    weights = None if weighted else w
+    # Weight #1: mean difference between 16th and 84th percentiles to the median value for the weights on fit
+    if wbe:
+        weights = 1./(sfr_err**2)
+        #print 'Using SFR weights'
+
+    # Weight #2: morphological vote fraction
+    if wbm:
+        weights = sample[(sample['MEDIAN_MASS'] > -99) & (sample['MEDIAN_SFR'] > -99)]['%s_debiased' % morph]
+        #print 'Using morphology weights'
+
+    # Weight #3: unweighted
+    if not wbe and not wbm:
+        weights = None
+        #print 'No weights'
 
     # Find coefficients with polyfit
 
@@ -71,14 +85,14 @@ def fit_mass_sfr(sample,weighted=True):
 
     return a,b,v
 
-def plot_fits(label,data,axis,color,lw=2,ls='--',legend=False,verbose=False,weighted=True):
+def plot_fits(label,data,axis,color,morph='t11_arms_number_a31_1',lw=2,ls='--',legend=False,verbose=False,weight_by_err=False,weight_by_morph=False):
 
-    if weighted:
+    if weight_by_err or weight_by_morph:
         prefix = ''
     else:
         prefix = 'un'
 
-    a,b,v = fit_mass_sfr(data,weighted=weighted)
+    a,b,v = fit_mass_sfr(data,morph,wbe=weight_by_err,wbm=weight_by_morph)
     
     xarr = np.linspace(6,12,100)
     line = axis.plot(xarr,np.polyval([a,b],xarr),color=color,linestyle=ls,linewidth=lw)
@@ -93,15 +107,17 @@ def plot_fits(label,data,axis,color,lw=2,ls='--',legend=False,verbose=False,weig
         print 'Best fit (%10s) for %sweighted data: sigma_a,sigma_b=%.2e,%.2e' % (label,prefix,v[0,0],v[1,1])
         print ''
 
-
     return a,b
 
-def plot_ms_arms_number(sfr_sample):
+def plot_ms_arms_number(sfr_sample,weighted=False,contour=False):
 
     # Plot
 
     fig = plt.figure(1,(10,6))
     fig.clf()
+    filestr=''
+
+    task = 't11_arms_number'
 
     fig.subplots_adjust(left=0.08,bottom=0.15,right=0.9,hspace=0,wspace=0)
 
@@ -109,12 +125,10 @@ def plot_ms_arms_number(sfr_sample):
     mass_bins,sfr_bins = bins()
     h,xedges,yedges = np.histogram2d(mass,sfr,bins=(mass_bins,sfr_bins))
 
-    #ax.scatter(mass,sfr,marker='o',color='cyan')
-    #ax.contour(mass_bins[:-1],sfr_bins[:-1],h)
-
     # Plot each one
 
-    arm_tasks = ('a31_1','a32_2','a33_3','a34_4','a36_more_than_4','a37_cant_tell')
+    responses = ('a31_1','a32_2','a33_3','a34_4','a36_more_than_4','a37_cant_tell')
+    arm_tasks = tuple(['t11_arms_number_'+r for r in responses])
     arm_label = ('1','2','3','4','5+','??')
     colors = ('red','orange','yellow','green','blue','purple')
     for idx, (a,c,al) in enumerate(zip(arm_tasks,colors,arm_label)):
@@ -135,13 +149,32 @@ def plot_ms_arms_number(sfr_sample):
 
 
         spiral = (sfr_sample['t01_smooth_or_features_a02_features_or_disk_debiased'] > 0.430) & (sfr_sample['t02_edgeon_a05_no_debiased'] > 0.715) & (sfr_sample['t04_spiral_a08_spiral_weight'] >= 20) & (sfr_sample['t04_spiral_a08_spiral_debiased'] > 0.619)
-        n1 = sfr_sample[spiral & (sfr_sample['t11_arms_number_%s_flag' % a] == 1)] 
-        ax.scatter(n1['MEDIAN_MASS'],n1['MEDIAN_SFR'], s = 2, color=c, marker='o')
+        n1 = sfr_sample[spiral & (sfr_sample['%s_flag' % a] == 1)] 
+
+        # Two sets of plots: one weights histogram by debiased vote fraction per galaxy; other shows discrete categories from GZ2 flags.
+        if weighted:
+            filestr='_weighted'
+            spirals = sfr_sample[spiral]
+            if contour:
+                hc,xc,yc = np.histogram2d(spirals['MEDIAN_MASS'],spirals['MEDIAN_SFR'],bins=(mass_bins,sfr_bins),weights=spirals['%s_debiased' % a])
+                levels=10**(np.linspace(0,2,8))
+                CS = ax.contour(mass_bins[1:],sfr_bins[1:],hc.T,levels,colors=c)
+                filestr += '_contour'
+            else:
+                h = ax.hist2d(spirals['MEDIAN_MASS'],spirals['MEDIAN_SFR'],bins=50,cmap = cm.RdYlGn, weights=spirals['%s_debiased' % a],vmin=0.01,vmax=100.,norm=LogNorm())
+
+            cb_label = r'$w_\mathrm{\phi}$'
+
+            plot_fits(al,spirals,ax,c,morph=a,weight_by_err=False,weight_by_morph=True)
+        else:
+            ax.scatter(n1['MEDIAN_MASS'],n1['MEDIAN_SFR'], s = 2, color=c, marker='o')
+            cb_label = r'$N_\mathrm{star-forming\/galaxies}$'
+
+            plot_fits(al,n1,ax,c)
 
         ax.text(6.2,1.0,r'$N_{arms} = $%s' % al, color='k',fontsize=18)
 
         # Plot the linear fits
-        plot_fits(al,n1,ax,c)
         plot_fits('SF galaxies',sfr_sample,ax,'black',lw=1,ls='-')
 
         '''
@@ -156,7 +189,7 @@ def plot_ms_arms_number(sfr_sample):
     cb = plt.colorbar(h[3],cax = axColorbar, orientation="vertical")
     cb.set_label(r'$N_\mathrm{star-forming\/galaxies}$' ,fontsize=16)
 
-    fig.savefig('%s/ms_arms_number.pdf' % fig_path, dpi=200)
+    fig.savefig('%s/ms_arms_number%s.pdf' % (fig_path,filestr), dpi=200)
 
     return None
 
@@ -229,7 +262,7 @@ def plot_ms_bars(sfr_sample,contour=False):
 
     return None
     
-def plot_ms_arms_winding(sfr_sample,weight_by_pmed=False):
+def plot_ms_arms_winding(sfr_sample,weighted=False):
 
     # Plot
 
@@ -245,9 +278,12 @@ def plot_ms_arms_winding(sfr_sample,weight_by_pmed=False):
 
     # Plot each morphological category
 
-    arm_tasks = ('a28_tight','a29_medium','a30_loose')
+    responses = ('a28_tight','a29_medium','a30_loose')
+    arm_tasks = tuple(['t10_arms_winding_'+r for r in responses])
     colors = ('red','green','blue')
     for idx, (a,c) in enumerate(zip(arm_tasks,colors)):
+
+        arm_label = a[21:]
 
         ax = fig.add_subplot(1,3,idx+1)
         h = ax.hist2d(mass,sfr,bins=50,cmap = cm.gray_r, norm=LogNorm())
@@ -262,24 +298,24 @@ def plot_ms_arms_winding(sfr_sample,weight_by_pmed=False):
             ax.get_yaxis().set_ticks([])
 
         spiral = (sfr_sample['t01_smooth_or_features_a02_features_or_disk_debiased'] > 0.430) & (sfr_sample['t02_edgeon_a05_no_debiased'] > 0.715) & (sfr_sample['t04_spiral_a08_spiral_weight'] >= 20) & (sfr_sample['t04_spiral_a08_spiral_debiased'] > 0.619)
-        n1 = sfr_sample[spiral & (sfr_sample['t10_arms_winding_%s_flag' % a] == 1)] 
+        n1 = sfr_sample[spiral & (sfr_sample['%s_flag' % a] == 1)] 
 
         # Two sets of plots: one weights histogram by debiased vote fraction per galaxy; other shows discrete categories from GZ2 flags.
-        if weight_by_pmed:
+        if weighted:
             spirals = sfr_sample[spiral]
-            h = ax.hist2d(spirals['MEDIAN_MASS'],spirals['MEDIAN_SFR'],bins=50,cmap = cm.RdYlGn, weights=spirals['t10_arms_winding_%s_debiased' % a],vmin=0.01,vmax=100.,norm=LogNorm())
-            filestr='_weighted_pmed'
+            h = ax.hist2d(spirals['MEDIAN_MASS'],spirals['MEDIAN_SFR'],bins=50,cmap = cm.RdYlGn, weights=spirals['%s_debiased' % a],vmin=0.01,vmax=100.,norm=LogNorm())
+            filestr='_weighted'
             cb_label = r'$w_\mathrm{\phi}$'
+            plot_fits(arm_label,spirals,ax,c,morph=a,weight_by_err=False,weight_by_morph=True)
         else:
             ax.scatter(n1['MEDIAN_MASS'],n1['MEDIAN_SFR'], s = 2, color=c, marker='o')
             cb_label = r'$N_\mathrm{star-forming\/galaxies}$'
+            plot_fits(al,n1,ax,c,morph=a)
 
-        arm_label = a[4:]
         ax.text(6.2,1.3,r'$\phi_{arms} = $%s' % arm_label, color='k')
 
         # Plot the best linear fits
 
-        plot_fits(arm_label,n1,ax,c)
         plot_fits(arm_label,sfr_sample,ax,'black',lw=1,ls='-')
 
         '''
@@ -323,7 +359,7 @@ def plot_ms_mergers(sfr_sample):
 
     # Plot mergers data
 
-    with fits.open('%s/mergers/mergers_mpajhu_bpt.fits' % ms_path) as f:
+    with fits.open('%s/mergers/mergers_mpajhu_bpt.fits' % gzm_path) as f:
         data = f[1].data
 
     #sf_mergers = data[(data['bpt'] == 1) & (data['mass_ratio'] <= 3)]
@@ -395,7 +431,7 @@ def plot_ms_greenpeas(sfr_sample):
 
     # Plot green peas
 
-    with fits.open('%s/greenpeas.fits' % ms_path) as f:
+    with fits.open('%s/greenpeas.fits' % gzm_path) as f:
         data = f[1].data
 
     sc = ax.scatter(data['M_STELLAR'],np.log10(data['SFR']), color='green',s = 10, marker='o')
@@ -433,7 +469,7 @@ def sigma_mstar(sfr_sample):
     fig.clf()
 
     # Bars
-    ax = fig.add_subplot(221)
+    ax = fig.add_subplot(223)
 
     sigma_sfr = []
     sigma_sfr_err = []
@@ -478,7 +514,7 @@ def sigma_mstar(sfr_sample):
     ax.set_title('Bar/no bar')
 
     # Arm number
-    ax = fig.add_subplot(222)
+    ax = fig.add_subplot(221)
 
     sigma_sfr = []
     sigma_sfr_err = []
@@ -521,7 +557,7 @@ def sigma_mstar(sfr_sample):
     ax.set_title('Arms number')
 
     # Arm winding
-    ax = fig.add_subplot(223)
+    ax = fig.add_subplot(222)
 
     sigma_sfr = []
     sigma_sfr_err = []
@@ -577,7 +613,7 @@ def sigma_mstar(sfr_sample):
 
     ax.errorbar(mass_bins,sigma_sfr,yerr=sigma_sfr_err,fmt='o',color='black',capsize=0)
 
-    with fits.open('%s/mergers/mergers_mpajhu_bpt.fits' % ms_path) as f:
+    with fits.open('%s/mergers/mergers_mpajhu_bpt.fits' % gzm_path) as f:
         data = f[1].data
 
     sf_mergers = data[(data['bpt'] == 1)]
@@ -632,7 +668,7 @@ def plot_ms_merger_fraction(sfr_sample):
 
     # Plot mergers data
 
-    with fits.open('%s/mergers/mergers_mpajhu_bpt.fits' % ms_path) as f:
+    with fits.open('%s/mergers/mergers_mpajhu_bpt.fits' % gzm_path) as f:
         data = f[1].data
 
     #sf_mergers = data[(data['bpt'] == 1) & (data['mass_ratio'] <= 3)]
@@ -697,7 +733,7 @@ def plot_ms_mergers_both(sfr_sample):
 
     # Plot mergers data
 
-    with fits.open('%s/mergers/mergers_mpajhu_bpt.fits' % ms_path) as f:
+    with fits.open('%s/mergers/mergers_mpajhu_bpt.fits' % gzm_path) as f:
         data = f[1].data
 
     sf_mergers = data[(data['bpt'] == 1)]
@@ -768,5 +804,543 @@ def plot_ms_mergers_both(sfr_sample):
 
     #fig.set_tight_layout(True)
     fig.savefig('%s/ms_mergers_both.pdf' % fig_path, dpi=200)
+
+    return None
+
+def fracdev(sfr_sample):
+
+    # Find the fracdev distribution for all of the various spiral classes, per Ivy Wong's suggestion
+
+    # Contained in the original gz2_sample table, and thus in the joined mpajhu_gz2.fits table.
+
+    # Overall sample, plus 6 multiplicity, 3 winding, 2 bars, merger = 12
+
+    # Good opportunity to take the plurality answer
+
+    fig = plt.figure(9,(15,10))
+    fig.clf()
+
+    fig.subplots_adjust(left=0.08,bottom=0.15,right=0.9,hspace=0.02,wspace=0.02)
+
+    spiral = (sfr_sample['t01_smooth_or_features_a02_features_or_disk_debiased'] > 0.430) & (sfr_sample['t02_edgeon_a05_no_debiased'] > 0.715) & (sfr_sample['t04_spiral_a08_spiral_weight'] >= 20) & (sfr_sample['t04_spiral_a08_spiral_debiased'] > 0.619)
+
+    # Find plurality answer for multiplicity question
+
+    an_colors = ('red','orange','yellow','green','blue','purple')
+    aw_colors = ('red','green','blue')
+    an_1 = sfr_sample[spiral & \
+                       (sfr_sample['t11_arms_number_a31_1_debiased'] >= sfr_sample['t11_arms_number_a32_2_debiased']) & \
+                       (sfr_sample['t11_arms_number_a31_1_debiased'] >= sfr_sample['t11_arms_number_a33_3_debiased']) & \
+                       (sfr_sample['t11_arms_number_a31_1_debiased'] >= sfr_sample['t11_arms_number_a34_4_debiased']) & \
+                       (sfr_sample['t11_arms_number_a31_1_debiased'] >= sfr_sample['t11_arms_number_a36_more_than_4_debiased']) & \
+                       (sfr_sample['t11_arms_number_a31_1_debiased'] >= sfr_sample['t11_arms_number_a37_cant_tell_debiased']) ]
+
+    an_2 = sfr_sample[spiral & \
+                       (sfr_sample['t11_arms_number_a32_2_debiased'] >= sfr_sample['t11_arms_number_a31_1_debiased']) & \
+                       (sfr_sample['t11_arms_number_a32_2_debiased'] >= sfr_sample['t11_arms_number_a33_3_debiased']) & \
+                       (sfr_sample['t11_arms_number_a32_2_debiased'] >= sfr_sample['t11_arms_number_a34_4_debiased']) & \
+                       (sfr_sample['t11_arms_number_a32_2_debiased'] >= sfr_sample['t11_arms_number_a36_more_than_4_debiased']) & \
+                       (sfr_sample['t11_arms_number_a32_2_debiased'] >= sfr_sample['t11_arms_number_a37_cant_tell_debiased']) ]
+
+    an_3 = sfr_sample[spiral & \
+                       (sfr_sample['t11_arms_number_a33_3_debiased'] >= sfr_sample['t11_arms_number_a32_2_debiased']) & \
+                       (sfr_sample['t11_arms_number_a33_3_debiased'] >= sfr_sample['t11_arms_number_a31_1_debiased']) & \
+                       (sfr_sample['t11_arms_number_a33_3_debiased'] >= sfr_sample['t11_arms_number_a34_4_debiased']) & \
+                       (sfr_sample['t11_arms_number_a33_3_debiased'] >= sfr_sample['t11_arms_number_a36_more_than_4_debiased']) & \
+                       (sfr_sample['t11_arms_number_a33_3_debiased'] >= sfr_sample['t11_arms_number_a37_cant_tell_debiased']) ]
+
+    an_4 = sfr_sample[spiral & \
+                       (sfr_sample['t11_arms_number_a34_4_debiased'] >= sfr_sample['t11_arms_number_a32_2_debiased']) & \
+                       (sfr_sample['t11_arms_number_a34_4_debiased'] >= sfr_sample['t11_arms_number_a33_3_debiased']) & \
+                       (sfr_sample['t11_arms_number_a34_4_debiased'] >= sfr_sample['t11_arms_number_a31_1_debiased']) & \
+                       (sfr_sample['t11_arms_number_a34_4_debiased'] >= sfr_sample['t11_arms_number_a36_more_than_4_debiased']) & \
+                       (sfr_sample['t11_arms_number_a34_4_debiased'] >= sfr_sample['t11_arms_number_a37_cant_tell_debiased']) ]
+
+    an_5 = sfr_sample[spiral & \
+                       (sfr_sample['t11_arms_number_a36_more_than_4_debiased'] >= sfr_sample['t11_arms_number_a32_2_debiased']) & \
+                       (sfr_sample['t11_arms_number_a36_more_than_4_debiased'] >= sfr_sample['t11_arms_number_a33_3_debiased']) & \
+                       (sfr_sample['t11_arms_number_a36_more_than_4_debiased'] >= sfr_sample['t11_arms_number_a34_4_debiased']) & \
+                       (sfr_sample['t11_arms_number_a36_more_than_4_debiased'] >= sfr_sample['t11_arms_number_a31_1_debiased']) & \
+                       (sfr_sample['t11_arms_number_a36_more_than_4_debiased'] >= sfr_sample['t11_arms_number_a37_cant_tell_debiased']) ]
+
+    an_x = sfr_sample[spiral & \
+                       (sfr_sample['t11_arms_number_a37_cant_tell_debiased'] >= sfr_sample['t11_arms_number_a32_2_debiased']) & \
+                       (sfr_sample['t11_arms_number_a37_cant_tell_debiased'] >= sfr_sample['t11_arms_number_a33_3_debiased']) & \
+                       (sfr_sample['t11_arms_number_a37_cant_tell_debiased'] >= sfr_sample['t11_arms_number_a34_4_debiased']) & \
+                       (sfr_sample['t11_arms_number_a37_cant_tell_debiased'] >= sfr_sample['t11_arms_number_a36_more_than_4_debiased']) & \
+                       (sfr_sample['t11_arms_number_a37_cant_tell_debiased'] >= sfr_sample['t11_arms_number_a31_1_debiased']) ]
+
+    aw_t = sfr_sample[spiral & \
+                       (sfr_sample['t10_arms_winding_a28_tight_debiased'] >= sfr_sample['t10_arms_winding_a29_medium_debiased']) & \
+                       (sfr_sample['t10_arms_winding_a28_tight_debiased'] >= sfr_sample['t10_arms_winding_a30_loose_debiased'])]
+
+    aw_m = sfr_sample[spiral & \
+                       (sfr_sample['t10_arms_winding_a29_medium_debiased'] >= sfr_sample['t10_arms_winding_a28_tight_debiased']) & \
+                       (sfr_sample['t10_arms_winding_a29_medium_debiased'] >= sfr_sample['t10_arms_winding_a30_loose_debiased'])]
+
+    aw_l = sfr_sample[spiral & \
+                       (sfr_sample['t10_arms_winding_a30_loose_debiased'] >= sfr_sample['t10_arms_winding_a29_medium_debiased']) & \
+                       (sfr_sample['t10_arms_winding_a30_loose_debiased'] >= sfr_sample['t10_arms_winding_a28_tight_debiased'])]
+
+    aw_l = sfr_sample[spiral & \
+                       (sfr_sample['t10_arms_winding_a30_loose_debiased'] >= sfr_sample['t10_arms_winding_a29_medium_debiased']) & \
+                       (sfr_sample['t10_arms_winding_a30_loose_debiased'] >= sfr_sample['t10_arms_winding_a28_tight_debiased'])]
+
+
+    notedgeon = (sfr_sample['t01_smooth_or_features_a02_features_or_disk_debiased'] > 0.430) & (sfr_sample['t02_edgeon_a05_no_debiased'] > 0.715) & (sfr_sample['t02_edgeon_a05_no_weight'] >= 20)
+
+    barred = sfr_sample[notedgeon & (sfr_sample['t03_bar_a06_bar_debiased'] >= 0.5)] 
+    unbarred = sfr_sample[notedgeon & (sfr_sample['t03_bar_a06_bar_debiased'] < 0.5)] 
+
+    with fits.open('%s/mergers/mergers_fracdev.fits' % gzm_path) as f:
+        data = f[1].data
+
+    sf_mergers = data[(data['bpt'] == 1)]
+
+    axc = fig.add_subplot(111)    # The big subplot
+    axc.spines['top'].set_color('none')
+    axc.spines['bottom'].set_color('none')
+    axc.spines['left'].set_color('none')
+    axc.spines['right'].set_color('none')
+    axc.tick_params(labelcolor='none', top='off', bottom='off', left='off', right='off')
+    axc.set_xlabel(r'$f_{DeV}$ (r-band)',labelpad=10,fontsize=20)
+    axc.set_ylabel('Normalized count',labelpad=20,fontsize=20)
+
+    axc.set_title('frac deV distribution for GZ2 galaxies',fontsize=25)
+
+    ax = fig.add_subplot(341)
+    n, bins, patches = ax.hist(sfr_sample['FRACDEV_R'], 25, histtype='stepfilled', weights=np.ones_like(sfr_sample['FRACDEV_R'])/len(sfr_sample), facecolor='gray', edgecolor='black', alpha=0.75)
+    ax.get_xaxis().set_ticks([])
+    ax.get_yaxis().set_ticks([0.0,0.10,0.20,0.30])
+    n_sub, bins_sub, patches_sub = ax.hist(an_1['FRACDEV_R'], 25, histtype='step', weights=np.ones_like(an_1['FRACDEV_R'])/len(an_1), edgecolor=an_colors[0], alpha=1., lw=3)
+    ax.text(0.95,0.28,'1 arm',fontsize=12,ha='right')
+
+    ax = fig.add_subplot(342)
+    n, bins, patches = ax.hist(sfr_sample['FRACDEV_R'], 25, histtype='stepfilled', weights=np.ones_like(sfr_sample['FRACDEV_R'])/len(sfr_sample), facecolor='gray', edgecolor='black', alpha=0.75)
+    ax.get_xaxis().set_ticks([])
+    ax.get_yaxis().set_ticks([])
+    n_sub, bins_sub, patches_sub = ax.hist(an_2['FRACDEV_R'], 25, histtype='step', weights=np.ones_like(an_2['FRACDEV_R'])/len(an_2), edgecolor=an_colors[1], alpha=1., lw=3)
+    ax.text(0.95,0.28,'2 arms',fontsize=12,ha='right')
+
+    ax = fig.add_subplot(343)
+    n, bins, patches = ax.hist(sfr_sample['FRACDEV_R'], 25, histtype='stepfilled', weights=np.ones_like(sfr_sample['FRACDEV_R'])/len(sfr_sample), facecolor='gray', edgecolor='black', alpha=0.75)
+    ax.get_xaxis().set_ticks([])
+    ax.get_yaxis().set_ticks([])
+    n_sub, bins_sub, patches_sub = ax.hist(an_3['FRACDEV_R'], 25, histtype='step', weights=np.ones_like(an_3['FRACDEV_R'])/len(an_3), edgecolor=an_colors[2], alpha=1., lw=3)
+    ax.text(0.95,0.28,'3 arms',fontsize=12,ha='right')
+
+    ax = fig.add_subplot(344)
+    n, bins, patches = ax.hist(sfr_sample['FRACDEV_R'], 25, histtype='stepfilled', weights=np.ones_like(sfr_sample['FRACDEV_R'])/len(sfr_sample), facecolor='gray', edgecolor='black', alpha=0.75)
+    ax.get_xaxis().set_ticks([])
+    ax.get_yaxis().set_ticks([])
+    n_sub, bins_sub, patches_sub = ax.hist(an_4['FRACDEV_R'], 25, histtype='step', weights=np.ones_like(an_4['FRACDEV_R'])/len(an_4), edgecolor=an_colors[3], alpha=1., lw=3)
+    ax.text(0.95,0.28,'4 arms',fontsize=12,ha='right')
+
+    ax = fig.add_subplot(345)
+    n, bins, patches = ax.hist(sfr_sample['FRACDEV_R'], 25, histtype='stepfilled', weights=np.ones_like(sfr_sample['FRACDEV_R'])/len(sfr_sample), facecolor='gray', edgecolor='black', alpha=0.75)
+    ax.get_xaxis().set_ticks([])
+    ax.get_yaxis().set_ticks([0.0,0.10,0.20,0.30])
+    n_sub, bins_sub, patches_sub = ax.hist(an_5['FRACDEV_R'], 25, histtype='step', weights=np.ones_like(an_5['FRACDEV_R'])/len(an_5), edgecolor=an_colors[4], alpha=1., lw=3)
+    ax.text(0.95,0.28,'5+ arms',fontsize=12,ha='right')
+
+    ax = fig.add_subplot(346)
+    n, bins, patches = ax.hist(sfr_sample['FRACDEV_R'], 25, histtype='stepfilled', weights=np.ones_like(sfr_sample['FRACDEV_R'])/len(sfr_sample), facecolor='gray', edgecolor='black', alpha=0.75)
+    ax.get_xaxis().set_ticks([])
+    ax.get_yaxis().set_ticks([])
+    n_sub, bins_sub, patches_sub = ax.hist(an_x['FRACDEV_R'], 25, histtype='step', weights=np.ones_like(an_x['FRACDEV_R'])/len(an_x), edgecolor=an_colors[5], alpha=1., lw=3)
+    ax.text(0.95,0.28,'?? arms',fontsize=12,ha='right')
+
+    ax = fig.add_subplot(347)
+    n, bins, patches = ax.hist(sfr_sample['FRACDEV_R'], 25, histtype='stepfilled', weights=np.ones_like(sfr_sample['FRACDEV_R'])/len(sfr_sample), facecolor='gray', edgecolor='black', alpha=0.75)
+    ax.get_xaxis().set_ticks([])
+    ax.get_yaxis().set_ticks([])
+    n_sub, bins_sub, patches_sub = ax.hist(aw_t['FRACDEV_R'], 25, histtype='step', weights=np.ones_like(aw_t['FRACDEV_R'])/len(aw_t), edgecolor=aw_colors[0], alpha=1., lw=3)
+    ax.text(0.95,0.28,'Tight arms',fontsize=12,ha='right')
+
+    ax = fig.add_subplot(348)
+    n, bins, patches = ax.hist(sfr_sample['FRACDEV_R'], 25, histtype='stepfilled', weights=np.ones_like(sfr_sample['FRACDEV_R'])/len(sfr_sample), facecolor='gray', edgecolor='black', alpha=0.75)
+    ax.get_xaxis().set_ticks([])
+    ax.get_yaxis().set_ticks([])
+    n_sub, bins_sub, patches_sub = ax.hist(aw_m['FRACDEV_R'], 25, histtype='step', weights=np.ones_like(aw_m['FRACDEV_R'])/len(aw_m), edgecolor=aw_colors[1], alpha=1., lw=3)
+    ax.text(0.95,0.28,'Medium arms',fontsize=12,ha='right')
+
+    ax = fig.add_subplot(349)
+    n, bins, patches = ax.hist(sfr_sample['FRACDEV_R'], 25, histtype='stepfilled', weights=np.ones_like(sfr_sample['FRACDEV_R'])/len(sfr_sample), facecolor='gray', edgecolor='black', alpha=0.75)
+    ax.get_xaxis().set_ticks([0.0,0.2,0.4,0.6,0.8])
+    ax.get_yaxis().set_ticks([0.0,0.10,0.20,0.30])
+    n_sub, bins_sub, patches_sub = ax.hist(aw_l['FRACDEV_R'], 25, histtype='step', weights=np.ones_like(aw_l['FRACDEV_R'])/len(aw_l), edgecolor=aw_colors[2], alpha=1., lw=3)
+    ax.text(0.95,0.28,'Loose arms',fontsize=12,ha='right')
+
+    ax = fig.add_subplot(3,4,10)
+    n, bins, patches = ax.hist(sfr_sample['FRACDEV_R'], 25, histtype='stepfilled', weights=np.ones_like(sfr_sample['FRACDEV_R'])/len(sfr_sample), facecolor='gray', edgecolor='black', alpha=0.75)
+    ax.get_xaxis().set_ticks([0.0,0.2,0.4,0.6,0.8])
+    ax.get_yaxis().set_ticks([])
+    n_sub, bins_sub, patches_sub = ax.hist(unbarred['FRACDEV_R'], 25, histtype='step', weights=np.ones_like(unbarred['FRACDEV_R'])/len(unbarred), edgecolor='red', alpha=1., lw=3)
+    ax.text(0.95,0.28,'Unbarred',fontsize=12,ha='right')
+
+    ax = fig.add_subplot(3,4,11)
+    n, bins, patches = ax.hist(sfr_sample['FRACDEV_R'], 25, histtype='stepfilled', weights=np.ones_like(sfr_sample['FRACDEV_R'])/len(sfr_sample), facecolor='gray', edgecolor='black', alpha=0.75)
+    ax.get_xaxis().set_ticks([0.0,0.2,0.4,0.6,0.8])
+    ax.get_yaxis().set_ticks([])
+    n_sub, bins_sub, patches_sub = ax.hist(barred['FRACDEV_R'], 25, histtype='step', weights=np.ones_like(barred['FRACDEV_R'])/len(barred), edgecolor='blue', alpha=1., lw=3)
+    ax.text(0.95,0.28,'Barred',fontsize=12,ha='right')
+
+    ax = fig.add_subplot(3,4,12)
+    n, bins, patches = ax.hist(sfr_sample['FRACDEV_R'], 25, histtype='stepfilled', weights=np.ones_like(sfr_sample['FRACDEV_R'])/len(sfr_sample), facecolor='gray', edgecolor='black', alpha=0.75)
+    ax.get_yaxis().set_ticks([])
+    n_sub, bins_sub, patches_sub = ax.hist(sf_mergers['FRACDEV_R'], 25, histtype='step', weights=np.ones_like(sf_mergers['FRACDEV_R'])/len(sf_mergers), edgecolor='red', alpha=1., lw=3)
+    ax.text(0.95,0.28,'Mergers',fontsize=12,ha='right')
+
+    plt.show()
+
+    fig.savefig('%s/fracdev_hist.pdf' % fig_path, dpi=200)
+
+    return None
+
+def fracdev_cdf(sfr_sample):
+
+    # Find the CDF of the fracdev distribution for all of the various spiral classes, per Ivy Wong's suggestion
+
+    fig = plt.figure(10,(10,10))
+    fig.clf()
+
+    fig.subplots_adjust(left=0.08,bottom=0.15,right=0.9,hspace=0.02,wspace=0.02)
+
+    spiral = (sfr_sample['t01_smooth_or_features_a02_features_or_disk_debiased'] > 0.430) & (sfr_sample['t02_edgeon_a05_no_debiased'] > 0.715) & (sfr_sample['t04_spiral_a08_spiral_weight'] >= 20) & (sfr_sample['t04_spiral_a08_spiral_debiased'] > 0.619)
+
+    # Find plurality answer for multiplicity question
+
+    an_colors = ('red','orange','yellow','green','blue','purple')
+    aw_colors = ('red','green','blue')
+    an_1 = sfr_sample[spiral & \
+                       (sfr_sample['t11_arms_number_a31_1_debiased'] >= sfr_sample['t11_arms_number_a32_2_debiased']) & \
+                       (sfr_sample['t11_arms_number_a31_1_debiased'] >= sfr_sample['t11_arms_number_a33_3_debiased']) & \
+                       (sfr_sample['t11_arms_number_a31_1_debiased'] >= sfr_sample['t11_arms_number_a34_4_debiased']) & \
+                       (sfr_sample['t11_arms_number_a31_1_debiased'] >= sfr_sample['t11_arms_number_a36_more_than_4_debiased']) & \
+                       (sfr_sample['t11_arms_number_a31_1_debiased'] >= sfr_sample['t11_arms_number_a37_cant_tell_debiased']) ]
+
+    an_2 = sfr_sample[spiral & \
+                       (sfr_sample['t11_arms_number_a32_2_debiased'] >= sfr_sample['t11_arms_number_a31_1_debiased']) & \
+                       (sfr_sample['t11_arms_number_a32_2_debiased'] >= sfr_sample['t11_arms_number_a33_3_debiased']) & \
+                       (sfr_sample['t11_arms_number_a32_2_debiased'] >= sfr_sample['t11_arms_number_a34_4_debiased']) & \
+                       (sfr_sample['t11_arms_number_a32_2_debiased'] >= sfr_sample['t11_arms_number_a36_more_than_4_debiased']) & \
+                       (sfr_sample['t11_arms_number_a32_2_debiased'] >= sfr_sample['t11_arms_number_a37_cant_tell_debiased']) ]
+
+    an_3 = sfr_sample[spiral & \
+                       (sfr_sample['t11_arms_number_a33_3_debiased'] >= sfr_sample['t11_arms_number_a32_2_debiased']) & \
+                       (sfr_sample['t11_arms_number_a33_3_debiased'] >= sfr_sample['t11_arms_number_a31_1_debiased']) & \
+                       (sfr_sample['t11_arms_number_a33_3_debiased'] >= sfr_sample['t11_arms_number_a34_4_debiased']) & \
+                       (sfr_sample['t11_arms_number_a33_3_debiased'] >= sfr_sample['t11_arms_number_a36_more_than_4_debiased']) & \
+                       (sfr_sample['t11_arms_number_a33_3_debiased'] >= sfr_sample['t11_arms_number_a37_cant_tell_debiased']) ]
+
+    an_4 = sfr_sample[spiral & \
+                       (sfr_sample['t11_arms_number_a34_4_debiased'] >= sfr_sample['t11_arms_number_a32_2_debiased']) & \
+                       (sfr_sample['t11_arms_number_a34_4_debiased'] >= sfr_sample['t11_arms_number_a33_3_debiased']) & \
+                       (sfr_sample['t11_arms_number_a34_4_debiased'] >= sfr_sample['t11_arms_number_a31_1_debiased']) & \
+                       (sfr_sample['t11_arms_number_a34_4_debiased'] >= sfr_sample['t11_arms_number_a36_more_than_4_debiased']) & \
+                       (sfr_sample['t11_arms_number_a34_4_debiased'] >= sfr_sample['t11_arms_number_a37_cant_tell_debiased']) ]
+
+    an_5 = sfr_sample[spiral & \
+                       (sfr_sample['t11_arms_number_a36_more_than_4_debiased'] >= sfr_sample['t11_arms_number_a32_2_debiased']) & \
+                       (sfr_sample['t11_arms_number_a36_more_than_4_debiased'] >= sfr_sample['t11_arms_number_a33_3_debiased']) & \
+                       (sfr_sample['t11_arms_number_a36_more_than_4_debiased'] >= sfr_sample['t11_arms_number_a34_4_debiased']) & \
+                       (sfr_sample['t11_arms_number_a36_more_than_4_debiased'] >= sfr_sample['t11_arms_number_a31_1_debiased']) & \
+                       (sfr_sample['t11_arms_number_a36_more_than_4_debiased'] >= sfr_sample['t11_arms_number_a37_cant_tell_debiased']) ]
+
+    an_x = sfr_sample[spiral & \
+                       (sfr_sample['t11_arms_number_a37_cant_tell_debiased'] >= sfr_sample['t11_arms_number_a32_2_debiased']) & \
+                       (sfr_sample['t11_arms_number_a37_cant_tell_debiased'] >= sfr_sample['t11_arms_number_a33_3_debiased']) & \
+                       (sfr_sample['t11_arms_number_a37_cant_tell_debiased'] >= sfr_sample['t11_arms_number_a34_4_debiased']) & \
+                       (sfr_sample['t11_arms_number_a37_cant_tell_debiased'] >= sfr_sample['t11_arms_number_a36_more_than_4_debiased']) & \
+                       (sfr_sample['t11_arms_number_a37_cant_tell_debiased'] >= sfr_sample['t11_arms_number_a31_1_debiased']) ]
+
+    aw_t = sfr_sample[spiral & \
+                       (sfr_sample['t10_arms_winding_a28_tight_debiased'] >= sfr_sample['t10_arms_winding_a29_medium_debiased']) & \
+                       (sfr_sample['t10_arms_winding_a28_tight_debiased'] >= sfr_sample['t10_arms_winding_a30_loose_debiased'])]
+
+    aw_m = sfr_sample[spiral & \
+                       (sfr_sample['t10_arms_winding_a29_medium_debiased'] >= sfr_sample['t10_arms_winding_a28_tight_debiased']) & \
+                       (sfr_sample['t10_arms_winding_a29_medium_debiased'] >= sfr_sample['t10_arms_winding_a30_loose_debiased'])]
+
+    aw_l = sfr_sample[spiral & \
+                       (sfr_sample['t10_arms_winding_a30_loose_debiased'] >= sfr_sample['t10_arms_winding_a29_medium_debiased']) & \
+                       (sfr_sample['t10_arms_winding_a30_loose_debiased'] >= sfr_sample['t10_arms_winding_a28_tight_debiased'])]
+
+    aw_l = sfr_sample[spiral & \
+                       (sfr_sample['t10_arms_winding_a30_loose_debiased'] >= sfr_sample['t10_arms_winding_a29_medium_debiased']) & \
+                       (sfr_sample['t10_arms_winding_a30_loose_debiased'] >= sfr_sample['t10_arms_winding_a28_tight_debiased'])]
+
+
+    notedgeon = (sfr_sample['t01_smooth_or_features_a02_features_or_disk_debiased'] > 0.430) & (sfr_sample['t02_edgeon_a05_no_debiased'] > 0.715) & (sfr_sample['t02_edgeon_a05_no_weight'] >= 20)
+
+    barred = sfr_sample[notedgeon & (sfr_sample['t03_bar_a06_bar_debiased'] >= 0.5)] 
+    unbarred = sfr_sample[notedgeon & (sfr_sample['t03_bar_a06_bar_debiased'] < 0.5)] 
+
+    with fits.open('%s/mergers/mergers_fracdev.fits' % gzm_path) as f:
+        data = f[1].data
+
+    sf_mergers = data[(data['bpt'] == 1)]
+
+    axc = fig.add_subplot(111)    # The big subplot
+    axc.spines['top'].set_color('none')
+    axc.spines['bottom'].set_color('none')
+    axc.spines['left'].set_color('none')
+    axc.spines['right'].set_color('none')
+    axc.tick_params(labelcolor='none', top='off', bottom='off', left='off', right='off')
+    axc.set_xlabel(r'$f_{DeV}$ (r-band)',labelpad=10,fontsize=20)
+    axc.set_ylabel('Normalized cumulative sum',labelpad=10,fontsize=20)
+
+    axc.set_title('frac deV CDF for GZ2 galaxies',fontsize=25)
+
+    nbins = 20
+
+    ax = fig.add_subplot(221)
+    n, bins, patches = ax.hist(sfr_sample['FRACDEV_R'], nbins, histtype='step', cumulative=True, normed=True, edgecolor='black', alpha=1.0, lw=3)
+    ax.get_xaxis().set_ticks([])
+    ax.get_yaxis().set_ticks(np.arange(6)*0.2)
+    n_sub, bins_sub, patches_sub = ax.hist(an_1['FRACDEV_R'], nbins, histtype='step', cumulative=True, normed=True, edgecolor=an_colors[0], alpha=1.0, lw=1)
+    n_sub, bins_sub, patches_sub = ax.hist(an_2['FRACDEV_R'], nbins, histtype='step', cumulative=True, normed=True, edgecolor=an_colors[1], alpha=1.0, lw=1)
+    n_sub, bins_sub, patches_sub = ax.hist(an_3['FRACDEV_R'], nbins, histtype='step', cumulative=True, normed=True, edgecolor=an_colors[2], alpha=1.0, lw=1)
+    n_sub, bins_sub, patches_sub = ax.hist(an_4['FRACDEV_R'], nbins, histtype='step', cumulative=True, normed=True, edgecolor=an_colors[3], alpha=1.0, lw=1)
+    n_sub, bins_sub, patches_sub = ax.hist(an_5['FRACDEV_R'], nbins, histtype='step', cumulative=True, normed=True, edgecolor=an_colors[4], alpha=1.0, lw=1)
+    n_sub, bins_sub, patches_sub = ax.hist(an_x['FRACDEV_R'], nbins, histtype='step', cumulative=True, normed=True, edgecolor=an_colors[5], alpha=1.0, lw=1)
+    ax.text(0.50,0.40,'Arms number',fontsize=16,ha='left')
+
+    ax = fig.add_subplot(222)
+    n, bins, patches = ax.hist(sfr_sample['FRACDEV_R'], nbins, histtype='step', cumulative=True, normed=True, edgecolor='black', alpha=1.0, lw=3)
+    ax.get_xaxis().set_ticks([])
+    ax.get_yaxis().set_ticks([])
+    n_sub, bins_sub, patches_sub = ax.hist(aw_t['FRACDEV_R'], nbins, histtype='step', cumulative=True, normed=True, edgecolor=aw_colors[0], alpha=1.0, lw=1)
+    n_sub, bins_sub, patches_sub = ax.hist(aw_m['FRACDEV_R'], nbins, histtype='step', cumulative=True, normed=True, edgecolor=aw_colors[1], alpha=1.0, lw=1)
+    n_sub, bins_sub, patches_sub = ax.hist(aw_l['FRACDEV_R'], nbins, histtype='step', cumulative=True, normed=True, edgecolor=aw_colors[2], alpha=1.0, lw=1)
+    ax.text(0.50,0.40,'Arms winding',fontsize=16,ha='left')
+
+    ax = fig.add_subplot(223)
+    ax.get_xaxis().set_ticks(np.arange(5)*0.2)
+    ax.get_yaxis().set_ticks(np.arange(5)*0.2)
+    n, bins, patches = ax.hist(sfr_sample['FRACDEV_R'], nbins, histtype='step', cumulative=True, normed=True, edgecolor='black', alpha=1.0, lw=3)
+    n_sub, bins_sub, patches_sub = ax.hist(barred['FRACDEV_R'], nbins, histtype='step', cumulative=True, normed=True, edgecolor='blue', alpha=1.0, lw=1)
+    n_sub, bins_sub, patches_sub = ax.hist(unbarred['FRACDEV_R'], nbins, histtype='step', cumulative=True, normed=True, edgecolor='red', alpha=1.0, lw=1)
+    ax.text(0.50,0.40,'Bars',fontsize=16,ha='left')
+
+    ax = fig.add_subplot(224)
+    ax.get_xaxis().set_ticks(np.arange(6)*0.2)
+    ax.get_yaxis().set_ticks([])
+    n, bins, patches = ax.hist(sfr_sample['FRACDEV_R'], nbins, histtype='step', cumulative=True, normed=True, edgecolor='black', alpha=1.0, lw=3)
+    n_sub, bins_sub, patches_sub = ax.hist(sf_mergers['FRACDEV_R'], nbins, histtype='step', cumulative=True, normed=True, edgecolor='red', alpha=1.0, lw=1)
+    ax.text(0.50,0.40,'Mergers',fontsize=16,ha='left')
+
+    plt.show()
+
+    fig.savefig('%s/fracdev_cdf.pdf' % fig_path, dpi=200)
+
+    return None
+
+def tm_bar_trigger(sfr_sample,weighted=False,contour=False):
+
+    '''
+    Idea from Tom Melvin:
+
+    I would be interested to see what the relationships for 1 armed spirals and merging galaxies would look like for barred and unbarred versions of the two. As there is the idea that mergers can induce bars, do merging disk galaxies with bars deviate further from the SFMS or not? I'm not sure of the numbers for each of the samples once plit into barred and unbarred, but it will probably be dependent of mass ratios (as you use in Fig 4), as 1-to-1 mergers would probably have no bars!
+    '''
+
+    # Plot
+
+    fig = plt.figure(11,(12,10))
+    fig.clf()
+
+    fig.subplots_adjust(left=0.08,bottom=0.15,right=0.9,hspace=0,wspace=0)
+
+    mass,sfr,sfr_err = get_mass_sfr(sfr_sample)
+    mass_bins,sfr_bins = bins()
+    h,xedges,yedges = np.histogram2d(mass,sfr,bins=(mass_bins,sfr_bins))
+
+    # Plot each one
+
+    responses = ('a31_1','a32_2','a33_3','a34_4','a36_more_than_4','a37_cant_tell')
+    arm_tasks = tuple(['t11_arms_number_'+r for r in responses])
+    arm_label = ('1','2','3','4','5+','??')
+    colors = ('red','orange','yellow','green','blue','purple')
+
+    # Find 1-armed galaxies, then split into barred and unbarred
+
+    spiral = (sfr_sample['t01_smooth_or_features_a02_features_or_disk_debiased'] > 0.430) & (sfr_sample['t02_edgeon_a05_no_debiased'] > 0.715) & (sfr_sample['t04_spiral_a08_spiral_weight'] >= 20) & (sfr_sample['t04_spiral_a08_spiral_debiased'] > 0.619)
+    an_1 = (sfr_sample['t11_arms_number_a31_1_debiased'] >= sfr_sample['t11_arms_number_a32_2_debiased']) & \
+                (sfr_sample['t11_arms_number_a31_1_debiased'] >= sfr_sample['t11_arms_number_a33_3_debiased']) & \
+                (sfr_sample['t11_arms_number_a31_1_debiased'] >= sfr_sample['t11_arms_number_a34_4_debiased']) & \
+                (sfr_sample['t11_arms_number_a31_1_debiased'] >= sfr_sample['t11_arms_number_a36_more_than_4_debiased']) & \
+                (sfr_sample['t11_arms_number_a31_1_debiased'] >= sfr_sample['t11_arms_number_a37_cant_tell_debiased'])
+    barred = (sfr_sample['t03_bar_a06_bar_debiased'] >= 0.4)
+    unbarred = (sfr_sample['t03_bar_a06_bar_debiased'] < 0.4)
+
+    axc = fig.add_subplot(111)    # The big subplot
+    axc.spines['top'].set_color('none')
+    axc.spines['bottom'].set_color('none')
+    axc.spines['left'].set_color('none')
+    axc.spines['right'].set_color('none')
+    axc.tick_params(labelcolor='none', top='off', bottom='off', left='off', right='off')
+    axc.set_xlabel('Stellar mass [log '+r'$\/M/M_\odot$]',labelpad=10,fontsize=20)
+    axc.set_ylabel('SFR '+r'$[\log\/M_\odot/\mathrm{yr}]$',labelpad=3,fontsize=20)
+
+    # 1-armed spirals: barred and unbarred
+
+    ax1 = fig.add_subplot(221)
+    h = ax1.hist2d(mass,sfr,bins=50,cmap = cm.gray_r, norm=LogNorm())
+    ax1.set_xlim(6,11.5)
+    ax1.set_ylim(-3.9,2)
+    ax1.get_xaxis().set_ticks([])
+    onearm_nobar = sfr_sample[spiral & an_1 & unbarred]
+    ax1.scatter(onearm_nobar['MEDIAN_MASS'],onearm_nobar['MEDIAN_SFR'], s = 2, color='red', marker='o')
+    plot_fits('SF galaxies',sfr_sample,ax1,'black',lw=1,ls='-')
+    plot_fits('1-armed unbarred',onearm_nobar,ax1,'red')
+    ax1.text(6.2,1.5,'1-armed, unbarred (%i)' % len(onearm_nobar),ha='left',fontsize=16)
+
+    ax2 = fig.add_subplot(222)
+    h = ax2.hist2d(mass,sfr,bins=50,cmap = cm.gray_r, norm=LogNorm())
+    ax2.set_xlim(6,11.5)
+    ax2.set_ylim(-3.9,2)
+    ax2.get_xaxis().set_ticks([])
+    ax2.get_yaxis().set_ticks([])
+    onearm_bar = sfr_sample[spiral & an_1 & barred]
+    ax2.scatter(onearm_bar['MEDIAN_MASS'],onearm_bar['MEDIAN_SFR'], s = 2, color='blue', marker='o')
+    plot_fits('SF galaxies',sfr_sample,ax2,'black',lw=1,ls='-')
+    plot_fits('1-armed unbarred',onearm_bar,ax2,'blue')
+    ax2.text(6.2,1.5,'1-armed, barred (%i)' % len(onearm_bar),ha='left',fontsize=16)
+
+    # Merging galaxies: barred and unbarred
+
+    with fits.open('%s/mergers/mergers_gz2.fits' % gzm_path) as f:
+        data = f[1].data
+
+    sf_mergers = (data['bpt'] == 1)
+    barred_m = (data['t03_bar_a06_bar_debiased'] >= 0.4)
+    unbarred_m = (data['t03_bar_a06_bar_debiased'] < 0.4)
+
+    ax3 = fig.add_subplot(223)
+    h = ax3.hist2d(mass,sfr,bins=50,cmap = cm.gray_r, norm=LogNorm())
+    ax3.set_xlim(6,11.5)
+    ax3.set_ylim(-3.9,2)
+    merger_nobar = data[sf_mergers & unbarred_m]
+    mb = ax3.scatter(merger_nobar['MEDIAN_MASS'],merger_nobar['MEDIAN_SFR'],c=merger_nobar['mass_ratio'], edgecolor='none',s = 50, marker='.', cmap=matplotlib.cm.RdBu, vmin=1.,vmax=10.)
+    plot_fits('SF galaxies',sfr_sample,ax3,'black',lw=1,ls='-')
+    plot_fits('Merging unbarred',merger_nobar,ax3,'red',ls='-.')
+    ax3.text(6.2,1.5,'Merging, unbarred (%i)' % len(merger_nobar),ha='left',fontsize=16)
+
+    axcb1 = plt.axes([0.40, 0.18, 0.03, 0.12]) 
+    cb1 = plt.colorbar(mb,cax = axcb1, orientation="vertical",ticks=[1,3,5,10])
+    cb1.set_label('Mass ratio',fontsize=14)
+
+    ax4 = fig.add_subplot(224)
+    h = ax4.hist2d(mass,sfr,bins=50,cmap = cm.gray_r, norm=LogNorm())
+    ax4.set_xlim(6,11.5)
+    ax4.set_ylim(-3.9,2)
+    ax4.get_yaxis().set_ticks([])
+    merger_bar = data[sf_mergers & barred_m]
+    ax4.scatter(merger_bar['MEDIAN_MASS'],merger_bar['MEDIAN_SFR'],c=merger_bar['mass_ratio'], edgecolor='none',s = 50, marker='.', cmap=matplotlib.cm.RdBu, vmin=1.,vmax=10.)
+    plot_fits('SF galaxies',sfr_sample,ax4,'black',lw=1,ls='-')
+    plot_fits('Merging unbarred',merger_bar,ax4,'blue',ls='-.')
+    ax4.text(6.2,1.5,'Merging, barred (%i)' % len(merger_bar),ha='left',fontsize=16)
+
+    axcb2 = plt.axes([0.80, 0.18, 0.03, 0.12]) 
+    cb2 = plt.colorbar(mb,cax = axcb2, orientation="vertical",ticks=[1,3,5,10])
+    cb2.set_label('Mass ratio',fontsize=14)
+
+    box = axc.get_position()
+    axColorbar = plt.axes([box.x1*1.02, box.y0, 0.01, box.height])
+    cb = plt.colorbar(h[3],cax = axColorbar, orientation="vertical")
+    cb.set_label(r'$N_\mathrm{star-forming\/galaxies}$' ,fontsize=16)
+
+    fig.savefig('%s/tm_bar_trigger.pdf' % fig_path, dpi=200)
+
+    return None
+
+def plot_ms_bulge(sfr_sample,weighted=False,contour=False,plurality=False):
+
+    # Plot
+
+    fig = plt.figure(12,(12,10))
+    fig.clf()
+    filestr=''
+
+    fig.subplots_adjust(left=0.08,bottom=0.15,hspace=0,wspace=0)
+
+    mass,sfr,sfr_err = get_mass_sfr(sfr_sample)
+    mass_bins,sfr_bins = bins()
+    h,xedges,yedges = np.histogram2d(mass,sfr,bins=(mass_bins,sfr_bins))
+
+    axc = fig.add_subplot(111)    # The big subplot
+    axc.spines['top'].set_color('none')
+    axc.spines['bottom'].set_color('none')
+    axc.spines['left'].set_color('none')
+    axc.spines['right'].set_color('none')
+    axc.tick_params(labelcolor='none', top='off', bottom='off', left='off', right='off')
+    axc.set_xlabel('Stellar mass [log '+r'$\/M/M_\odot$]',labelpad=10,fontsize=20)
+    axc.set_ylabel('SFR '+r'$[\log\/M_\odot/\mathrm{yr}]$',labelpad=3,fontsize=20)
+
+    # Plot each morphological category
+
+    responses = ('a10_no_bulge','a11_just_noticeable','a12_obvious','a13_dominant')
+    bulge_tasks = ['t05_bulge_prominence_'+r for r in responses]
+    colors = ('red','orange','yellow','green')
+
+    for idx, (a,c) in enumerate(zip(bulge_tasks,colors)):
+
+        bulge_label = a[25:]
+
+        ax = fig.add_subplot(2,2,idx+1)
+        h = ax.hist2d(mass,sfr,bins=50,cmap = cm.gray_r, norm=LogNorm())
+        ax.set_xlim(6,11.5)
+        ax.set_ylim(-4,2)
+        if idx in (0,1):
+            ax.get_xaxis().set_ticks([])
+        if idx in (1,3):
+            ax.get_yaxis().set_ticks([])
+
+        rcopy = list(bulge_tasks)
+        thistask = rcopy.pop(idx)
+        notedgeon = (sfr_sample['t01_smooth_or_features_a02_features_or_disk_debiased'] > 0.430) & (sfr_sample['t02_edgeon_a05_no_debiased'] > 0.715)
+        n1 = sfr_sample[notedgeon & (sfr_sample['%s_flag' % a] == 1)] 
+        pl = sfr_sample[notedgeon & (sfr_sample['%s_debiased' % a] >= sfr_sample['%s_debiased' % rcopy[0]]) & (sfr_sample['%s_debiased' % a] >= sfr_sample['%s_debiased' % rcopy[1]]) & (sfr_sample['%s_debiased' % a] >= sfr_sample['%s_debiased' % rcopy[2]])] 
+
+        # Two sets of plots: one weights histogram by debiased vote fraction per galaxy; other shows discrete categories from GZ2 flags.
+        if weighted:
+            filestr='_weighted'
+            disks = sfr_sample[notedgeon]
+            if contour:
+                hc,xc,yc = np.histogram2d(disks['MEDIAN_MASS'],disks['MEDIAN_SFR'],bins=(mass_bins,sfr_bins),weights=disks['%s_debiased' % a])
+                levels=10**(np.linspace(0,3,12))
+                CS = ax.contour(mass_bins[1:],sfr_bins[1:],hc.T,levels,colors=c)
+                filestr += '_contour'
+            else:
+                h = ax.hist2d(disks['MEDIAN_MASS'],disks['MEDIAN_SFR'],bins=50,cmap = cm.RdYlGn, weights=disks['%s_debiased' % a],vmin=0.01,vmax=100.,norm=LogNorm())
+            plot_fits(bulge_label,disks,ax,c,morph=a,weight_by_err=False,weight_by_morph=True)
+        else:
+            filestr = ''
+            if plurality:
+                plotset = pl
+                filestr += '_plurality'
+            else:
+                plotset = n1
+
+            ax.scatter(plotset['MEDIAN_MASS'],plotset['MEDIAN_SFR'], s = 2, color=c, marker='o')
+            try:
+                plot_fits(bulge_label,plotset,ax,c,morph=a)
+            except LinAlgError:
+                print 'Insufficient number of points (%i) to fit %s data' % (len(n1),bulge_label)
+
+        ax.text(6.2,1.3,bulge_label, color='k')
+
+        # Plot the best linear fits
+
+        plot_fits(bulge_label,sfr_sample,ax,'black',lw=1,ls='-')
+
+    # Set the colorbar and labels at the end
+
+    box = axc.get_position()
+    axColorbar = plt.axes([box.x1*1.02, box.y0, 0.01, box.height])
+    cb = plt.colorbar(h[3],cax = axColorbar, orientation="vertical")
+    cb.set_label(r'$N_\mathrm{star-forming\/galaxies}$' ,fontsize=16)
+
+    fig.savefig('%s/ms_bulge%s.pdf' % (fig_path,filestr), dpi=200)
 
     return None
