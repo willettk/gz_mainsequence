@@ -7,7 +7,10 @@ from matplotlib import cm
 from matplotlib.colors import LogNorm
 from matplotlib.font_manager import FontProperties
 from astropy.io import fits
+
+from scipy.stats import ks_2samp
 from scipy.linalg.basic import LinAlgError
+from astroML.plotting import hist as histML
 
 plt.ion()
 
@@ -15,6 +18,11 @@ gz_path = '/Users/willettk/Astronomy/Research/GalaxyZoo'
 gzm_path = '%s/gzmainsequence' % gz_path
 fig_path = '%s/paper/figures' % gzm_path
 fits_path = '%s/fits' % gz_path
+
+aw_tasks = ['t10_arms_winding_'+r for r in ('a28_tight','a29_medium','a30_loose')]
+an_tasks = ['t11_arms_number_'+r for r in ('a31_1','a32_2','a33_3','a34_4','a36_more_than_4','a37_cant_tell')]
+an_colors = ('red','orange','yellow','green','blue','purple')
+aw_colors = ('red','green','blue')
 
 def get_data():
 
@@ -826,8 +834,6 @@ def fracdev(sfr_sample):
 
     # Find plurality answer for multiplicity question
 
-    an_colors = ('red','orange','yellow','green','blue','purple')
-    aw_colors = ('red','green','blue')
     an_1 = sfr_sample[spiral & \
                        (sfr_sample['t11_arms_number_a31_1_debiased'] >= sfr_sample['t11_arms_number_a32_2_debiased']) & \
                        (sfr_sample['t11_arms_number_a31_1_debiased'] >= sfr_sample['t11_arms_number_a33_3_debiased']) & \
@@ -1010,8 +1016,6 @@ def fracdev_cdf(sfr_sample):
 
     # Find plurality answer for multiplicity question
 
-    an_colors = ('red','orange','yellow','green','blue','purple')
-    aw_colors = ('red','green','blue')
     an_1 = sfr_sample[spiral & \
                        (sfr_sample['t11_arms_number_a31_1_debiased'] >= sfr_sample['t11_arms_number_a32_2_debiased']) & \
                        (sfr_sample['t11_arms_number_a31_1_debiased'] >= sfr_sample['t11_arms_number_a33_3_debiased']) & \
@@ -1342,5 +1346,128 @@ def plot_ms_bulge(sfr_sample,weighted=False,contour=False,plurality=False):
     cb.set_label(r'$N_\mathrm{star-forming\/galaxies}$' ,fontsize=16)
 
     fig.savefig('%s/ms_bulge%s.pdf' % (fig_path,filestr), dpi=200)
+
+    return None
+
+def inclination_reddening():
+
+    # What is the distribution of inclination angles for the various morphologies?
+
+    # Get data from CasJobs-matched file
+    filename = '%s/mpajhu_gz2_axisratios.fits' % fits_path
+    with fits.open(filename) as f:
+        data = f[1].data
+
+    # Star-forming galaxies only
+    sf = (data['bpt'] == 1) #| (data['bpt'] == 2)
+    redshift = data['REDSHIFT'] <= 0.1
+    absmag = data['PETROMAG_MR'] < -19.5
+
+    sfr_sample = data[sf & redshift]
+
+    # Set up plots
+
+    fig = plt.figure(13,(12,6))
+    fig.clf()
+
+    fig.subplots_adjust(left=0.08,bottom=0.15,hspace=0,wspace=0)
+
+    axc = fig.add_subplot(111)    # The big subplot
+    axc.spines['top'].set_color('none')
+    axc.spines['bottom'].set_color('none')
+    axc.spines['left'].set_color('none')
+    axc.spines['right'].set_color('none')
+    axc.tick_params(labelcolor='none', top='off', bottom='off', left='off', right='off')
+    axc.set_xlabel('Inclination angle [deg] (deproj. r-band axis ratio, exp. fit)',labelpad=10,fontsize=20)
+    axc.set_ylabel('Count',labelpad=10,fontsize=20)
+
+    # Disks and bars
+    notedgeon = (sfr_sample['t01_smooth_or_features_a02_features_or_disk_debiased'] > 0.430) & (sfr_sample['t02_edgeon_a05_no_debiased'] > 0.715) & (sfr_sample['t02_edgeon_a05_no_weight'] >= 20)
+    barred = sfr_sample[notedgeon & (sfr_sample['t03_bar_a06_bar_debiased'] >= 0.4)] 
+    unbarred = sfr_sample[notedgeon & (sfr_sample['t03_bar_a06_bar_debiased'] < 0.4)] 
+
+    # Spiral arms
+    spiral = (sfr_sample['t01_smooth_or_features_a02_features_or_disk_debiased'] > 0.430) & (sfr_sample['t02_edgeon_a05_no_debiased'] > 0.715) & (sfr_sample['t04_spiral_a08_spiral_weight'] >= 20) & (sfr_sample['t04_spiral_a08_spiral_debiased'] > 0.619)
+    #n1 = sfr_sample[spiral & (sfr_sample['%s_flag' % a] == 1)] 
+
+    # Find mean,std for each sample
+
+    print '\nexp A/B: \n'
+
+    print 'All star-forming galaxies (N = %6i): mean = %.2f +- %.2f' % (len(sfr_sample),np.mean(sfr_sample['expAB_r']),np.std(sfr_sample['expAB_r']))
+    print 'All         disk galaxies (N = %6i): mean = %.2f +- %.2f' % (notedgeon.sum(),np.mean(sfr_sample[notedgeon]['expAB_r']),np.std(sfr_sample[notedgeon]['expAB_r']))
+    print 'All       spiral galaxies (N = %6i): mean = %.2f +- %.2f' % (spiral.sum(),np.mean(sfr_sample[spiral]['expAB_r']),np.std(sfr_sample[spiral]['expAB_r']))
+
+    print ''
+    print 'Arms number: '
+
+    nbins=15
+    rad2deg = 180./np.pi
+
+    ax1 = fig.add_subplot(131)
+    ax1.get_xaxis().set_ticks(np.arange(10)*10.)
+    ax1.set_title('Arms number')
+
+    for idx,(an,anc) in enumerate(zip(an_tasks,an_colors)):
+
+        rcopy = list(an_tasks)
+        thistask = rcopy.pop(idx)
+        pl = sfr_sample[spiral & (sfr_sample['%s_debiased' % an] >= sfr_sample['%s_debiased' % rcopy[0]]) & (sfr_sample['%s_debiased' % an] >= sfr_sample['%s_debiased' % rcopy[1]]) & (sfr_sample['%s_debiased' % an] >= sfr_sample['%s_debiased' % rcopy[2]]) & (sfr_sample['%s_debiased' % an] >= sfr_sample['%s_debiased' % rcopy[3]]) & (sfr_sample['%s_debiased' % an] >= sfr_sample['%s_debiased' % rcopy[4]])] 
+
+        # Check with KS test - does it deviate from the broader sample of spirals?
+        d,p = ks_2samp(sfr_sample[spiral]['expAB_R'],pl['expAB_r'])
+
+        print '\t%12s arms (N = %6i): mean = %.2f +- %.2f; KS-prob from all spirals = %.6f' % (an[20:],len(pl),np.mean(pl['expAB_r']),np.std(pl['expAB_r']),p)
+
+        histML(np.arccos(pl['expAB_r'])*rad2deg, bins=nbins, ax=ax1, histtype='stepfilled', color=anc,range=(0,90),alpha=0.4)
+
+    histML(np.arccos(sfr_sample[spiral]['expAB_r'])*rad2deg, bins=nbins, ax=ax1, histtype='step', color='k',range=(0,90),lw=3)
+
+    print ''
+    print 'Arms winding: '
+
+    ax2 = fig.add_subplot(132)
+    ax2.get_xaxis().set_ticks(np.arange(10)*10.)
+    ax2.get_yaxis().set_ticks([])
+    ax2.set_title('Arms winding')
+
+    for idx,(aw,awc) in enumerate(zip(aw_tasks,aw_colors)):
+
+        rcopy = list(aw_tasks)
+        thistask = rcopy.pop(idx)
+        pl = sfr_sample[spiral & (sfr_sample['%s_debiased' % aw] >= sfr_sample['%s_debiased' % rcopy[0]]) & (sfr_sample['%s_debiased' % aw] >= sfr_sample['%s_debiased' % rcopy[1]])] 
+
+        # Check with KS test - does it deviate from the broader sample of spirals?
+        d,p = ks_2samp(sfr_sample[spiral]['expAB_R'],pl['expAB_r'])
+
+        print '\t%12s arms (N = %6i): mean = %.2f +- %.2f; KS-prob from all spirals = %.6f' % (aw[21:],len(pl),np.mean(pl['expAB_r']),np.std(pl['expAB_r']),p)
+
+        histML(np.arccos(pl['expAB_r'])*rad2deg, bins=nbins, ax=ax2, histtype='stepfilled', color=awc, range=(0,90),alpha=0.4)
+
+    histML(np.arccos(sfr_sample[spiral]['expAB_r'])*rad2deg, bins=nbins, ax=ax2, histtype='step', color='k',range=(0,90),lw=3)
+
+    print ''
+    print 'Bars: '
+
+    ax3 = fig.add_subplot(133)
+    ax3.get_yaxis().set_ticks([])
+    ax3.set_title('Bars')
+
+    # Check with KS test - does it deviate from the broader sample of disks?
+    db,pb = ks_2samp(sfr_sample[notedgeon]['expAB_R'],barred['expAB_r'])
+    du,pu = ks_2samp(sfr_sample[notedgeon]['expAB_R'],unbarred['expAB_r'])
+
+    histML(np.arccos(barred['expAB_r'])*rad2deg, bins=nbins, ax=ax3, histtype='stepfilled', color='blue', range=(0,90),alpha=0.4)
+    histML(np.arccos(unbarred['expAB_r'])*rad2deg, bins=nbins, ax=ax3, histtype='stepfilled', color='red', range=(0,90),alpha=0.4)
+    histML(np.arccos(sfr_sample[notedgeon]['expAB_r'])*rad2deg, bins=nbins, ax=ax3, histtype='step', color='k',range=(0,90),lw=3)
+
+    print 'Barred   (N = %6i): mean = %.2f +- %.2f; KS-prob from all not edge-on feature/disks = %.6f' % (len(barred),np.mean(barred['expAB_r']),np.std(barred['expAB_r']),pb)
+    print 'Unbarred (N = %6i): mean = %.2f +- %.2f; KS-prob from all not edge-on feature/disks = %.6f' % (len(unbarred),np.mean(unbarred['expAB_r']),np.std(unbarred['expAB_r']),pu)
+
+    for ax in (ax1,ax2,ax3):
+        ax.set_ylim(0,2000)
+
+
+    fig.savefig('%s/inclination_reddening.pdf' % fig_path, dpi=200)
 
     return None

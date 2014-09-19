@@ -5,7 +5,7 @@ Ramin Skibba
 
 - In my personal opinion, the term "main sequence" is kind of a misnomer, but it's popular now.  I think "star-forming sequence" would be sufficient, but if you want to include the "main" in there, I'll understand and that's fine with me.
 
-    I'd like to stick with star-forming main sequence,  but could be talked out of it.
+    I'd like to stick with star-forming main sequence, but could be talked out of it if there are multiple votes for the other term.
 
     Stats: 235 papers on ADS from 2009-2014 with "star forming sequence"
            267 papers on ADS from 2009-2014 with "star forming main sequence"
@@ -16,7 +16,7 @@ Ramin Skibba
 
 - You should state somewhere (e.g., at the end of the intro.) what your assumed values of Omega_m and h are, what the assumed IMF is, etc.
 
-    Updated cosmology. Initial mass function is in the MPA-JHU models, but I believe it uses the Kroupa (2001) universal IMF (rather than the Chabrier). Discuss on telecon?
+    Updated cosmology. Initial mass function is in the MPA-JHU models, but I believe it uses the Kroupa (2001) universal IMF (rather than the Chabrier).
 
 - Since you're using the updated Brinchmann et al. SFRs (right?), you should mention and cite Salim et al. (2007, ApJS, 173, 267), since the results in that paper motivated those updates.
 
@@ -24,23 +24,23 @@ Ramin Skibba
 
 - Have you tested whether your results change at all if you use photometrically calibrated stellar masses rather than the Kauffmann et al. spectroscopic ones?  It's not necessary for the paper, but I was just curious.
 
-    Not yet, but a reasonable suggestion. 
+    Stellar masses in the MPA-JHU catalog actually are based on photometry, not spectroscopy according to the catalog description (http://www.mpa-garching.mpg.de/SDSS/DR7/Data/stellarmass.html). Is there a published separate catalog for spectroscopic masses from Kauffmann?
 
 - Is it possible to estimate errors on the parameters in Table 1?  If so, it's worth going through the effort of calculating them and including them (and expanding the table to both columns, if necessary).
 
-    The elements given are the formal errors; however, there must be a better way to do this. The formal least-squares errors seem way too small. Maybe resampling many times with subsets and looking at the dispersion in the fits for the sample? Another good question for telecon.
+    The elements given are the formal errors; however, there must be a better way to do this. The formal least-squares errors seem way too small. Maybe resampling many times with subsets and looking at the dispersion in the fits for the sample?
 
 - Since you have so few galaxies with 4 or 5+ spiral arms, it might be better to remove those panels from Fig. 1 and only briefly discuss them in the text.  It's up to you though.
 
-    I'd like to keep them, if only to highlight their paucity. A deeper result might be to weight the galaxies with the GZ probability for each spiral arm and then perform the same fits, like I did for the spiral arm tightnesses. Not as sure if it's relevant (since arms aren't a continuum), but should be straightforward - just supply them as weights to each point. 
+    I've changed Figure 1; now I weight the galaxies with the GZ probability for each spiral arm and then perform the same fits, like I did for the spiral arm tightnesses. I've also tried doing all the analysis by using the plurality morphology for each category, rather than the secure examples I originally used. The results are broadly in agreement for all the methods I've tried.
 
 - It might improve the discussion to add something about environmental (or DM halo) dependencies, maybe in the context of the results in my and Steven's GZ papers.  If you agree, I'd be happy to help write that.
 
-    Much appreciated - will ask Ramin to contribute a bit. 
+    Much appreciated.
 
 - What do you mean when you say that mergers and green peas may be "driven" above the SFMS?  Do you mean that mergers with gas-rich galaxies can trigger starbursts and boost the galaxies' SFRs?  That sounds reasonable to me.  The offset of nearly 0.3 dex in Fig. 4 is a neat result.
 
-    Yep - mass doesn't increase significantly, but relative amount of star formation (for short time periods) do. It is a neat result - already known, I think, but I haven't seen it in quite this context before.
+    Yep - mass doesn't increase significantly, but relative amount of star formation (for short time periods) do. It is a neat result - already known, I think, but I haven't seen it in quite this context before. Have reworded the abstract to remove the word "driven", though.
 
 - By the way, in that context, check out the lower panel of Fig. 4 of Skibba et al. (2009): we saw that close pairs of GZ galaxies definitely have much higher P_mg and sSFR than average.
 
@@ -52,7 +52,11 @@ Ivy Wong
 
 Out of curiousity, I'd be interested to know the "fracdev" distribution for each class of your objects even though you have selected out the early-types. Willett et al 2013 does show the bulge-disk ratio to be an important driver so I'm wondering if the spirals without clear arms are also those with bigger B/D ratios...
 
+    Interesting - I plotted both the raw and cumulative distributions of fracdev (in r-band) for all the subsamples of galaxies. In this case, I defined each morphological category as the plurality answer. Among spiral arm multiplicities, 1- and 2-armed spirals have slightly lower B/D fractions than the rest of the star-forming sample, while the remaining spirals, including those with unclear arms, do have higher B/D ratios. The difference is stronger for the pitch angle of the spiral arms; loose spirals have the lowest B/D ratios, while tight spirals have higher ones -- that's actually what I would expect, since looser-wound arms also just means there's more material in the disk. Karen previously found an increase in bar fraction with rising fracdeV, which I also see. Mergers have the lowest B/D ratio of the sample; perhaps also to be expected since the tidal disk is being stripped. FracdeV measurements are much harder to interpret in this case where the disk emission has a high likelihood of being radially asymmetric.
+
 I reckon that the SFR is driven by the disk potential and the disk stability so I think that your findings make sense.  How do your bar results compare to those that Karen has been publishing?  Didn't she find that redder galaxies are more likely to host bars?
+
+    That's right - I think the results are in agreement, although I'm not looking in detail at color (I think multiple GZ2 papers have dealt with this). So if redder (and more massive) galaxies are more likely to host bars, then one would expect barred galaxies to have lower levels of star formation at a given mass. I actually don't see that in the dataset, which is surprising. I've looked at barred vs. unbarred disks more closely, including limiting the sample to certain identifications (90% vote fractions). There is a slight preference for high mass barred galaxies to fall below the SFMS, but it's not a strong effect. I'd like to discuss that more with you and Karen, because I agree it's puzzling. 
 
 -------------------------------------------------------------------
 
@@ -60,11 +64,27 @@ Tom Melvin
 
 It is a very interesting result, suggesting that a galaxy is able to self regulate so that it generally falls on the SFMS, unless it is in the process of merging. I remember in my masters thesis exploring the SFRs of mergers in galaxy clusters in the Millennium Simulations, and the idea there was that they increased by at least an order of magnitude, much greater than the observations of galaxy mergers in clusters. This seems to be a much more conclusive piece of work to suggest the same thing, that galaxy simulations don't quite get the properties of merging galaxies right.
 
+    Exactly - although of course with the caveat that we're not focusing here on cluster environments. Splitting by local density, or central vs. satellites, or something similar would be good for a follow-up investigation.
+
 I think in Figure 1 it could be worth grouping galaxies with 4 and 5 spiral arms together maybe? I'd say add the unknown arms too, but they could be completely different animals! Either way, the main point of no deviation from the SFMS would stand (just a few more numbers in a sample!).
+
+    I've changed Figure 1 now, since both you and several others have pointed out the very limited use of a linear fit to just a few points. Now the spiral galaxies are overplotted as contours; each galaxy is now weighted by the vote fraction for arm multiplicity. Results are essentially the same as before, with tight fits for all multiplicities. The 1-armed spiral increase is not as prominent using this technique, though. 
+
+    I thought about grouping the 4 and 5 arms as well, but I don't know if I would have a good reason for drawing the line there (eg, why not 3, 4, and 5 as well).
 
 I would be interested to see what the relationships for 1 armed spirals and merging galaxies would look like for barred and unbarred versions of the two. As there is the idea that mergers can induce bars, do merging disk galaxies with bars deviate further from the SFMS or not? I'm not sure of the numbers for each of the samples once plit into barred and unbarred, but it will probably be dependent of mass ratios (as you use in Fig 4), as 1-to-1 mergers would probably have no bars!
 
+    The numbers aren't super high, mostly due to the fact that both mergers and 1-armed spirals are rare. I've made a version of the plot looking at both splits. There's no indication for the 1-armed spirals that they behave differently on the SFMS. Same goes for mergers. The mass ratio question is interesting; barred mergers are certainly rare, but major mergers not exclusively so. There's only a single galaxy in the whole sample that is really, truly definitively barred (42 votes) and has a mass ratio of less than 2:1, and only a couple more with reasonable vote fractions and high total numbers. 
+    
+    It doesn't stand out too strongly in the SFMS plot, but investigating these rare barred mergers as individual objects would be really interesting. See attached:
+
+    barred_major_merger1.html
+    barred_major_merger2.html
+    barred_major_merger3.html
+
 Not sure if this is something worth doing, but as you have looked at bars, would it be worth looking at bulges in this way too? I know Brooke did something similar (or completely identical, I can't quite remember!) with bulgeless disks. 
+
+    I've looked at this a couple different ways, both by B/D (with fracdeV as the proxy, by Ivy's suggestion) and now at the bulge dominance. There's absolutely a strong mass dependence on bulge dominance, especially for robustly classified galaxies; median mass goes from roughly 10^8 for bulgeless galaxies up to 10^10.5 for obvious bulge-dominated galaxies. There's more scatter at the lower masses, but the trend is just to move them along the sequence, it seems - not to shift it either above or below. 
 
 -------------------------------------------------------------------
 
@@ -72,6 +92,41 @@ Bob Nichol
 
 My first science question regards dust/reddening and inclination angle on the sky. Could you check for the subset of near face-on spirals (maybe not all subclasses but ones where you have the numbers)
 
+    Good question, Bob - I hadn't looked at that before. I sorted the morphology bins for confirmed spirals/disks by the plurality vote. This means each galaxy has one answer for the arms winding, arms number, and bar questions (regardless of what the actual value of the vote fraction is). That means there's at least a couple hundred galaxies in each category. 
+
+    Formal two-sided KS tests between the various morphologies actually say that all morphological categories have different distributions of inclination angles when compared to their parent samples. This belies the "by-eye" check for many cases, especially two-armed spirals. I wonder if a few outliers are making the KS test statistic more sensitive than it should be; the mean and spread match up well. 
+
+    The biggest difference is in the relative pitch angle of the galaxies (arms winding). Loosely-wound spiral arms have the lowest A/B ratio, indicating a higher inclination angle. There's a clear trend up to "tightly"-wound arms, which have the highest inclination angles for the sample. This could be explained by simple geometry - as you incline the disk, the angle (apparent spacing) between arms increases. We could potentially try to work out the true distribution of pitch angles by deprojecting the galaxies by the appropriate axis ratio, and then seeing if the morphological sub-populations are still different. 
+
+    Barred and unbarred galaxies have mostly similar inclination angles, although barred galaxies are slightly more likely to be inclined. Fits with Karen's finding of redder spirals (although that's mostly not due to inclination).  
+
+    So what do you think, Bob - anything about these results that might influence the general conclusions about the SFMS and disk morphology?
+
+    Stats:
+    
+        exp A/B: 
+        
+        All star-forming galaxies (N =  40370): mean = 0.58 +- 0.22
+        All         disk galaxies (N =  12310): mean = 0.66 +- 0.17
+        All       spiral galaxies (N =   7866): mean = 0.67 +- 0.17
+        
+        Arms number: 
+        	           1 arms (N =    244): mean = 0.71 +- 0.15; KS-prob from all spirals = 0.000003
+        	           2 arms (N =   4752): mean = 0.65 +- 0.17; KS-prob from all spirals = 0.000001
+        	           3 arms (N =    857): mean = 0.73 +- 0.15; KS-prob from all spirals = 0.000000
+        	           4 arms (N =    218): mean = 0.74 +- 0.15; KS-prob from all spirals = 0.000001
+        	 more_than_4 arms (N =    210): mean = 0.74 +- 0.16; KS-prob from all spirals = 0.000026
+        	   cant_tell arms (N =   1618): mean = 0.66 +- 0.18; KS-prob from all spirals = 0.015004
+        
+        Arms winding: 
+        	       tight arms (N =   2702): mean = 0.71 +- 0.17; KS-prob from all spirals = 0.000000
+        	      medium arms (N =   3831): mean = 0.67 +- 0.17; KS-prob from all spirals = 0.048706
+        	       loose arms (N =   1366): mean = 0.58 +- 0.16; KS-prob from all spirals = 0.000000
+        
+        Bars: 
+                     Barred   (N =   3411): mean = 0.62 +- 0.16; KS-prob from all disks = 0.000000
+                     Unbarred (N =   8899): mean = 0.68 +- 0.17; KS-prob from all disks = 0.000000
+    
 -------------------------------------------------------------------
 
 Karen Masters
@@ -131,3 +186,19 @@ The observationally determined star formation enchancements (at final coalescenc
 GENERAL STUFF
  
 Do the results remain the same if one looked at specific SFR vs stellar mass instead of stellar mass? Looking at the position of the galaxies in Figure 1, I am guessing there is no change. A sentence saying this somewhere in the results section would be useful in case the referee queries it.
+
+Edmond Cheung
+
+Nice stuff, your results do seem to indicate that structure (aside from the bulge) don't seem to affect a star-forming galaxy's star formation rate, which is something that I think I need to think more upon to appreciate fully.
+
+    I don't know that I've appreciated it fully myself. If it holds up though, I think it's interesting. Although disappointing at the same time, because it means lots of astronomers who focus on galactic evolution will assume they don't need Galaxy Zoo and all the detailed disk structure we provide!
+
+But here is some shameless plugging, if you don't mind, it would be nice if you could also cite my Galaxy Zoo bar work (Cheung et al. 2013; http://adsabs.harvard.edu/abs/2013ApJ...779..162C) when you mention at the end of section 3 that the fraction of bars is correlated with stellar mass, i.e., in the reference with Masters et al. 2011.
+
+    No problem - added!
+
+It would also be great if you could cite my paper on the correlation between quenching and central surface mass density (Cheung et al. 2012; http://adsabs.harvard.edu/abs/2012ApJ...760..131C) when you mention that bulge strength affect the position of a galaxy on the SFMS in section 4. My 2012 paper showed that the central density, which is essentially the bulge mass since 1 kpc is the typical half-light radii of stellar bulges, is the most correlated parameter to a galaxy's star formation state. Fang et al. 2013 is a complimentary paper that used SDSS data, that would be nice if you could cite that too (http://adsabs.harvard.edu/abs/2013ApJ...776...63F).
+
+    Thanks very much - didn't know about the Fang+13 paper, but that looks interesting. Have added both references. 
+
+-------------------------------------------------------------------

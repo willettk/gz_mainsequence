@@ -48,6 +48,17 @@
 {Casteels}, K.~R.~V., {Bamford}, S.~P., {Skibba}, R.~A., {et~al.} 2013, \mnras,
   429, 1051
 
+\bibitem[{{Cheung} {et~al.}(2013){Cheung}, {Athanassoula}, {Masters}, {Nichol},
+  {Bosma}, {Bell}, {Faber}, {Koo}, {Lintott}, {Melvin}, {Schawinski}, {Skibba},
+  \& {Willett}}]{che13}
+{Cheung}, E., {Athanassoula}, E., {Masters}, K.~L., {et~al.} 2013, \apj, 779,
+  162
+
+\bibitem[{{Chevance} {et~al.}(2012){Chevance}, {Weijmans}, {Damjanov},
+  {Abraham}, {Simard}, {van den Bergh}, {Caris}, \& {Glazebrook}}]{che12}
+{Chevance}, M., {Weijmans}, A.-M., {Damjanov}, I., {et~al.} 2012, \apjl, 754,
+  L24
+
 \bibitem[{{Daddi} {et~al.}(2007){Daddi}, {Dickinson}, {Morrison}, {Chary},
   {Cimatti}, {Elbaz}, {Frayer}, {Renzini}, {Pope}, {Alexander}, {Bauer},
   {Giavalisco}, {Huynh}, {Kurk}, \& {Mignoli}}]{dad07}
@@ -84,6 +95,9 @@
 \bibitem[{{Ellison} {et~al.}(2011){Ellison}, {Nair}, {Patton}, {Scudder},
   {Mendel}, \& {Simard}}]{ell11}
 {Ellison}, S.~L., {Nair}, P., {Patton}, D.~R., {et~al.} 2011, \mnras, 416, 2182
+
+\bibitem[{{Fang} {et~al.}(2013){Fang}, {Faber}, {Koo}, \& {Dekel}}]{fan13}
+{Fang}, J.~J., {Faber}, S.~M., {Koo}, D.~C., \& {Dekel}, A. 2013, \apj, 776, 63
 
 \bibitem[{{Hinshaw} {et~al.}(2013){Hinshaw}, {Larson}, {Komatsu}, {Spergel},
   {Bennett}, {Dunkley}, {Nolta}, {Halpern}, {Hill}, {Odegard}, {Page}, {Smith},
