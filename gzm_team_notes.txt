@@ -144,16 +144,22 @@ ABSTRACT
 'significant reduction over the increase'
  
 I am not sure this is statement is altogether correct. At z>1 the enhacement in star formation in mergers can actually be milder because the background level of star formation in galaxies is already very high. Mergers tend to proprtionally enhance SF more at lower redshifts. see: http://adsabs.harvard.edu/abs/2013MNRAS.429L..40K
+
+    In that case, the wording may be somewhat off, but it emphasizes why these results are unusual, then (since they do focus on low-redshift galaxies). I've added a reference to your paper in the discussion. 
  
 ----
  
 I found the last two sentences in the abstract a bit cryptic e.g. 'quenching relation', 'filling factor of the disk', 'strong dynamical forcing'. 
+
+    Have modified a couple of the above terms. 
  
 ----
  
 RESULTS
  
 Would be good to show some examples of spirals with different numbers of arms so readers can get a feel for what types of systems are being discussed. This would be especially important for the 1-armed spirals which might be tidal tails (as you say in the text) and 3+ armed spirals which are rare and readers might wonder what these systems actually look like. It would also help the discussion in the second last para of page 2 where you discuss the morphology of galaxies with an uncertain number of spirals arms and how that affects their position on the SF main sequence. Some example images might make it easier for the reader to follow the explanation in this para.
+
+    It's a good suggestion, although there's a big potential range here. Seems potentially more suited for an Appendix figure?
  
 ----
  
@@ -164,12 +170,16 @@ DISCUSSION
 I looked at bulge quenching in some detail in a recent paper. Would you mind adding it to this list?
  
 http://adsabs.harvard.edu/abs/2014MNRAS.440.2944K
+
+    Certainly!
  
 ----
  
 'This increase in star formation for mergers does show a strong evolution in redshift out to at least 1:5 < z < 2:5, likely due to the higher gas fractionsinvolved (Daddi et al. 2010; Rodighiero et al. 2011).'
  
 Might want to be a bit careful here. Rodighiero et al. 2011's 'starbursts' i.e. those that lie above the SF main sequence are not necesarily mergers (in fact a lot of them are probably not). They didnt do any morphological analysis but simply assumed that these starbursts were mergers. When one does things morphologically, most of the mergers share the same parameter space as normal starbursts at these redshifts e.g. http://adsabs.harvard.edu/abs/2013MNRAS.429L..40K
+
+    Interesting - thanks. I've added a reference to Kaviraj+13 in that paragraph, but please let me know if you have suggestions for how to further reword it. 
  
 ----
  
@@ -180,12 +190,18 @@ This is very true (although note that the simulations do often involve feedback 
 http://adsabs.harvard.edu/abs/2014MNRAS.440.2944K
  
 The observationally determined star formation enchancements (at final coalescence where the enhancements are likely to peak) are between a factor of 2 and 6, consistent with your results. I think its better to mention these observational results rather than (or in addition to) simulations which depend critically on the setup used (as you say in the text).
+
+    Now mentioned.
  
 ----
  
 GENERAL STUFF
  
 Do the results remain the same if one looked at specific SFR vs stellar mass instead of stellar mass? Looking at the position of the galaxies in Figure 1, I am guessing there is no change. A sentence saying this somewhere in the results section would be useful in case the referee queries it.
+
+    I've made versions of all the plots with sSFR. There's no significant change in the results; the largest effect I see is that 5+ armed spirals (a rare population) have lower than normal sSFR. I might have expected that to be higher, actually, which is odd - but I think we can add a sentence saying results do not significantly change when using sSFR. 
+
+    Attached: sSFR plots.
 
 Edmond Cheung
 
@@ -202,3 +218,50 @@ It would also be great if you could cite my paper on the correlation between que
     Thanks very much - didn't know about the Fang+13 paper, but that looks interesting. Have added both references. 
 
 -------------------------------------------------------------------
+
+Brooke Simmons
+
+My comments on the paper attached. Really nice paper, argued well. I have some questions about some of the stuff we talked about at the telecon today, but I think it can wait until the next version. But I will say that if the presence of lenticulars makes a difference doesn't that imply that the weighted-by-pvalue plots will have different fits than the pvalue-threshold plots? Lenticulars often have really middle-of-the-road vote percentages, and so they get medium weight, but then there are a lot of them, so they have a major effect. So if you're looking at a feature that might be contaminated by lenticulars, that's an issue. I'm just not sure any of these different axes are. :)
+
+    I don't think so - lenticulars were mostly in the context of Melanie's paper on bars/AGN, although the same arguments could apply here. From NA10, lenticulars are between ~20% of the total numbers of late-type galaxies. If that scales to GZ2, then you're right - it's a lot. 
+
+    You're right - looking at the fits for spiral number and pitch angle (mostly the former), the pvalue-weighted fits are closer to the overall population than the thresholded values are. That's the direction we'd expect for the middle-of-the-road lenticulars. I don't know if it can be corrected in GZ2, since we don't reliably identify lenticulars.
+
+I think the confusion I express about the lack of dependence on bars is related to the selection of only star-forming galaxies, but I'm not completely sure. I seem to recall that a lot of the red spirals actually *are* still star-forming, but just not that strongly. But perhaps it's weak enough that red spirals (or green ones) don't make the cut?
+
+    A large fraction of the red spirals do fall in the standard star-forming regime on the BPT diagram; actually slightly more than blue spirals, if I'm interpreting Figs. 12-13 in Masters+10 correctly. One of the inferences is that they must have had relatively recent star formation simply because the spiral arms exist; they would have presumably faded on ~Gyr timescales after cessation of star formation.
+
+Anyway, if that's the case I think you should make it clearer that the selection of only star-forming galaxies removes X% of various types of disk galaxies, and therefore this in some cases changes the conclusions from what you might expect...
+
+    Good suggestion. Selection of star forming galaxies removes (morph. by plurality vote):
+
+    XX% of disk galaxies
+    XX% of spiral galaxies
+        XX% of 1-armed spirals
+        XX% of 2-armed spirals
+        XX% of 3-armed spirals
+        XX% of 4-armed spirals
+        XX% of 5-armed spirals
+        XX% of ?-armed spirals
+        XX% of tight spirals
+        XX% of medium spirals
+        XX% of loose spirals
+    XX% of barred galaxies
+    XX% of unbarred galaxies
+
+
+Attached: annotated PDF by Brooke.
+
+-------------------------------------------------------------------
+
+
+MY NOTES:
+
+    - determine what the largest volume-limited sample would be in SDSS/GZ2
+    - how low do I need to go to hit M~10**9?
+    - compare previous plots and ones with volume limited samples
+    - fix the fits to total sample; obviously wrong in new plots
+    - update table with fits
+    - make table with missing SF galaxies
+
+
