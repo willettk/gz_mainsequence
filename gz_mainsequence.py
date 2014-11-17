@@ -7,6 +7,8 @@ from matplotlib import cm
 from matplotlib.colors import LogNorm
 from matplotlib.font_manager import FontProperties
 from astropy.io import fits
+from astropy import cosmology
+from astropy import units as u
 
 from scipy.stats import ks_2samp
 from scipy.linalg.basic import LinAlgError
@@ -24,6 +26,10 @@ an_tasks = ['t11_arms_number_'+r for r in ('a31_1','a32_2','a33_3','a34_4','a36_
 an_colors = ('red','orange','yellow','green','blue','purple')
 aw_colors = ('red','green','blue')
 
+z_lowerlim = 0.005
+z_upperlim = 0.05
+absmag_lim = -19.5
+
 def get_data():
 
     filename = '%s/mpajhu_gz2.fits' % fits_path
@@ -37,9 +43,9 @@ def get_sample(data,starforming=True):
 
     # Find starforming galaxies
 
-    sf = (data['bpt'] == 1) | (data['bpt'] == 2)
-    redshift = (data['REDSHIFT'] <= 0.05) & (data['REDSHIFT'] >= 0.005)
-    absmag = data['PETROMAG_MR'] < -19.5        # could use 0.085 and -20.17, or 0.05 and -19.5
+    sf = (data['bpt'] == 1) #| (data['bpt'] == 2)
+    redshift = (data['REDSHIFT'] <= z_upperlim) & (data['REDSHIFT'] >= z_lowerlim)
+    absmag = data['PETROMAG_MR'] < absmag_lim        # could use 0.085 and -20.17, or 0.05 and -19.5
 
     if starforming:
         sample = data[sf & redshift & absmag]
@@ -242,7 +248,7 @@ def plot_ms_arms_number(sf_sample,weighted=False,contour=False,plot_ssfr=False):
 
     return None
 
-def plot_ms_arms_winding(sf_sample,weighted=False,plot_ssfr=False):
+def plot_ms_arms_winding(sf_sample,weighted=False,contour=False,plot_ssfr=False):
 
     # Plot
 
@@ -310,9 +316,18 @@ def plot_ms_arms_winding(sf_sample,weighted=False,plot_ssfr=False):
 
         # Two sets of plots: one weights histogram by debiased vote fraction per galaxy; other shows discrete categories from GZ2 flags.
         if weighted:
-            spirals = sf_sample[spiral]
-            h = ax.hist2d(spirals['MEDIAN_MASS'],yval_weighted,bins=50,cmap = cm.RdYlGn, weights=spirals['%s_debiased' % a],vmin=0.01,vmax=100.,norm=LogNorm())
-            cb_label = r'$w_\mathrm{\phi}$'
+            if contour:
+                hc,xc,yc = np.histogram2d(spirals['MEDIAN_MASS'],yval_weighted,bins=(mass_bins,yval_bins),weights=spirals['%s_debiased' % a])
+                levels=10**(np.linspace(0,2,8))
+                CS = ax.contour(mass_bins[1:],yval_bins[1:],hc.T,levels,colors=c)
+                cb_label = r'$N_\mathrm{star-forming\/galaxies}$'
+            else:
+                h = ax.hist2d(spirals['MEDIAN_MASS'],yval_weighted,bins=50,cmap = cm.RdYlGn, weights=spirals['%s_debiased' % a],vmin=0.01,vmax=100.,norm=LogNorm())
+                cb_label = r'$w_\mathrm{\phi}$'
+
+            #spirals = sf_sample[spiral]
+            #h = ax.hist2d(spirals['MEDIAN_MASS'],yval_weighted,bins=50,cmap = cm.RdYlGn, weights=spirals['%s_debiased' % a],vmin=0.01,vmax=100.,norm=LogNorm())
+            #cb_label = r'$w_\mathrm{\phi}$'
             plot_fits(arm_label,spirals,ax,c,morph=a,weight_by_err=False,weight_by_morph=True,plot_ssfr=plot_ssfr)
         else:
             ax.scatter(n1['MEDIAN_MASS'],yval_scatter, s = 2, color=c, marker='o')
@@ -1488,8 +1503,8 @@ def inclination_reddening():
 
     # Star-forming galaxies only
     sf = (data['bpt'] == 1) | (data['bpt'] == 2)
-    redshift = (data['REDSHIFT'] <= 0.05) & (data['REDSHIFT'] >= 0.005)
-    absmag = data['PETROMAG_MR'] < -19.5
+    redshift = (data['REDSHIFT'] <= z_upperlim) & (data['REDSHIFT'] >= z_lowerlim)
+    absmag = data['PETROMAG_MR'] < absmag_lim
 
     sf_sample = data[sf & redshift & absmag]
 
@@ -1731,4 +1746,44 @@ def check_missing_galaxies():
 
     return None
 
+def volume_limited(data):
+
+    # Find the largest volume-limited star-forming sample in MPA-JHU/GZ2
+
+    redshift = data['REDSHIFT']
+    appmag = data['PETROMAG_R']
+    absmag = data['PETROMAG_MR']
+
+    # What is the appropriate abs m     
+    # appmag should be the detection limit of SDSS in r-band - 23.1 in survey, but 17.7 in GZ2 cutoff (using both Stripe 82 and Legacy DR7)ag limit as a function of redshift?
+
+    appmag_lim = 17.7
+    wmap9 = cosmology.WMAP9
+    zarr = np.linspace(z_lowerlim,0.25,100)
+    absmag_lim_arr = [(appmag_lim*u.mag)- mu for mu in wmap9.distmod(zarr)]
+    ngals = [np.sum( (redshift <= z) & (absmag < m.value) & ((data['bpt'] == 1) | (data['bpt'] == 2)) ) for z,m in zip(zarr,absmag_lim_arr)]
+
+    # Plot size of sample as function of limit
+
+    fig = plt.figure(14,(12,6))
+    fig.clf()
+    ax = fig.add_subplot(111)
+    ax.plot(zarr,ngals)
+    ax.set_xlim(zarr[0],zarr[-1])
+    ax.set_xlabel('Redshift')
+    ax.set_ylabel('Number of GZ2 galaxies')
+
+    # Add second axis for abs. mag
+    ax2=ax.twiny()
+    ax2.set_xlim(zarr[0],zarr[-1])
+    new_tick_locations = np.linspace(zarr[0],zarr[-1],6)
+    ax2.set_xticks(new_tick_locations)
+    ax2.set_xticklabels(['%.2f' % (appmag_lim - wmap9.distmod(z).value) for z in new_tick_locations])
+    ax2.set_xlabel('Abs. mag limit')
+
+    return None
+
+
+
+    
 
