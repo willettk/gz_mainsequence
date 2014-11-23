@@ -26,8 +26,8 @@ an_tasks = ['t11_arms_number_'+r for r in ('a31_1','a32_2','a33_3','a34_4','a36_
 an_colors = ('red','orange','yellow','green','blue','purple')
 aw_colors = ('red','green','blue')
 
-z_lowerlim = 0.005
-z_upperlim = 0.05
+z_lowerlim = 0.000      # any reason for a lower limit?
+z_upperlim = 0.085      # upper limit of reliable GZ2 classification
 absmag_lim = -19.5
 
 def get_data():
@@ -45,12 +45,14 @@ def get_sample(data,starforming=True):
 
     sf = (data['bpt'] == 1) #| (data['bpt'] == 2)
     redshift = (data['REDSHIFT'] <= z_upperlim) & (data['REDSHIFT'] >= z_lowerlim)
-    absmag = data['PETROMAG_MR'] < absmag_lim        # could use 0.085 and -20.17, or 0.05 and -19.5
+    #absmag = data['PETROMAG_MR'] < absmag_lim        # could use 0.085 and -20.17, or 0.05 and -19.5
 
     if starforming:
-        sample = data[sf & redshift & absmag]
+        #sample = data[sf & redshift & absmag]
+        sample = data[sf & redshift]
     else:
-        sample = data[redshift & absmag]
+        #sample = data[redshift & absmag]
+        sample = data[redshift]
 
     return sample
 
@@ -137,7 +139,7 @@ def plot_fits(label,data,axis,color,morph='t11_arms_number_a31_1',lw=2,ls='--',l
 
     return a,b
 
-def plot_ms_arms_number(sf_sample,weighted=False,contour=False,plot_ssfr=False):
+def plot_ms_arms_number(sf_sample,weighted=False,contour=False,plot_ssfr=False,verbose=False):
 
     # Plot
 
@@ -220,12 +222,12 @@ def plot_ms_arms_number(sf_sample,weighted=False,contour=False,plot_ssfr=False):
 
             cb_label = r'$w_\mathrm{\phi}$'
 
-            plot_fits(al,spirals,ax,c,morph=a,weight_by_err=False,weight_by_morph=True,plot_ssfr=plot_ssfr)
+            plot_fits(al,spirals,ax,c,morph=a,weight_by_err=False,weight_by_morph=True,plot_ssfr=plot_ssfr,verbose=verbose)
         else:
             ax.scatter(n1['MEDIAN_MASS'],yval_scatter, s = 2, color=c, marker='o')
             cb_label = r'$N_\mathrm{star-forming\/galaxies}$'
 
-            plot_fits(al,n1,ax,c,plot_ssfr=plot_ssfr)
+            plot_fits(al,n1,ax,c,plot_ssfr=plot_ssfr,verbose=verbose)
 
         ax.text(6.2,ytextloc,r'$N_{arms} = $%s' % al, color='k',fontsize=18)
 
@@ -248,7 +250,7 @@ def plot_ms_arms_number(sf_sample,weighted=False,contour=False,plot_ssfr=False):
 
     return None
 
-def plot_ms_arms_winding(sf_sample,weighted=False,contour=False,plot_ssfr=False):
+def plot_ms_arms_winding(sf_sample,weighted=False,contour=False,plot_ssfr=False,verbose=False):
 
     # Plot
 
@@ -328,11 +330,11 @@ def plot_ms_arms_winding(sf_sample,weighted=False,contour=False,plot_ssfr=False)
             #spirals = sf_sample[spiral]
             #h = ax.hist2d(spirals['MEDIAN_MASS'],yval_weighted,bins=50,cmap = cm.RdYlGn, weights=spirals['%s_debiased' % a],vmin=0.01,vmax=100.,norm=LogNorm())
             #cb_label = r'$w_\mathrm{\phi}$'
-            plot_fits(arm_label,spirals,ax,c,morph=a,weight_by_err=False,weight_by_morph=True,plot_ssfr=plot_ssfr)
+            plot_fits(arm_label,spirals,ax,c,morph=a,weight_by_err=False,weight_by_morph=True,plot_ssfr=plot_ssfr,verbose=verbose)
         else:
             ax.scatter(n1['MEDIAN_MASS'],yval_scatter, s = 2, color=c, marker='o')
             cb_label = r'$N_\mathrm{star-forming\/galaxies}$'
-            plot_fits(arm_label,n1,ax,c,morph=a,plot_ssfr=plot_ssfr)
+            plot_fits(arm_label,n1,ax,c,morph=a,plot_ssfr=plot_ssfr,verbose=True)
 
         if plot_ssfr:
             ax.set_ylim(-12,-8)
@@ -362,7 +364,7 @@ def plot_ms_arms_winding(sf_sample,weighted=False,contour=False,plot_ssfr=False)
 
     return None
 
-def plot_ms_bars(sf_sample,contour=False,plot_ssfr=False):
+def plot_ms_bars(sf_sample,contour=False,plot_ssfr=False,verbose=False):
 
     # Plot
 
@@ -437,7 +439,7 @@ def plot_ms_bars(sf_sample,contour=False,plot_ssfr=False):
 
         # Plot the best linear fit
 
-        plot_fits(t,b,ax,c,plot_ssfr=plot_ssfr)
+        plot_fits(t,b,ax,c,plot_ssfr=plot_ssfr,verbose=verbose)
         plot_fits(t,sf_sample,ax,'black',lw=1,ls='-',plot_ssfr=plot_ssfr)
 
         '''
@@ -829,7 +831,7 @@ def plot_ms_merger_fraction(sf_sample):
 
     return None
 
-def plot_ms_mergers_both(sf_sample,plot_ssfr=False):
+def plot_ms_mergers_both(sf_sample,plot_ssfr=False,verbose=False):
 
     #---------------------------------
     # Merger counts
@@ -875,7 +877,7 @@ def plot_ms_mergers_both(sf_sample,plot_ssfr=False):
 
     # Plot the best linear fit
 
-    a1,a0 = plot_fits('Star-forming galaxies',sf_sample,ax1,'black',lw=3,ls='-',plot_ssfr=plot_ssfr)
+    a1,a0 = plot_fits('Star-forming galaxies',sf_sample,ax1,'black',lw=3,ls='-',plot_ssfr=plot_ssfr,verbose=verbose)
 
     # Fix same slope but different offset. 
 
@@ -895,6 +897,11 @@ def plot_ms_mergers_both(sf_sample,plot_ssfr=False):
 
     offset = xarr[(np.abs(rms)).argmin()]
     uline = ax1.plot(np.linspace(6,12,100),np.polyval([a1,a0+offset],np.linspace(6,12,100)),color='red',linestyle='--',linewidth=3)
+
+    if verbose:
+        print 'Best fit for mergers data: a,b = %.2f,%.2f' % (a1,a0 + offset)
+        print 'Best fit for mergers data: same sigma_a, sigma_b as star-forming galaxies'
+        print ''
 
     ax1.text(6.2,ytextloc[0],'Mergers', color='black',fontsize=20)
     ax1.text(6.2,ytextloc[1],'Offset = %.3f dex' % offset, color='black',fontsize=15)
@@ -931,7 +938,7 @@ def plot_ms_mergers_both(sf_sample,plot_ssfr=False):
     hm,xm,ym = np.histogram2d(sf_mergers['MEDIAN_MASS'],yval_mergers,bins=(mass_bins,yval_bins))
     # Calculate merger fraction
     mf = hm / h
-    im = ax2.imshow(mf.T, interpolation='nearest', origin='lower',extent=(mass_bins[0],mass_bins[-1],yval_bins[0],yval_bins[-1]),vmin=0.,vmax=1.)
+    im = ax2.imshow(mf.T, interpolation='nearest', origin='lower',extent=(mass_bins[0],mass_bins[-1],yval_bins[0],yval_bins[-1]),vmin=0.,vmax=1.,cmap=cm.jet)
 
     axcb2 = plt.axes([0.90, 0.10, 0.02, 0.85]) 
     cb2 = plt.colorbar(im,cax = axcb2, orientation="vertical")
@@ -1028,15 +1035,30 @@ def fracdev(sf_sample):
                        (sf_sample['t10_arms_winding_a30_loose_debiased'] >= sf_sample['t10_arms_winding_a29_medium_debiased']) & \
                        (sf_sample['t10_arms_winding_a30_loose_debiased'] >= sf_sample['t10_arms_winding_a28_tight_debiased'])]
 
-    aw_l = sf_sample[spiral & \
-                       (sf_sample['t10_arms_winding_a30_loose_debiased'] >= sf_sample['t10_arms_winding_a29_medium_debiased']) & \
-                       (sf_sample['t10_arms_winding_a30_loose_debiased'] >= sf_sample['t10_arms_winding_a28_tight_debiased'])]
-
-
     notedgeon = (sf_sample['t01_smooth_or_features_a02_features_or_disk_debiased'] > 0.430) & (sf_sample['t02_edgeon_a05_no_debiased'] > 0.715) & (sf_sample['t02_edgeon_a05_no_weight'] >= 20)
 
     barred = sf_sample[notedgeon & (sf_sample['t03_bar_a06_bar_debiased'] >= 0.5)] 
     unbarred = sf_sample[notedgeon & (sf_sample['t03_bar_a06_bar_debiased'] < 0.5)] 
+
+    # Print stats to screen
+
+    print 'All SF galaxies: %10i' % len(sf_sample)
+    print 'Arms number'
+    print ' 1 arm: %10i' % len(an_1)
+    print ' 2 arm: %10i' % len(an_2)
+    print ' 3 arm: %10i' % len(an_3)
+    print ' 4 arm: %10i' % len(an_4)
+    print '5+ arm: %10i' % len(an_5)
+    print '?? arm: %10i' % len(an_x)
+    print ''
+    print 'Arms winding'
+    print ' tight arm: %10i' % len(aw_t)
+    print 'medium arm: %10i' % len(aw_m)
+    print ' loose arm: %10i' % len(aw_l)
+    print ''
+    print 'Bar'
+    print '  barred: %10i' % len(barred)
+    print 'unbarred: %10i' % len(unbarred)
 
     with fits.open('%s/mergers/mergers_fracdev.fits' % gzm_path) as f:
         data = f[1].data
@@ -1398,7 +1420,7 @@ def tm_bar_trigger(sf_sample):
 
     return None
 
-def plot_ms_bulge(sf_sample,weighted=False,contour=False,plurality=False):
+def plot_ms_bulge(sf_sample,weighted=False,contour=False,plurality=False,verbose=False):
 
     # Plot
 
@@ -1457,7 +1479,7 @@ def plot_ms_bulge(sf_sample,weighted=False,contour=False,plurality=False):
                 filestr += '_contour'
             else:
                 h = ax.hist2d(disks['MEDIAN_MASS'],disks['MEDIAN_SFR'],bins=50,cmap = cm.RdYlGn, weights=disks['%s_debiased' % a],vmin=0.01,vmax=100.,norm=LogNorm())
-            plot_fits(bulge_label,disks,ax,c,morph=a,weight_by_err=False,weight_by_morph=True)
+            plot_fits(bulge_label,disks,ax,c,morph=a,weight_by_err=False,weight_by_morph=True,verbose=verbose)
         else:
             filestr = ''
             if plurality:
@@ -1469,7 +1491,7 @@ def plot_ms_bulge(sf_sample,weighted=False,contour=False,plurality=False):
             if len(plotset) > 0:
                 ax.scatter(plotset['MEDIAN_MASS'],plotset['MEDIAN_SFR'], s = 2, color=c, marker='o')
                 try:
-                    plot_fits(bulge_label,plotset,ax,c,morph=a)
+                    plot_fits(bulge_label,plotset,ax,c,morph=a,verbose=verbose)
                 except LinAlgError:
                     print 'Insufficient number of points (%i) to fit %s data' % (len(plotset),bulge_label)
             else:
@@ -1620,35 +1642,32 @@ def make_all_plots():
     data = get_data()
     sf_sample = get_sample(data,starforming=True)
 
-    plot_ms_arms_number(sf_sample,weighted=False,contour=False,plot_ssfr=False)
+    plot_ms_arms_number(sf_sample,weighted=False,contour=False,plot_ssfr=False,verbose=True)
     plot_ms_arms_number(sf_sample,weighted=True,contour=False,plot_ssfr=False)
     plot_ms_arms_number(sf_sample,weighted=True,contour=True,plot_ssfr=False)
     plot_ms_arms_number(sf_sample,weighted=False,contour=False,plot_ssfr=True)
     plot_ms_arms_number(sf_sample,weighted=True,contour=False,plot_ssfr=True)
     plot_ms_arms_number(sf_sample,weighted=True,contour=True,plot_ssfr=True)
 
-    plot_ms_arms_winding(sf_sample,weighted=False,plot_ssfr=False)
+    plot_ms_arms_winding(sf_sample,weighted=False,plot_ssfr=False,verbose=True)
     plot_ms_arms_winding(sf_sample,weighted=True,plot_ssfr=False)
     plot_ms_arms_winding(sf_sample,weighted=False,plot_ssfr=True)
     plot_ms_arms_winding(sf_sample,weighted=True,plot_ssfr=True)
 
-    plot_ms_bars(sf_sample,contour=False,plot_ssfr=False)
+    plot_ms_bars(sf_sample,contour=False,plot_ssfr=False,verbose=True)
     plot_ms_bars(sf_sample,contour=True,plot_ssfr=False)
     plot_ms_bars(sf_sample,contour=False,plot_ssfr=True)
     plot_ms_bars(sf_sample,contour=True,plot_ssfr=True)
 
-    plot_ms_mergers_both(sf_sample,plot_ssfr=False)
+    plot_ms_mergers_both(sf_sample,plot_ssfr=False,verbose=True)
     plot_ms_mergers_both(sf_sample,plot_ssfr=True)
 
-    plot_ms_bulge(sf_sample,weighted=False,contour=False,plurality=False)
+    plot_ms_bulge(sf_sample,weighted=False,contour=False,plurality=False,verbose=True)
     plot_ms_bulge(sf_sample,weighted=True,contour=False,plurality=False)
     plot_ms_bulge(sf_sample,weighted=True,contour=True,plurality=False)
     plot_ms_bulge(sf_sample,weighted=False,contour=False,plurality=True)
 
     plot_ms_greenpeas(sf_sample)
-
-    plot_ms_mergers_both(sf_sample,plot_ssfr=False)
-    plot_ms_mergers_both(sf_sample,plot_ssfr=True)
 
     sigma_mstar(sf_sample)
 
