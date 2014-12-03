@@ -1,4 +1,4 @@
-\begin{thebibliography}{47}
+\begin{thebibliography}{54}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
 \bibitem[{{Abazajian} {et~al}\mbox{.}(2009){Abazajian}, {Adelman-McCarthy},
@@ -24,6 +24,11 @@
 \bibitem[{{Baldwin} {et~al}\mbox{.}(1981){Baldwin}, {Phillips}, \&
   {Terlevich}}]{bal81}
 {Baldwin} J.~A., {Phillips} M.~M., {Terlevich} R., 1981, \pasp, 93, 5
+
+\bibitem[{{Bamford} {et~al}\mbox{.}(2009){Bamford}, {Nichol}, {Baldry}, {Land},
+  {Lintott}, {Schawinski}, {Slosar}, {Szalay}, {Thomas}, {Torki}, {Andreescu},
+  {Edmondson}, {Miller}, {Murray}, {Raddick}, \& {Vandenberg}}]{bam09}
+{Bamford} S.~P. {et~al.}, 2009, \mnras, 393, 1324
 
 \bibitem[{{Bouch{\'e}} {et~al}\mbox{.}(2010){Bouch{\'e}}, {Dekel}, {Genzel},
   {Genel}, {Cresci}, {F{\"o}rster Schreiber}, {Shapiro}, {Davies}, \&
@@ -64,6 +69,9 @@
   {Rosario}, {Weiner}, \& {Willmer}}]{che12a}
 {Cheung} E. {et~al.}, 2012, \apj, 760, 131
 
+\bibitem[{{Cortese}(2012)}]{cor12}
+{Cortese} L., 2012, \aap, 543, A132
+
 \bibitem[{{Daddi} {et~al}\mbox{.}(2007){Daddi}, {Dickinson}, {Morrison},
   {Chary}, {Cimatti}, {Elbaz}, {Frayer}, {Renzini}, {Pope}, {Alexander},
   {Bauer}, {Giavalisco}, {Huynh}, {Kurk}, \& {Mignoli}}]{dad07}
@@ -84,6 +92,11 @@
   {Murray}, {Nichol}, {Raddick}, {Slosar}, {Szalay}, {Thomas}, \&
   {Vandenberg}}]{dar10a}
 {Darg} D.~W. {et~al.}, 2010{\natexlab{b}}, \mnras, 401, 1043
+
+\bibitem[{{De~Lucia} {et~al}\mbox{.}(2012){De~Lucia}, {Weinmann}, {Poggianti},
+  {Arag{\'o}n-Salamanca}, \& {Zaritsky}}]{del12}
+{De~Lucia} G., {Weinmann} S., {Poggianti} B.~M., {Arag{\'o}n-Salamanca} A.,
+  {Zaritsky} D., 2012, \mnras, 423, 1277
 
 \bibitem[{{Elbaz} {et~al}\mbox{.}(2011){Elbaz}, {Dickinson}, {Hwang},
   {D{\'{\i}}az-Santos}, {Magdis}, {Magnelli}, {Le Borgne}, {Galliano},
@@ -123,6 +136,11 @@
   {Kere{\v s}}}]{hop08}
 {Hopkins} P.~F., {Hernquist} L., {Cox} T.~J., {Kere{\v s}} D., 2008, \apjs,
   175, 356
+
+\bibitem[{{Hopkins} {et~al}\mbox{.}(2014){Hopkins}, {Kere{\v s}}, {O{\~n}orbe},
+  {Faucher-Gigu{\`e}re}, {Quataert}, {Murray}, \& {Bullock}}]{hop14}
+{Hopkins} P.~F., {Kere{\v s}} D., {O{\~n}orbe} J., {Faucher-Gigu{\`e}re} C.-A.,
+  {Quataert} E., {Murray} N., {Bullock} J.~S., 2014, \mnras, 445, 581
 
 \bibitem[{{Hoyle} {et~al}\mbox{.}(2011){Hoyle}, {Masters}, {Nichol},
   {Edmondson}, {Smith}, {Lintott}, {Scranton}, {Bamford}, {Schawinski}, \&
@@ -175,6 +193,12 @@
 \bibitem[{{Martig} {et~al}\mbox{.}(2009){Martig}, {Bournaud}, {Teyssier}, \&
   {Dekel}}]{mar09}
 {Martig} M., {Bournaud} F., {Teyssier} R., {Dekel} A., 2009, \apj, 707, 250
+
+\bibitem[{{Masters} {et~al}\mbox{.}(2010){Masters}, {Mosleh}, {Romer},
+  {Nichol}, {Bamford}, {Schawinski}, {Lintott}, {Andreescu}, {Campbell},
+  {Crowcroft}, {Doyle}, {Edmondson}, {Murray}, {Raddick}, {Slosar}, {Szalay},
+  \& {Vandenberg}}]{mas10a}
+{Masters} K.~L. {et~al.}, 2010, \mnras, 405, 783
 
 \bibitem[{{Masters} {et~al}\mbox{.}(2012){Masters}, {Nichol}, {Haynes}, {Keel},
   {Lintott}, {Simmons}, {Skibba}, {Bamford}, {Giovanelli}, \&
@@ -235,6 +259,13 @@
   {Skibba}, {Treister}, {Willett}, {Wong}, \& {Yi}}]{sch14}
 {Schawinski} K. {et~al.}, 2014, \mnras, 440, 889
 
+\bibitem[{{Schiminovich} {et~al}\mbox{.}(2007){Schiminovich}, {Wyder},
+  {Martin}, {Johnson}, {Salim}, {Seibert}, {Treyer}, {Budav{\'a}ri}, {Hoopes},
+  {Zamojski}, {Barlow}, {Forster}, {Friedman}, {Morrissey}, {Neff}, {Small},
+  {Bianchi}, {Donas}, {Heckman}, {Lee}, {Madore}, {Milliard}, {Rich}, {Szalay},
+  {Welsh}, \& {Yi}}]{sch07b}
+{Schiminovich} D. {et~al.}, 2007, \apjs, 173, 315
+
 \bibitem[{{Sheth} {et~al}\mbox{.}(2008){Sheth}, {Elmegreen}, {Elmegreen},
   {Capak}, {Abraham}, {Athanassoula}, {Ellis}, {Mobasher}, {Salvato},
   {Schinnerer}, {Scoville}, {Spalsbury}, {Strubbe}, {Carollo}, {Rich}, \&
@@ -259,6 +290,11 @@
 {Taylor} M.~B., 2005, in Astronomical Society of the Pacific Conference Series,
   Vol. 347, Astronomical Data Analysis Software and Systems XIV, {Shopbell} P.,
   {Britton} M., {Ebert} R., eds., p.~29
+
+\bibitem[{{van den Bosch} {et~al}\mbox{.}(2008){van den Bosch}, {Aquino},
+  {Yang}, {Mo}, {Pasquali}, {McIntosh}, {Weinmann}, \& {Kang}}]{van08b}
+{van den Bosch} F.~C., {Aquino} D., {Yang} X., {Mo} H.~J., {Pasquali} A.,
+  {McIntosh} D.~H., {Weinmann} S.~M., {Kang} X., 2008, \mnras, 387, 79
 
 \bibitem[{{Willett} {et~al}\mbox{.}(2013){Willett}, {Lintott}, {Bamford},
   {Masters}, {Simmons}, {Casteels}, {Edmondson}, {Fortson}, {Kaviraj}, {Keel},

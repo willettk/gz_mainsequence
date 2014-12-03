@@ -3,46 +3,86 @@ Round 1 of comments on GZ SFMS paper; August 2014
 
 Ramin Skibba
 
-- In my personal opinion, the term "main sequence" is kind of a misnomer, but it's popular now.  I think "star-forming sequence" would be sufficient, but if you want to include the "main" in there, I'll understand and that's fine with me.
+- In my personal opinion, the term "main sequence" is kind of a misnomer, but
+  it's popular now.  I think "star-forming sequence" would be sufficient, but
+  if you want to include the "main" in there, I'll understand and that's fine
+      with me.
 
-    I'd like to stick with star-forming main sequence, but could be talked out of it if there are multiple votes for the other term.
+    I'd like to stick with star-forming main sequence, but could be talked out
+    of it if there are multiple votes for the other term.
 
-    Stats: 235 papers on ADS from 2009-2014 with "star forming sequence"
-           267 papers on ADS from 2009-2014 with "star forming main sequence"
+    Stats: 235 papers on ADS from 2009-2014 with "star forming sequence" 267
+    papers on ADS from 2009-2014 with "star forming main sequence"
 
-- I know Kevin might be a fan of the Peng et al. papers, but in my opinion, they weren't very impressive, and the terms "mass quenching" and "environment quenching" don't really explain much and have only served to muddle the field.  There are better papers on the subject out there, and a particularly good one is De Lucia et al. (2012, MNRAS, 423, 1277).
+- I know Kevin might be a fan of the Peng et al. papers, but in my opinion,
+  they weren't very impressive, and the terms "mass quenching" and "environment
+  quenching" don't really explain much and have only served to muddle the
+  field.  There are better papers on the subject out there, and a particularly
+  good one is De Lucia et al. (2012, MNRAS, 423, 1277).
 
-    Ask Ramin to write a sentence or two on this incorporating the De Lucia et al. results (or any other relevant ones).
+    Ask Ramin to write a sentence or two on this incorporating the De Lucia et
+    al. results (or any other relevant ones).
 
-- You should state somewhere (e.g., at the end of the intro.) what your assumed values of Omega_m and h are, what the assumed IMF is, etc.
+- You should state somewhere (e.g., at the end of the intro.) what your assumed
+  values of Omega_m and h are, what the assumed IMF is, etc.
 
-    Updated cosmology. Initial mass function is in the MPA-JHU models, but I believe it uses the Kroupa (2001) universal IMF (rather than the Chabrier).
+    Updated cosmology. Initial mass function is in the MPA-JHU models, but I
+    believe it uses the Kroupa (2001) universal IMF (rather than the Chabrier).
 
-- Since you're using the updated Brinchmann et al. SFRs (right?), you should mention and cite Salim et al. (2007, ApJS, 173, 267), since the results in that paper motivated those updates.
+- Since you're using the updated Brinchmann et al. SFRs (right?), you should
+  mention and cite Salim et al. (2007, ApJS, 173, 267), since the results in
+  that paper motivated those updates.
 
     OK. 
 
-- Have you tested whether your results change at all if you use photometrically calibrated stellar masses rather than the Kauffmann et al. spectroscopic ones?  It's not necessary for the paper, but I was just curious.
+- Have you tested whether your results change at all if you use photometrically
+  calibrated stellar masses rather than the Kauffmann et al. spectroscopic
+  ones?  It's not necessary for the paper, but I was just curious.
 
-    Stellar masses in the MPA-JHU catalog actually are based on photometry, not spectroscopy according to the catalog description (http://www.mpa-garching.mpg.de/SDSS/DR7/Data/stellarmass.html). Is there a published separate catalog for spectroscopic masses from Kauffmann?
+    Stellar masses in the MPA-JHU catalog actually are based on photometry, not
+    spectroscopy according to the catalog description
+    (http://www.mpa-garching.mpg.de/SDSS/DR7/Data/stellarmass.html). Is there a
+    published separate catalog for spectroscopic masses from Kauffmann?
 
-- Is it possible to estimate errors on the parameters in Table 1?  If so, it's worth going through the effort of calculating them and including them (and expanding the table to both columns, if necessary).
+- Is it possible to estimate errors on the parameters in Table 1?  If so, it's
+  worth going through the effort of calculating them and including them (and
+  expanding the table to both columns, if necessary).
 
-    The elements given are the formal errors; however, there must be a better way to do this. The formal least-squares errors seem way too small. Maybe resampling many times with subsets and looking at the dispersion in the fits for the sample?
+    The elements given are the formal errors; however, there must be a better
+    way to do this. The formal least-squares errors seem way too small. Maybe
+    resampling many times with subsets and looking at the dispersion in the
+    fits for the sample?
 
-- Since you have so few galaxies with 4 or 5+ spiral arms, it might be better to remove those panels from Fig. 1 and only briefly discuss them in the text.  It's up to you though.
+- Since you have so few galaxies with 4 or 5+ spiral arms, it might be better
+  to remove those panels from Fig. 1 and only briefly discuss them in the text.
+  It's up to you though.
 
-    I've changed Figure 1; now I weight the galaxies with the GZ probability for each spiral arm and then perform the same fits, like I did for the spiral arm tightnesses. I've also tried doing all the analysis by using the plurality morphology for each category, rather than the secure examples I originally used. The results are broadly in agreement for all the methods I've tried.
+    I've changed Figure 1; now I weight the galaxies with the GZ probability
+    for each spiral arm and then perform the same fits, like I did for the
+        spiral arm tightnesses. I've also tried doing all the analysis by using
+        the plurality morphology for each category, rather than the secure
+        examples I originally used. The results are broadly in agreement for
+        all the methods I've tried.
 
-- It might improve the discussion to add something about environmental (or DM halo) dependencies, maybe in the context of the results in my and Steven's GZ papers.  If you agree, I'd be happy to help write that.
+- It might improve the discussion to add something about environmental (or DM
+  halo) dependencies, maybe in the context of the results in my and Steven's GZ
+  papers.  If you agree, I'd be happy to help write that.
 
     Much appreciated.
 
-- What do you mean when you say that mergers and green peas may be "driven" above the SFMS?  Do you mean that mergers with gas-rich galaxies can trigger starbursts and boost the galaxies' SFRs?  That sounds reasonable to me.  The offset of nearly 0.3 dex in Fig. 4 is a neat result.
+- What do you mean when you say that mergers and green peas may be "driven"
+  above the SFMS?  Do you mean that mergers with gas-rich galaxies can trigger
+  starbursts and boost the galaxies' SFRs?  That sounds reasonable to me.  The
+  offset of nearly 0.3 dex in Fig. 4 is a neat result.
 
-    Yep - mass doesn't increase significantly, but relative amount of star formation (for short time periods) do. It is a neat result - already known, I think, but I haven't seen it in quite this context before. Have reworded the abstract to remove the word "driven", though.
+    Yep - mass doesn't increase significantly, but relative amount of star
+    formation (for short time periods) do. It is a neat result - already known,
+    I think, but I haven't seen it in quite this context before. Have reworded
+    the abstract to remove the word "driven", though.
 
-- By the way, in that context, check out the lower panel of Fig. 4 of Skibba et al. (2009): we saw that close pairs of GZ galaxies definitely have much higher P_mg and sSFR than average.
+- By the way, in that context, check out the lower panel of Fig. 4 of Skibba et
+  al. (2009): we saw that close pairs of GZ galaxies definitely have much
+  higher P_mg and sSFR than average.
 
     Nice - cited.
 
@@ -50,13 +90,43 @@ Ramin Skibba
 
 Ivy Wong
 
-Out of curiousity, I'd be interested to know the "fracdev" distribution for each class of your objects even though you have selected out the early-types. Willett et al 2013 does show the bulge-disk ratio to be an important driver so I'm wondering if the spirals without clear arms are also those with bigger B/D ratios...
+Out of curiousity, I'd be interested to know the "fracdev" distribution for
+each class of your objects even though you have selected out the early-types.
+Willett et al 2013 does show the bulge-disk ratio to be an important driver so
+I'm wondering if the spirals without clear arms are also those with bigger B/D
+ratios...
 
-    Interesting - I plotted both the raw and cumulative distributions of fracdev (in r-band) for all the subsamples of galaxies. In this case, I defined each morphological category as the plurality answer. Among spiral arm multiplicities, 1- and 2-armed spirals have slightly lower B/D fractions than the rest of the star-forming sample, while the remaining spirals, including those with unclear arms, do have higher B/D ratios. The difference is stronger for the pitch angle of the spiral arms; loose spirals have the lowest B/D ratios, while tight spirals have higher ones -- that's actually what I would expect, since looser-wound arms also just means there's more material in the disk. Karen previously found an increase in bar fraction with rising fracdeV, which I also see. Mergers have the lowest B/D ratio of the sample; perhaps also to be expected since the tidal disk is being stripped. FracdeV measurements are much harder to interpret in this case where the disk emission has a high likelihood of being radially asymmetric.
+    Interesting - I plotted both the raw and cumulative distributions of
+    fracdev (in r-band) for all the subsamples of galaxies. In this case, I
+    defined each morphological category as the plurality answer. Among spiral
+    arm multiplicities, 1- and 2-armed spirals have slightly lower B/D
+    fractions than the rest of the star-forming sample, while the remaining
+    spirals, including those with unclear arms, do have higher B/D ratios. The
+    difference is stronger for the pitch angle of the spiral arms; loose
+    spirals have the lowest B/D ratios, while tight spirals have higher ones --
+    that's actually what I would expect, since looser-wound arms also just
+    means there's more material in the disk. Karen previously found an increase
+    in bar fraction with rising fracdeV, which I also see. Mergers have the
+    lowest B/D ratio of the sample; perhaps also to be expected since the tidal
+    disk is being stripped. FracdeV measurements are much harder to interpret
+    in this case where the disk emission has a high likelihood of being
+    radially asymmetric.
 
-I reckon that the SFR is driven by the disk potential and the disk stability so I think that your findings make sense.  How do your bar results compare to those that Karen has been publishing?  Didn't she find that redder galaxies are more likely to host bars?
+I reckon that the SFR is driven by the disk potential and the disk stability so
+I think that your findings make sense.  How do your bar results compare to
+those that Karen has been publishing?  Didn't she find that redder galaxies are
+more likely to host bars?
 
-    That's right - I think the results are in agreement, although I'm not looking in detail at color (I think multiple GZ2 papers have dealt with this). So if redder (and more massive) galaxies are more likely to host bars, then one would expect barred galaxies to have lower levels of star formation at a given mass. I actually don't see that in the dataset, which is surprising. I've looked at barred vs. unbarred disks more closely, including limiting the sample to certain identifications (90% vote fractions). There is a slight preference for high mass barred galaxies to fall below the SFMS, but it's not a strong effect. I'd like to discuss that more with you and Karen, because I agree it's puzzling. 
+    That's right - I think the results are in agreement, although I'm not
+    looking in detail at color (I think multiple GZ2 papers have dealt with
+    this). So if redder (and more massive) galaxies are more likely to host
+    bars, then one would expect barred galaxies to have lower levels of star
+    formation at a given mass. I actually don't see that in the dataset, which
+    is surprising. I've looked at barred vs. unbarred disks more closely,
+    including limiting the sample to certain identifications (90% vote
+    fractions). There is a slight preference for high mass barred galaxies to
+    fall below the SFMS, but it's not a strong effect. I'd like to discuss that
+    more with you and Karen, because I agree it's puzzling. 
 
 -------------------------------------------------------------------
 
@@ -235,20 +305,22 @@ Anyway, if that's the case I think you should make it clearer that the selection
 
     Good suggestion. Selection of star forming galaxies removes (morph. by plurality vote):
 
-    XX% of disk galaxies
-    XX% of spiral galaxies
-        XX% of 1-armed spirals
-        XX% of 2-armed spirals
-        XX% of 3-armed spirals
-        XX% of 4-armed spirals
-        XX% of 5-armed spirals
-        XX% of ?-armed spirals
-        XX% of tight spirals
-        XX% of medium spirals
-        XX% of loose spirals
-    XX% of barred galaxies
-    XX% of unbarred galaxies
-
+    All galaxies: 148588 in full,  49097 in SF sample. Cut removes  99491 (67.0 percent)
+    All    disks:  34260 in full,  15045 in SF sample. Cut removes  19215 (56.1 percent)
+    
+    Morph:               t11_arms_number_a31_1 --    528 in full,    289 in SF sample. Cut removes    239 (45.3 percent)
+    Morph:               t11_arms_number_a32_2 --  12455 in full,   5641 in SF sample. Cut removes   6814 (54.7 percent)
+    Morph:               t11_arms_number_a33_3 --   2219 in full,    997 in SF sample. Cut removes   1222 (55.1 percent)
+    Morph:               t11_arms_number_a34_4 --    723 in full,    285 in SF sample. Cut removes    438 (60.6 percent)
+    Morph:     t11_arms_number_a36_more_than_4 --    725 in full,    289 in SF sample. Cut removes    436 (60.1 percent)
+    Morph:       t11_arms_number_a37_cant_tell --   4644 in full,   2017 in SF sample. Cut removes   2627 (56.6 percent)
+    
+    Morph:          t10_arms_winding_a28_tight --   8685 in full,   3255 in SF sample. Cut removes   5430 (62.5 percent)
+    Morph:         t10_arms_winding_a29_medium --   9678 in full,   4578 in SF sample. Cut removes   5100 (52.7 percent)
+    Morph:          t10_arms_winding_a30_loose --   2883 in full,   1672 in SF sample. Cut removes   1211 (42.0 percent)
+    
+    Morph:                              barred --  10719 in full,   4211 in SF sample. Cut removes   6508 (60.7 percent)
+    Morph:                            unbarred --  23541 in full,  10834 in SF sample. Cut removes  12707 (54.0 percent)
 
 Attached: annotated PDF by Brooke.
 
