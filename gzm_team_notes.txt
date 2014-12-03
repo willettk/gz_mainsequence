@@ -132,45 +132,112 @@ more likely to host bars?
 
 Tom Melvin
 
-It is a very interesting result, suggesting that a galaxy is able to self regulate so that it generally falls on the SFMS, unless it is in the process of merging. I remember in my masters thesis exploring the SFRs of mergers in galaxy clusters in the Millennium Simulations, and the idea there was that they increased by at least an order of magnitude, much greater than the observations of galaxy mergers in clusters. This seems to be a much more conclusive piece of work to suggest the same thing, that galaxy simulations don't quite get the properties of merging galaxies right.
+It is a very interesting result, suggesting that a galaxy is able to self
+regulate so that it generally falls on the SFMS, unless it is in the process of
+merging. I remember in my masters thesis exploring the SFRs of mergers in
+galaxy clusters in the Millennium Simulations, and the idea there was that they
+increased by at least an order of magnitude, much greater than the observations
+of galaxy mergers in clusters. This seems to be a much more conclusive piece of
+work to suggest the same thing, that galaxy simulations don't quite get the
+properties of merging galaxies right.
 
-    Exactly - although of course with the caveat that we're not focusing here on cluster environments. Splitting by local density, or central vs. satellites, or something similar would be good for a follow-up investigation.
+    Exactly - although of course with the caveat that we're not focusing here
+    on cluster environments. Splitting by local density, or central vs.
+    satellites, or something similar would be good for a follow-up
+    investigation.
 
-I think in Figure 1 it could be worth grouping galaxies with 4 and 5 spiral arms together maybe? I'd say add the unknown arms too, but they could be completely different animals! Either way, the main point of no deviation from the SFMS would stand (just a few more numbers in a sample!).
+I think in Figure 1 it could be worth grouping galaxies with 4 and 5 spiral
+arms together maybe? I'd say add the unknown arms too, but they could be
+completely different animals! Either way, the main point of no deviation from
+the SFMS would stand (just a few more numbers in a sample!).
 
-    I've changed Figure 1 now, since both you and several others have pointed out the very limited use of a linear fit to just a few points. Now the spiral galaxies are overplotted as contours; each galaxy is now weighted by the vote fraction for arm multiplicity. Results are essentially the same as before, with tight fits for all multiplicities. The 1-armed spiral increase is not as prominent using this technique, though. 
+    I've changed Figure 1 now, since both you and several others have pointed
+    out the very limited use of a linear fit to just a few points. Now the
+    spiral galaxies are overplotted as contours; each galaxy is now weighted by
+    the vote fraction for arm multiplicity. Results are essentially the same as
+    before, with tight fits for all multiplicities. The 1-armed spiral increase
+    is not as prominent using this technique, though. 
 
-    I thought about grouping the 4 and 5 arms as well, but I don't know if I would have a good reason for drawing the line there (eg, why not 3, 4, and 5 as well).
+    I thought about grouping the 4 and 5 arms as well, but I don't know if I
+    would have a good reason for drawing the line there (eg, why not 3, 4, and
+    5 as well).
 
-I would be interested to see what the relationships for 1 armed spirals and merging galaxies would look like for barred and unbarred versions of the two. As there is the idea that mergers can induce bars, do merging disk galaxies with bars deviate further from the SFMS or not? I'm not sure of the numbers for each of the samples once plit into barred and unbarred, but it will probably be dependent of mass ratios (as you use in Fig 4), as 1-to-1 mergers would probably have no bars!
+I would be interested to see what the relationships for 1 armed spirals and
+merging galaxies would look like for barred and unbarred versions of the two.
+As there is the idea that mergers can induce bars, do merging disk galaxies
+with bars deviate further from the SFMS or not? I'm not sure of the numbers for
+each of the samples once plit into barred and unbarred, but it will probably be
+dependent of mass ratios (as you use in Fig 4), as 1-to-1 mergers would
+probably have no bars!
 
-    The numbers aren't super high, mostly due to the fact that both mergers and 1-armed spirals are rare. I've made a version of the plot looking at both splits. There's no indication for the 1-armed spirals that they behave differently on the SFMS. Same goes for mergers. The mass ratio question is interesting; barred mergers are certainly rare, but major mergers not exclusively so. There's only a single galaxy in the whole sample that is really, truly definitively barred (42 votes) and has a mass ratio of less than 2:1, and only a couple more with reasonable vote fractions and high total numbers. 
+    The numbers aren't super high, mostly due to the fact that both mergers and
+    1-armed spirals are rare. I've made a version of the plot looking at both
+    splits. There's no indication for the 1-armed spirals that they behave
+    differently on the SFMS. Same goes for mergers. The mass ratio question is
+    interesting; barred mergers are certainly rare, but major mergers not
+    exclusively so. There's only a single galaxy in the whole sample that is
+    really, truly definitively barred (42 votes) and has a mass ratio of less
+    than 2:1, and only a couple more with reasonable vote fractions and high
+    total numbers. 
     
-    It doesn't stand out too strongly in the SFMS plot, but investigating these rare barred mergers as individual objects would be really interesting. See attached:
+    It doesn't stand out too strongly in the SFMS plot, but investigating these
+    rare barred mergers as individual objects would be really interesting. See
+    attached:
 
-    barred_major_merger1.html
-    barred_major_merger2.html
+    barred_major_merger1.html barred_major_merger2.html
     barred_major_merger3.html
 
-Not sure if this is something worth doing, but as you have looked at bars, would it be worth looking at bulges in this way too? I know Brooke did something similar (or completely identical, I can't quite remember!) with bulgeless disks. 
+Not sure if this is something worth doing, but as you have looked at bars,
+would it be worth looking at bulges in this way too? I know Brooke did
+something similar (or completely identical, I can't quite remember!) with
+bulgeless disks. 
 
-    I've looked at this a couple different ways, both by B/D (with fracdeV as the proxy, by Ivy's suggestion) and now at the bulge dominance. There's absolutely a strong mass dependence on bulge dominance, especially for robustly classified galaxies; median mass goes from roughly 10^8 for bulgeless galaxies up to 10^10.5 for obvious bulge-dominated galaxies. There's more scatter at the lower masses, but the trend is just to move them along the sequence, it seems - not to shift it either above or below. 
+    I've looked at this a couple different ways, both by B/D (with fracdeV as
+    the proxy, by Ivy's suggestion) and now at the bulge dominance. There's
+    absolutely a strong mass dependence on bulge dominance, especially for
+    robustly classified galaxies; median mass goes from roughly 10^8 for
+    bulgeless galaxies up to 10^10.5 for obvious bulge-dominated galaxies.
+    There's more scatter at the lower masses, but the trend is just to move
+    them along the sequence, it seems - not to shift it either above or below. 
 
 -------------------------------------------------------------------
 
 Bob Nichol
 
-My first science question regards dust/reddening and inclination angle on the sky. Could you check for the subset of near face-on spirals (maybe not all subclasses but ones where you have the numbers)
+My first science question regards dust/reddening and inclination angle on the
+sky. Could you check for the subset of near face-on spirals (maybe not all
+subclasses but ones where you have the numbers)
 
-    Good question, Bob - I hadn't looked at that before. I sorted the morphology bins for confirmed spirals/disks by the plurality vote. This means each galaxy has one answer for the arms winding, arms number, and bar questions (regardless of what the actual value of the vote fraction is). That means there's at least a couple hundred galaxies in each category. 
+    Good question, Bob - I hadn't looked at that before. I sorted the
+    morphology bins for confirmed spirals/disks by the plurality vote. This
+    means each galaxy has one answer for the arms winding, arms number, and bar
+    questions (regardless of what the actual value of the vote fraction is).
+    That means there's at least a couple hundred galaxies in each category. 
 
-    Formal two-sided KS tests between the various morphologies actually say that all morphological categories have different distributions of inclination angles when compared to their parent samples. This belies the "by-eye" check for many cases, especially two-armed spirals. I wonder if a few outliers are making the KS test statistic more sensitive than it should be; the mean and spread match up well. 
+    Formal two-sided KS tests between the various morphologies actually say
+    that all morphological categories have different distributions of
+    inclination angles when compared to their parent samples. This belies the
+    "by-eye" check for many cases, especially two-armed spirals. I wonder if a
+    few outliers are making the KS test statistic more sensitive than it should
+    be; the mean and spread match up well. 
 
-    The biggest difference is in the relative pitch angle of the galaxies (arms winding). Loosely-wound spiral arms have the lowest A/B ratio, indicating a higher inclination angle. There's a clear trend up to "tightly"-wound arms, which have the highest inclination angles for the sample. This could be explained by simple geometry - as you incline the disk, the angle (apparent spacing) between arms increases. We could potentially try to work out the true distribution of pitch angles by deprojecting the galaxies by the appropriate axis ratio, and then seeing if the morphological sub-populations are still different. 
+    The biggest difference is in the relative pitch angle of the galaxies (arms
+    winding). Loosely-wound spiral arms have the lowest A/B ratio, indicating a
+    higher inclination angle. There's a clear trend up to "tightly"-wound arms,
+    which have the highest inclination angles for the sample. This could be
+    explained by simple geometry - as you incline the disk, the angle (apparent
+    spacing) between arms increases. We could potentially try to work out the
+    true distribution of pitch angles by deprojecting the galaxies by the
+    appropriate axis ratio, and then seeing if the morphological
+    sub-populations are still different. 
 
-    Barred and unbarred galaxies have mostly similar inclination angles, although barred galaxies are slightly more likely to be inclined. Fits with Karen's finding of redder spirals (although that's mostly not due to inclination).  
+    Barred and unbarred galaxies have mostly similar inclination angles,
+    although barred galaxies are slightly more likely to be inclined. Fits with
+    Karen's finding of redder spirals (although that's mostly not due to
+    inclination).  
 
-    So what do you think, Bob - anything about these results that might influence the general conclusions about the SFMS and disk morphology?
+    So what do you think, Bob - anything about these results that might
+    influence the general conclusions about the SFMS and disk morphology?
 
     Stats:
     
@@ -213,13 +280,20 @@ ABSTRACT
  
 'significant reduction over the increase'
  
-I am not sure this is statement is altogether correct. At z>1 the enhacement in star formation in mergers can actually be milder because the background level of star formation in galaxies is already very high. Mergers tend to proprtionally enhance SF more at lower redshifts. see: http://adsabs.harvard.edu/abs/2013MNRAS.429L..40K
+I am not sure this is statement is altogether correct. At z>1 the enhacement in
+star formation in mergers can actually be milder because the background level
+of star formation in galaxies is already very high. Mergers tend to
+proprtionally enhance SF more at lower redshifts. see:
+http://adsabs.harvard.edu/abs/2013MNRAS.429L..40K
 
-    In that case, the wording may be somewhat off, but it emphasizes why these results are unusual, then (since they do focus on low-redshift galaxies). I've added a reference to your paper in the discussion. 
+    In that case, the wording may be somewhat off, but it emphasizes why these
+    results are unusual, then (since they do focus on low-redshift galaxies).
+    I've added a reference to your paper in the discussion. 
  
 ----
  
-I found the last two sentences in the abstract a bit cryptic e.g. 'quenching relation', 'filling factor of the disk', 'strong dynamical forcing'. 
+I found the last two sentences in the abstract a bit cryptic e.g. 'quenching
+relation', 'filling factor of the disk', 'strong dynamical forcing'. 
 
     Have modified a couple of the above terms. 
  
@@ -227,17 +301,29 @@ I found the last two sentences in the abstract a bit cryptic e.g. 'quenching rel
  
 RESULTS
  
-Would be good to show some examples of spirals with different numbers of arms so readers can get a feel for what types of systems are being discussed. This would be especially important for the 1-armed spirals which might be tidal tails (as you say in the text) and 3+ armed spirals which are rare and readers might wonder what these systems actually look like. It would also help the discussion in the second last para of page 2 where you discuss the morphology of galaxies with an uncertain number of spirals arms and how that affects their position on the SF main sequence. Some example images might make it easier for the reader to follow the explanation in this para.
+Would be good to show some examples of spirals with different numbers of arms
+so readers can get a feel for what types of systems are being discussed. This
+would be especially important for the 1-armed spirals which might be tidal
+tails (as you say in the text) and 3+ armed spirals which are rare and readers
+might wonder what these systems actually look like. It would also help the
+discussion in the second last para of page 2 where you discuss the morphology
+of galaxies with an uncertain number of spirals arms and how that affects their
+position on the SF main sequence. Some example images might make it easier for
+the reader to follow the explanation in this para.
 
-    It's a good suggestion, although there's a big potential range here. Seems potentially more suited for an Appendix figure?
+    It's a good suggestion, although there's a big potential range here. Seems
+    potentially more suited for an Appendix figure?
  
 ----
  
 DISCUSSION
  
-'Thus while the overall bulge strength does affect the position of a galaxy on the SFMS (Martig et al. 2009; Lang et al. 2014; Omand et al. 2014), the structure of the disk itself does not.'
+'Thus while the overall bulge strength does affect the position of a galaxy on
+the SFMS (Martig et al. 2009; Lang et al. 2014; Omand et al. 2014), the
+structure of the disk itself does not.'
  
-I looked at bulge quenching in some detail in a recent paper. Would you mind adding it to this list?
+I looked at bulge quenching in some detail in a recent paper. Would you mind
+adding it to this list?
  
 http://adsabs.harvard.edu/abs/2014MNRAS.440.2944K
 
@@ -245,21 +331,45 @@ http://adsabs.harvard.edu/abs/2014MNRAS.440.2944K
  
 ----
  
-'This increase in star formation for mergers does show a strong evolution in redshift out to at least 1:5 < z < 2:5, likely due to the higher gas fractionsinvolved (Daddi et al. 2010; Rodighiero et al. 2011).'
+'This increase in star formation for mergers does show a strong evolution in
+redshift out to at least 1:5 < z < 2:5, likely due to the higher gas
+fractionsinvolved (Daddi et al. 2010; Rodighiero et al. 2011).'
  
-Might want to be a bit careful here. Rodighiero et al. 2011's 'starbursts' i.e. those that lie above the SF main sequence are not necesarily mergers (in fact a lot of them are probably not). They didnt do any morphological analysis but simply assumed that these starbursts were mergers. When one does things morphologically, most of the mergers share the same parameter space as normal starbursts at these redshifts e.g. http://adsabs.harvard.edu/abs/2013MNRAS.429L..40K
+Might want to be a bit careful here. Rodighiero et al. 2011's 'starbursts' i.e.
+those that lie above the SF main sequence are not necesarily mergers (in fact a
+lot of them are probably not). They didnt do any morphological analysis but
+simply assumed that these starbursts were mergers. When one does things
+morphologically, most of the mergers share the same parameter space as normal
+starbursts at these redshifts e.g.
+http://adsabs.harvard.edu/abs/2013MNRAS.429L..40K
 
-    Interesting - thanks. I've added a reference to Kaviraj+13 in that paragraph, but please let me know if you have suggestions for how to further reword it. 
+    Interesting - thanks. I've added a reference to Kaviraj+13 in that
+    paragraph, but please let me know if you have suggestions for how to
+    further reword it. 
  
 ----
  
-'Almost all simulations of galaxy mergers predict a steep increase in the star formation rate during both firrst passage and final coalescence (eg, Hopkins et al. 2008). The magnitude of this increase often depends on the details of the simulation, but can range from a factor of 10 to 100. In the low-redshift universe sampled by SDSS and Galaxy Zoo, we find no evidence for an enhancement of such magnitude. This in turn suggests that the current generation of galaxy merger simulations misses critical feedback mechanisms that prevent runaway peaks in star formation rates during mergers.'
+'Almost all simulations of galaxy mergers predict a steep increase in the star
+formation rate during both firrst passage and final coalescence (eg, Hopkins et
+al. 2008). The magnitude of this increase often depends on the details of the
+simulation, but can range from a factor of 10 to 100. In the low-redshift
+universe sampled by SDSS and Galaxy Zoo, we find no evidence for an enhancement
+of such magnitude. This in turn suggests that the current generation of galaxy
+merger simulations misses critical feedback mechanisms that prevent runaway
+peaks in star formation rates during mergers.'
  
-This is very true (although note that the simulations do often involve feedback and still get it wrong!). I looked at this issue from an observational viewpoint using deep images from the Stripe 82 to pick out mergers in spiral galaxies (so a similar population to what you are studying here):
+This is very true (although note that the simulations do often involve feedback
+and still get it wrong!). I looked at this issue from an observational
+viewpoint using deep images from the Stripe 82 to pick out mergers in spiral
+galaxies (so a similar population to what you are studying here):
  
 http://adsabs.harvard.edu/abs/2014MNRAS.440.2944K
  
-The observationally determined star formation enchancements (at final coalescence where the enhancements are likely to peak) are between a factor of 2 and 6, consistent with your results. I think its better to mention these observational results rather than (or in addition to) simulations which depend critically on the setup used (as you say in the text).
+The observationally determined star formation enchancements (at final
+coalescence where the enhancements are likely to peak) are between a factor of
+2 and 6, consistent with your results. I think its better to mention these
+observational results rather than (or in addition to) simulations which depend
+critically on the setup used (as you say in the text).
 
     Now mentioned.
  
@@ -267,41 +377,94 @@ The observationally determined star formation enchancements (at final coalescenc
  
 GENERAL STUFF
  
-Do the results remain the same if one looked at specific SFR vs stellar mass instead of stellar mass? Looking at the position of the galaxies in Figure 1, I am guessing there is no change. A sentence saying this somewhere in the results section would be useful in case the referee queries it.
+Do the results remain the same if one looked at specific SFR vs stellar mass
+instead of stellar mass? Looking at the position of the galaxies in Figure 1, I
+am guessing there is no change. A sentence saying this somewhere in the results
+section would be useful in case the referee queries it.
 
-    I've made versions of all the plots with sSFR. There's no significant change in the results; the largest effect I see is that 5+ armed spirals (a rare population) have lower than normal sSFR. I might have expected that to be higher, actually, which is odd - but I think we can add a sentence saying results do not significantly change when using sSFR. 
+    I've made versions of all the plots with sSFR. There's no significant
+    change in the results; the largest effect I see is that 5+ armed spirals (a
+    rare population) have lower than normal sSFR. I might have expected that to
+    be higher, actually, which is odd - but I think we can add a sentence
+    saying results do not significantly change when using sSFR. 
 
     Attached: sSFR plots.
 
 Edmond Cheung
 
-Nice stuff, your results do seem to indicate that structure (aside from the bulge) don't seem to affect a star-forming galaxy's star formation rate, which is something that I think I need to think more upon to appreciate fully.
+Nice stuff, your results do seem to indicate that structure (aside from the
+bulge) don't seem to affect a star-forming galaxy's star formation rate, which
+is something that I think I need to think more upon to appreciate fully.
 
-    I don't know that I've appreciated it fully myself. If it holds up though, I think it's interesting. Although disappointing at the same time, because it means lots of astronomers who focus on galactic evolution will assume they don't need Galaxy Zoo and all the detailed disk structure we provide!
+    I don't know that I've appreciated it fully myself. If it holds up though,
+    I think it's interesting. Although disappointing at the same time, because
+    it means lots of astronomers who focus on galactic evolution will assume
+    they don't need Galaxy Zoo and all the detailed disk structure we provide!
 
-But here is some shameless plugging, if you don't mind, it would be nice if you could also cite my Galaxy Zoo bar work (Cheung et al. 2013; http://adsabs.harvard.edu/abs/2013ApJ...779..162C) when you mention at the end of section 3 that the fraction of bars is correlated with stellar mass, i.e., in the reference with Masters et al. 2011.
+But here is some shameless plugging, if you don't mind, it would be nice if you
+could also cite my Galaxy Zoo bar work (Cheung et al. 2013;
+http://adsabs.harvard.edu/abs/2013ApJ...779..162C) when you mention at the end
+of section 3 that the fraction of bars is correlated with stellar mass, i.e.,
+in the reference with Masters et al. 2011.
 
     No problem - added!
 
-It would also be great if you could cite my paper on the correlation between quenching and central surface mass density (Cheung et al. 2012; http://adsabs.harvard.edu/abs/2012ApJ...760..131C) when you mention that bulge strength affect the position of a galaxy on the SFMS in section 4. My 2012 paper showed that the central density, which is essentially the bulge mass since 1 kpc is the typical half-light radii of stellar bulges, is the most correlated parameter to a galaxy's star formation state. Fang et al. 2013 is a complimentary paper that used SDSS data, that would be nice if you could cite that too (http://adsabs.harvard.edu/abs/2013ApJ...776...63F).
+It would also be great if you could cite my paper on the correlation between
+quenching and central surface mass density (Cheung et al. 2012;
+http://adsabs.harvard.edu/abs/2012ApJ...760..131C) when you mention that bulge
+strength affect the position of a galaxy on the SFMS in section 4. My 2012
+paper showed that the central density, which is essentially the bulge mass
+since 1 kpc is the typical half-light radii of stellar bulges, is the most
+correlated parameter to a galaxy's star formation state. Fang et al. 2013 is a
+complimentary paper that used SDSS data, that would be nice if you could cite
+that too (http://adsabs.harvard.edu/abs/2013ApJ...776...63F).
 
-    Thanks very much - didn't know about the Fang+13 paper, but that looks interesting. Have added both references. 
+    Thanks very much - didn't know about the Fang+13 paper, but that looks
+    interesting. Have added both references. 
 
 -------------------------------------------------------------------
 
 Brooke Simmons
 
-My comments on the paper attached. Really nice paper, argued well. I have some questions about some of the stuff we talked about at the telecon today, but I think it can wait until the next version. But I will say that if the presence of lenticulars makes a difference doesn't that imply that the weighted-by-pvalue plots will have different fits than the pvalue-threshold plots? Lenticulars often have really middle-of-the-road vote percentages, and so they get medium weight, but then there are a lot of them, so they have a major effect. So if you're looking at a feature that might be contaminated by lenticulars, that's an issue. I'm just not sure any of these different axes are. :)
+My comments on the paper attached. Really nice paper, argued well. I have some
+questions about some of the stuff we talked about at the telecon today, but I
+think it can wait until the next version. But I will say that if the presence
+of lenticulars makes a difference doesn't that imply that the
+weighted-by-pvalue plots will have different fits than the pvalue-threshold
+plots? Lenticulars often have really middle-of-the-road vote percentages, and
+so they get medium weight, but then there are a lot of them, so they have a
+major effect. So if you're looking at a feature that might be contaminated by
+lenticulars, that's an issue. I'm just not sure any of these different axes
+are. :)
 
-    I don't think so - lenticulars were mostly in the context of Melanie's paper on bars/AGN, although the same arguments could apply here. From NA10, lenticulars are between ~20% of the total numbers of late-type galaxies. If that scales to GZ2, then you're right - it's a lot. 
+    I don't think so - lenticulars were mostly in the context of Melanie's
+    paper on bars/AGN, although the same arguments could apply here. From NA10,
+    lenticulars are between ~20% of the total numbers of late-type galaxies. If
+    that scales to GZ2, then you're right - it's a lot. 
 
-    You're right - looking at the fits for spiral number and pitch angle (mostly the former), the pvalue-weighted fits are closer to the overall population than the thresholded values are. That's the direction we'd expect for the middle-of-the-road lenticulars. I don't know if it can be corrected in GZ2, since we don't reliably identify lenticulars.
+    You're right - looking at the fits for spiral number and pitch angle
+    (mostly the former), the pvalue-weighted fits are closer to the overall
+    population than the thresholded values are. That's the direction we'd
+    expect for the middle-of-the-road lenticulars. I don't know if it can be
+    corrected in GZ2, since we don't reliably identify lenticulars.
 
-I think the confusion I express about the lack of dependence on bars is related to the selection of only star-forming galaxies, but I'm not completely sure. I seem to recall that a lot of the red spirals actually *are* still star-forming, but just not that strongly. But perhaps it's weak enough that red spirals (or green ones) don't make the cut?
+I think the confusion I express about the lack of dependence on bars is related
+to the selection of only star-forming galaxies, but I'm not completely sure. I
+seem to recall that a lot of the red spirals actually *are* still star-forming,
+but just not that strongly. But perhaps it's weak enough that red spirals (or
+green ones) don't make the cut?
 
-    A large fraction of the red spirals do fall in the standard star-forming regime on the BPT diagram; actually slightly more than blue spirals, if I'm interpreting Figs. 12-13 in Masters+10 correctly. One of the inferences is that they must have had relatively recent star formation simply because the spiral arms exist; they would have presumably faded on ~Gyr timescales after cessation of star formation.
+    A large fraction of the red spirals do fall in the standard star-forming
+    regime on the BPT diagram; actually slightly more than blue spirals, if I'm
+    interpreting Figs. 12-13 in Masters+10 correctly. One of the inferences is
+    that they must have had relatively recent star formation simply because the
+    spiral arms exist; they would have presumably faded on ~Gyr timescales
+    after cessation of star formation.
 
-Anyway, if that's the case I think you should make it clearer that the selection of only star-forming galaxies removes X% of various types of disk galaxies, and therefore this in some cases changes the conclusions from what you might expect...
+Anyway, if that's the case I think you should make it clearer that the
+selection of only star-forming galaxies removes X% of various types of disk
+galaxies, and therefore this in some cases changes the conclusions from what
+you might expect...
 
     Good suggestion. Selection of star forming galaxies removes (morph. by plurality vote):
 
