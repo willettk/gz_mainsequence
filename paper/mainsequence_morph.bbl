@@ -1,4 +1,4 @@
-\begin{thebibliography}{54}
+\begin{thebibliography}{58}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
 \bibitem[{{Abazajian} {et~al}\mbox{.}(2009){Abazajian}, {Adelman-McCarthy},
@@ -98,6 +98,10 @@
 {De~Lucia} G., {Weinmann} S., {Poggianti} B.~M., {Arag{\'o}n-Salamanca} A.,
   {Zaritsky} D., 2012, \mnras, 423, 1277
 
+\bibitem[{{Dutton} {et~al}\mbox{.}(2010){Dutton}, {van den Bosch}, \&
+  {Dekel}}]{dut10}
+{Dutton} A.~A., {van den Bosch} F.~C., {Dekel} A., 2010, \mnras, 405, 1690
+
 \bibitem[{{Elbaz} {et~al}\mbox{.}(2011){Elbaz}, {Dickinson}, {Hwang},
   {D{\'{\i}}az-Santos}, {Magdis}, {Magnelli}, {Le Borgne}, {Galliano},
   {Pannella}, {Chanial}, {Armus}, {Charmandaris}, {Daddi}, {Aussel}, {Popesso},
@@ -168,12 +172,20 @@
   {Rutkowski}}]{kav13b}
 {Kaviraj} S. {et~al.}, 2013, \mnras, 429, L40
 
+\bibitem[{{Kelson}(2014)}]{kel14b}
+{Kelson} D.~D., 2014, ArXiv e-prints, 1406.5191
+
 \bibitem[{{Lang} {et~al}\mbox{.}(2014){Lang}, {Wuyts}, {Somerville},
   {F{\"o}rster Schreiber}, {Genzel}, {Bell}, {Brammer}, {Dekel}, {Faber},
   {Ferguson}, {Grogin}, {Kocevski}, {Koekemoer}, {Lutz}, {McGrath}, {Momcheva},
   {Nelson}, {Primack}, {Rosario}, {Skelton}, {Tacconi}, {van Dokkum}, \&
   {Whitaker}}]{lan14}
 {Lang} P. {et~al.}, 2014, \apj, 788, 11
+
+\bibitem[{{Lee} {et~al}\mbox{.}(2015){Lee}, {Sanders}, {Casey}, {Toft},
+  {Scoville}, {Hung}, {Le Floc'h}, {Ilbert}, {Zahid}, {Aussel}, {Capak},
+  {Kartaltepe}, {Kewley}, {Li}, {Schawinski}, {Sheth}, \& {Xiao}}]{lee15}
+{Lee} N. {et~al.}, 2015, ArXiv e-prints, 1501.01080
 
 \bibitem[{{Lilly} {et~al}\mbox{.}(2013){Lilly}, {Carollo}, {Pipino}, {Renzini},
   \& {Peng}}]{lil13}
@@ -295,6 +307,11 @@
   {Yang}, {Mo}, {Pasquali}, {McIntosh}, {Weinmann}, \& {Kang}}]{van08b}
 {van den Bosch} F.~C., {Aquino} D., {Yang} X., {Mo} H.~J., {Pasquali} A.,
   {McIntosh} D.~H., {Weinmann} S.~M., {Kang} X., 2008, \mnras, 387, 79
+
+\bibitem[{{Whitaker} {et~al}\mbox{.}(2014){Whitaker}, {Franx}, {Leja}, {van
+  Dokkum}, {Henry}, {Skelton}, {Fumagalli}, {Momcheva}, {Brammer}, {Labb{\'e}},
+  {Nelson}, \& {Rigby}}]{whi14}
+{Whitaker} K.~E. {et~al.}, 2014, \apj, 795, 104
 
 \bibitem[{{Willett} {et~al}\mbox{.}(2013){Willett}, {Lintott}, {Bamford},
   {Masters}, {Simmons}, {Casteels}, {Edmondson}, {Fortson}, {Kaviraj}, {Keel},
