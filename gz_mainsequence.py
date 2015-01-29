@@ -1802,7 +1802,25 @@ def volume_limited(data):
 
     return None
 
+def sfr_completeness(data):
+
+    allgals = get_sample(data,starforming=False)
+    sf = get_sample(data,starforming=True)
+    mass_all,sfr_all,sfr_err_all,ssfr_all,ssfr_err_all = get_mass_sfr(allgals)
+    mass_sf,sfr_sf,sfr_err_sf,ssfr_sf,ssfr_err_sf = get_mass_sfr(sf)
+
+    # Plot SFR galaxies as grayscale contour
+    mass_bins,sfr_bins,ssfr_bins = bins()
+
+    fig = plt.figure(1,(10,6))
+    fig.clf()
+    ax = fig.add_subplot(111)
+    h = ax.hist2d(mass_sf,sfr_sf,bins=50,cmap = cm.gray_r, norm=LogNorm())
+
+    ax.scatter(mass_all,sfr_all)
+    ax.set_xlim(6,11.5)
+
+    return None
 
 
-    
 
