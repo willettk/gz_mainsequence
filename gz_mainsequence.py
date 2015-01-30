@@ -202,7 +202,7 @@ def plot_ms_arms_number(sf_sample,weighted=False,contour=False,plot_ssfr=False,v
         ax.text(6.2,ytextloc,r'$N_{arms} = $%s' % label, color='k',fontsize=18)
 
         # Plot the linear fits for all star-forming galaxies
-        plot_fits('SF galaxies',mass,yval,None,ax,'black',lw=1,ls='-')
+        plot_fits('SF galaxies',mass,yval,None,ax,'black',lw=1,ls='-',verbose=verbose)
         ax.set_xlim(6,11.5)
 
         '''
