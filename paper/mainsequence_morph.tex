@@ -11,7 +11,7 @@
 \usepackage{natbib}
 \usepackage{amsmath,amssymb}
 \usepackage{color}
-\usepackage{hyperref}
+\usepackage[draft]{hyperref}
 \bibliographystyle{mn2e}
 
 \newcommand{\mytilde}{\textasciitilde}
@@ -92,12 +92,12 @@ In this paper, we use data from the Sloan Digital Sky Survey \citep[SDSS;][]{yor
 
 Photometric and spectroscopic data for all galaxies in this paper comes from optical observations in the SDSS~DR7. The morphological data is drawn from citizen science classifications in Galaxy~Zoo. Detailed classifications of disk morphologies, including arm pitch angle, number of spiral arms, and presence of a galactic bar, are taken from the Galaxy~Zoo~2 (GZ2) catalog \citep{wil13}. Merging pairs of galaxies are taken from the catalog of \citet{dar10a}, all of which lie in the redshift range $0.005<z<0.1$. Post-merger spheroidal galaxies without an obvious, separated companion are specifically excluded from our sample.
 
-Stellar masses and star formation rates are computed from optical diagnostics and taken from the MPA-JHU catalogue \citep{kau03a,bri04,sal07}. We use updated masses and activity classifications from the DR7 database.\footnote{\url{http://home.strw.leidenuniv.nl/\mytilde jarle/SDSS/}} We separate star-forming galaxies from other emission-line galaxies using the standard BPT classification \citep*{bal81} below the \citet{kau03} demarcation. We exclude galaxies classified as star-forming but with low signal-to-noise ratio $(S/N > 3)$. For both $M_\star$ and $SFR$, we use median values extracted from the PDF.
+Stellar masses and star formation rates are computed from optical diagnostics and taken from the MPA-JHU catalogue \citep{kau03a,bri04,sal07}. We use updated masses and activity classifications from the DR7 database.\footnote{\url{http://home.strw.leidenuniv.nl/\mytilde jarle/SDSS/}} We select only galaxies with $M_\star > 10^8 M_\odot$, for which \citet{bri04} estimate that the MPA-JHU sample is complete. Star-forming galaxies are separated from other emission-line galaxies using the standard BPT classification \citep*{bal81} below the \citet{kau03} demarcation. Galaxies classified as star-forming but with low signal-to-noise ratio $(S/N > 3)$ are also excluded. Both $M_\star$ and $SFR$ are measured using median values extracted from the PDF. % Footnote is breaking LaTeX.
 
 The spiral nature of the star-forming disk galaxies are identified according to the following thresholds in the GZ2 spectroscopic sample, where $p$ is the debiased vote fraction and $N$ the weighted number of total votes: $p_\textrm{features/disk} > 0.430$, $p_\textrm{not~edgeon} > 0.715$, $p_\textrm{spiral}>0.619$, and $N_\textrm{spiral}>20$. We identify sub-classes of spiral structure by weighting each galaxy according to the fraction of votes received in each morphological category. 
 
 %How many galaxies are there in the total sample? What is the mass, color, and redshift range?
-The total sample analyzed in this paper consists of 49,097 star-forming galaxies. These are selected from the GZ2 spectroscopic sample with $z<0.085$ (the limit of reliable debiased morphological classification for GZ2) for galaxies classified as actively star-forming ($BPT=1$) from the MPA-JHU emission line measurements. The average color for the star-forming galaxies is relatively blue, with $(u-r)=1.6\pm0.4$. 
+The total sample analyzed in this paper consists of 48,405 star-forming galaxies. These are selected from the GZ2 spectroscopic sample with $z<0.085$ (the limit of reliable debiased morphological classification for GZ2) for galaxies classified as actively star-forming ($BPT=1$) from the MPA-JHU emission line measurements. The average color for the star-forming galaxies is relatively blue, with $(u-r)=1.6\pm0.4$. 
 
 \begin{table} 
  \begin{tabular}{@{}lrcrcl}
@@ -111,40 +111,40 @@ The total sample analyzed in this paper consists of 49,097 star-forming galaxies
 \\ 
 \hline
 \hline						
-SF galaxies  & 49097  & $0.71$  & $-7.04$   & $5.86\times10^{-6}$  & $5.70\times10^{-4}$  \\
+SF galaxies  & 48405  & $0.72$  & $-7.08$  &  $7.13\times10^{-6}$  & $6.98\times10^{-4}$  \\
 \hline
-1 arm        & 289    & $0.61$  & $-5.81$  &  $6.57\times10^{-3}$  & $6.49\times10^{-1}$  \\
-2 arms       & 5641   & $0.78$  & $-7.65$  &  $1.27\times10^{-4}$  & $1.30\times10^{-2}$  \\
-3 arms       & 997    & $0.54$  & $-5.16$  &  $4.39\times10^{-3}$  & $4.70\times10^{-1}$  \\
-4 arms       & 285    & $0.35$  & $-3.27$  &  $1.15\times10^{-1}$  & $1.19\times10^{ 1}$  \\
-5+ arms      & 289    & $0.64$  & $-6.88$  &  $7.20\times10^{-2}$  & $6.91\times10^{0 }$  \\
-can't tell   & 2017   & $0.69$  & $-7.10$  &  $1.06\times10^{-2}$  & $1.04\times10^{0 }$  \\
+1 arm        & 289    & $0.74$  & $-7.18$  &  $2.70\times10^{-5}$  & $2.69\times10^{-3}$  \\
+2 arms       & 5641   & $0.78$  & $-7.69$  &  $3.70\times10^{-5}$  & $3.78\times10^{-3}$  \\
+3 arms       & 997    & $0.71$  & $-6.99$  &  $4.49\times10^{-5}$  & $4.65\times10^{-3}$  \\
+4 arms       & 285    & $0.71$  & $-7.05$  &  $4.80\times10^{-5}$  & $4.93\times10^{-3}$  \\
+5+ arms      & 289    & $0.80$  & $-8.11$  &  $7.54\times10^{-5}$  & $7.53\times10^{-3}$  \\
+can't tell   & 2017   & $0.77$  & $-7.72$  &  $4.53\times10^{-5}$  & $4.54\times10^{-3}$  \\
 \hline
-tight arms   &  3255  & $0.70$  & $-6.99$  &  $1.79\times10^{-3}$  & $1.86\times10^{-1}$  \\
-medium arms  &  4578  & $0.77$  & $-7.62$  &  $6.81\times10^{-3}$  & $6.87\times10^{-1}$  \\
-loose arms   &  1672  & $0.73$  & $-7.08$  &  $5.81\times10^{-3}$  & $5.76\times10^{-2}$  \\
+tight arms   & 3255   & $0.70$  & $-6.99$  &  $1.79\times10^{-3}$  & $1.86\times10^{-1}$  \\
+medium arms  & 4578   & $0.77$  & $-7.62$  &  $6.81\times10^{-3}$  & $6.87\times10^{-1}$  \\
+loose arms   & 1672   & $0.73$  & $-7.08$  &  $5.81\times10^{-3}$  & $5.76\times10^{-2}$  \\
 \hline
-barred       &  3199  & $0.75$  & $-7.38$  &  $8.53\times10^{-5}$  & $8.42\times10^{-3}$  \\
-unbarred     &  11846 & $0.69$  & $-6.78$  &  $2.91\times10^{-5}$  & $2.89\times10^{-3}$  \\
+barred       & 3199   & $0.75$  & $-7.38$  &  $8.53\times10^{-5}$  & $8.42\times10^{-3}$  \\
+unbarred     & 11846  & $0.69$  & $-6.78$  &  $2.91\times10^{-5}$  & $2.89\times10^{-3}$  \\
 \hline
-merger       &  2978  & --      & $-6.73$  &  --                   & --                   \\
+merger       & 2978   & --      & $-6.73$  &  --                   & --                   \\
 \hline
  \end{tabular}
-\caption{Basic properties of the $M_\star-SFR$ linear fit for GZ2 star-forming galaxies. $N$ is the number of galaxies with plurality classifications for spiral arm multiplicity and pitch angles, and at a cutoff of $p_{bar}=0.4$ for barred galaxies. $\alpha$ and $\beta$ are fit according to Equation~\ref{eqn-linearfit}.\label{tbl-fits}}
+\caption{Basic properties of the $M_\star-SFR$ linear fit for GZ2 star-forming galaxies. $N$ is the number of galaxies with plurality classifications for spiral arm multiplicity and pitch angles, and at a cutoff of $p_{bar}=0.4$ for barred galaxies. $\alpha$ and $\beta$ are fit according to Equation~\ref{eqn-linearfit} to data weighted by morphological vote fractions for spiral arm multiplicity and pitch angle, and to subsamples split by morphology for barred/unbarred and merging galaxies.\label{tbl-fits}}
 \end{table}
 
-To parametrize the $M_\star-SFR$ relationship, we apply a simple linear model for the total sample and subsamples. We apply a least-squares fit where the data are weighted by the uncertainty in SFR (computed as the mean difference in the 16th and 84th percentiles from the MPA-JHU PDFs). The data are then fit to:
+To parametrize the $M_\star-SFR$ relationship for the full sample of star-forming galaxies, we apply a simple linear model for the total sample and subsamples. We apply a least-squares fit where the data are weighted by the uncertainty in SFR (computed as the mean difference in the 16th and 84th percentiles from the MPA-JHU PDFs). The data are then fit to:
 
 \begin{equation}
 \log(SFR) = \alpha(\log[M_\star/M_\odot]) + \beta \hspace{20pt}[M_\odot/yr]
 \label{eqn-linearfit}
 \end{equation}
 
-\noindent where $\alpha$ and $\beta$ represent the slope and offset, respectively. Uncertainties $\sigma_\alpha$ and $\sigma_\beta$ are taken from the covariance matrix for each least-squares fit (Table~\ref{tbl-fits}). The low number of high-mass galaxies in this volume also means that we are insensitive to possible turnovers in the SFMS at  $M_\star>10^{10}~M_\odot$ \citep{whi14,lee15}, emphasizing our choice to fit a linear model. 
+\noindent where $\alpha$ and $\beta$ represent the slope and offset, respectively. The formal uncertainties $\sigma_\alpha$ and $\sigma_\beta$ are taken from the covariance matrix for each least-squares fit (Table~\ref{tbl-fits}). In fitting subsamples selected by morphology, we apply the same fit to all star-forming galaxies, but weighted by the morphological likelihood in the GZ2 data. The low number of high-mass galaxies in this volume also means that we are insensitive to possible turnovers in the SFMS at $M_\star>10^{10}~M_\odot$ \citep{whi14,lee15}, emphasizing our choice to fit a linear model. 
 
 % Volume-limiting on the sample
 
-The sample of galaxies examined here is not explicitly constructed to be volume-limited. The main reason for this is that we are comparing effects between sub-samples of galaxies using the same selection functions. One possibility is that volume-limiting would deal with galaxies in which the dust content is high enough to obscure all emission lines, even in the presence of significant star formation. Such galaxies, typically [U]LIRGs, have very low space-densities at $z<0.1$, and typically lack the regular disk structure needed to categorize it.  
+The sample of galaxies examined here is not explicitly constructed to be volume-limited (although \citealt{bri04} estimate that SFR and $M_\star$ are essentially complete for the mass and $S/N$ limits employed). The main reason for this is that we are comparing effects between sub-samples of galaxies using the same selection functions. One possibility is that volume-limiting would deal with galaxies in which the dust content is high enough to obscure all emission lines, even in the presence of significant star formation. Such galaxies, typically [U]LIRGs, have very low space-densities at $z<0.1$, and typically lack the regular disk structure needed to categorize it.  
 
 In order to address volume-limiting, we have performed a detailed analysis using a series of volume-limits with upper redshift limits out to $z<0.085$ and $M_r < 20.17$. All results discussed in this paper agree with data in the volume-limited group. However, the significance of fits is smaller in the volume-limited data due to the restricted range in stellar mass ($M_\star\gtrsim10^9$), which affects the accuracy of a linear fit to the SFMS. For these reasons, we present results from the full sample of star-forming disks, which increases the sensitivity of our method to potentially small shifts between the morphologically-selected sub-samples. 
 
@@ -156,17 +156,15 @@ In order to address volume-limiting, we have performed a detailed analysis using
 
 We analyze the dependence of the star-forming main sequence for three different sets of disk galaxies: splitting the sample by the observed number (multiplicity) of spiral arms, the relative pitch angle (tightness or winding) of the spiral arms, and the presence of a galactic bar. Both spiral arms and galactic bars can have significant effects on the local properties of a galaxy. Dynamical effects concentrate gas in spiral arms and redistribute star formation \citep{elm86,foy10}, while longer galactic bars have redder colors and less star formation than the rest of the disk \citep{hoy11,mas12a}. We examine whether these kpc-scale effects can be seen long-term in the galaxy's SFR-mass relationship. 
 
-As a control sample, we also analyze the fits to the underlying star-forming main sequence relation for star-forming disks as measured in a sample of local SDSS galaxies (Figures~\ref{fig-number}-\ref{fig-bar}, \ref{fig-mergers}). As previously demonstrated with SDSS data \citep[e.g.,][]{bri04}, there is a tight correlation between $M_\star$ and SFR, with galaxies in the process of quenching lowering their SFR and falling below the trend. The relationship extends over at least 4~orders of magnitude in both $M_\star$ and SFR. Fits to the SFMS for all subsamples in this paper are listed in Table~\ref{tbl-fits}.
+As a control sample, we also analyze the fits to the underlying star-forming main sequence relation for star-forming disks as measured in a sample of local SDSS galaxies (Figures~\ref{fig-number}-\ref{fig-bar}, \ref{fig-mergers}). As previously demonstrated with SDSS data \citep[e.g.,][]{bri04}, there is a tight correlation between $M_\star$ and SFR, with galaxies in the process of quenching lowering their SFR and falling below the trend. The relationship extends over at least 3~orders of magnitude in both $M_\star$ and SFR. Fits to the SFMS for all subsamples in this paper are listed in Table~\ref{tbl-fits}.
 
 \begin{figure*}
-\includegraphics[angle=0,width=7.0in]{figures/ms_arms_number_weighted_contour.pdf}
+\includegraphics[angle=0,width=7.0in]{figures/masslim/ms_arms_number_weighted_contour.pdf}
 \caption{Total star formation rate as a function of stellar mass; grayscale colors are the distribution of all star-forming galaxies in SDSS from the MPA-JHU DR7 catalog. Coloured contours in each panel show spiral galaxies weighted by the GZ2 likelihoods of hosting 1, 2, 3, 4, more than four, or ``uncertain'' numbers of spiral arms, respectively. Dotted lines show the weighted least-squares linear fit to each population as split by arm multiplicity; the solid line is the fit to all star-forming galaxies. 
 \label{fig-number}}
 \end{figure*}
 
-Figure~\ref{fig-number} shows the SFR as a function of $M_\star$ for disk galaxies separated by their arm multiplicity. The GZ2 data separates disk galaxies with visible spiral arms into categories of 1, 2, 3, 4, or more than four spiral arms; there is also an additional option if the number of spiral arms cannot be accurately determined. For this analysis, galaxies in each mass/SFR bin is weighted by the vote fraction for the morphology being tested. 
-
-The fit to the star-forming main sequence for all six sub-samples of spiral galaxies split by arm multiplicity tightly follows that of the total star-forming disk population. Both the slopes and offsets of each linear fit are consistent within the formal fitting errors (Table~\ref{tbl-fits}). There are too few individual galaxies with confirmed spiral morphologies at lower masses to do a reliable fit; however, the same relation is reproduced for all arm multiplicities at $10^8<M_\star/M_\odot<10^{11}$. 
+Figure~\ref{fig-number} shows the SFR as a function of $M_\star$ for disk galaxies separated by their arm multiplicity. The GZ2 data separates disk galaxies with visible spiral arms into categories of 1, 2, 3, 4, or more than four spiral arms; there is also an additional option if the number of spiral arms cannot be accurately determined. For this analysis, galaxies in each mass/SFR bin is weighted by the vote fraction for the morphology being tested. The fit to the star-forming main sequence for all six sub-samples of spiral galaxies split by arm multiplicity tightly follows that of the total star-forming disk population. Both the slopes and offsets of each linear fit are consistent within the formal fitting errors (Table~\ref{tbl-fits}). %There are too few individual galaxies with confirmed spiral morphologies at lower masses to do a reliable fit; however, the same relation is reproduced for all arm multiplicities at $10^8<M_\star/M_\odot<10^{11}$. 
 
 One-armed spiral galaxies present an interesting case, with the fit to the weighted population lying slightly \emph{above} that of all star-forming spirals. This is consistent with the work of \citet{cas13}, who showed that one-armed spirals in GZ2 are robust indicators of close interactions at projected distances of $r_p < 50~h^{-1}$~kpc. The underlying reason is that many ``one-armed spirals'' are in fact caused by bridges or tidal tails from interactions with a nearby companion instead of secular processes. We discuss the likely role of merging/interacting galaxies in Section~\ref{sec-discussion} (also see Figure~\ref{fig-mergers}).
 
@@ -177,13 +175,13 @@ We have repeated the analysis above for the sub-sample of disk galaxies for whic
 The pitch angle of the spiral arms also has no significant change on the star-forming main sequence relation (Figure~\ref{fig-winding}). We separate galaxies by their relative pitch angles (defined as ``tight'', ``medium'', and ``loose''); the pitch angle is typically used as one of the primary parameters for separating galaxies along the Hubble tuning fork. \citet{wil13} show, however, that pitch angle only weakly correlates with Hubble type from expert visual classifications, and that the bulge-to-disk ratio is a more important driver. There is no significant shift with respect to the SFMS as a function of pitch angle for spiral galaxies. The small increase above the main sequence for loosely-wound galaxies is also consistent with \citet{cas13}, who show that this morphology also correlates with close pairs and interactions. 
 
 \begin{figure*}
-\includegraphics[angle=0,width=7.0in]{figures/ms_arms_winding.pdf}
+\includegraphics[angle=0,width=7.0in]{figures/masslim/ms_arms_winding.pdf}
 \caption{Total star formation rate as a function of stellar mass; grayscale colors are the same as in Figure~\ref{fig-number}. From left to right: red, green, and blue points are spiral galaxies with ``tight'', ``medium'', and ``loose'' winding spiral arms as identified by GZ2 morphology flags. Dotted lines show the weighted least-squares linear fit as split by pitch angle; the solid line is the fit to all star-forming galaxies. The slight positive offset in SFR for loosely-wound spiral arms is interpreted as contamination by merging pairs of galaxies (Section~\ref{sec-discussion}).
 \label{fig-winding}}
 \end{figure*}
 
 \begin{figure*}
-\includegraphics[angle=0,width=7.0in]{figures/ms_arms_winding_weighted.pdf}
+\includegraphics[angle=0,width=7.0in]{figures/masslim/ms_arms_winding_weighted.pdf}
 \caption{Same as Figure~\ref{fig-winding}, but with colormaps showing all spiral galaxies weighted by the GZ2 vote fractions for ``tight'', ``medium'', and ``loose'' winding spiral arms. 
 \label{fig-winding_weighted}}
 \end{figure*}
@@ -192,7 +190,7 @@ It should also be noted that the galaxies in GZ2 flagged as a function of pitch 
 
 \begin{figure*}
 %\includegraphics[angle=0,width=7.0in]{figures/ms_bar.pdf}
-\includegraphics[angle=0,width=7.0in]{figures/ms_bar_contour.pdf}
+\includegraphics[angle=0,width=7.0in]{figures/masslim/ms_bar_contour.pdf}
 \caption{Total star formation rate as a function of stellar mass; grayscale colors are the same as in Figure~\ref{fig-number}. Left: blue contours show the distribution of barred galaxies ($p_\textrm{bar}\ge0.4$ for previously-identified disks) from GZ2. Right: red contours are the distribution of remaining disk galaxy population with no evidence for a strong bar ($p_\textrm{bar}<0.4$). Dotted lines show the weighted least-squares linear fit to the barred/unbarred population; the solid line is the fit to all star-forming galaxies. 
 \label{fig-bar}}
 \end{figure*}
@@ -203,7 +201,7 @@ The agreement of all sub-varieties of star-forming galaxies is supported by the 
 
 \begin{figure}
 %\includegraphics[angle=0,width=7.0in]{figures/ms_bar.pdf}
-\includegraphics[angle=0,width=3.5in]{figures/sigma_mstar.pdf}
+\includegraphics[angle=0,width=3.5in]{figures/masslim/sigma_mstar.pdf}
 \caption{Width of the star-forming main sequence ($\sigma_{SFR}$) as a function of stellar mass, as measured by the sample standard deviation. Black points represent the entire star-forming population. Disk subsamples are overplotted as solid lines; colours are the same as the respective plots in Figures~\ref{fig-number}, \ref{fig-winding}, \ref{fig-bar} and \ref{fig-mergers}. Morphological categories or mass ranges with fewer than 10 galaxies/bin are not plotted; this includes all galaxies with 3, 4, and 5+ spiral arms.
 \label{fig-sigma}}
 \end{figure}
@@ -217,7 +215,7 @@ We have examined all the populations of galaxies described above (bars, arm pitc
 \section{Discussion}\label{sec-discussion}
 
 \begin{figure*}
-\includegraphics[angle=0,width=7.0in]{figures/ms_mergers_both.pdf}
+\includegraphics[angle=0,width=7.0in]{figures/masslim/ms_mergers_both.pdf}
 \caption{Total star formation rate as a function of stellar mass; grayscale colors are the same as in Figure~\ref{fig-number}. Left: Coloured points show 2,978~merging galaxies from \citet{dar10a}. Mergers are colour-coded by the mass ratio of the primary and secondary galaxies; there is no clear difference in the merging populations with regard to the SFMS when comparing major to minor mergers. When fixing the slope of the star-forming main sequence and allowing the offset to vary, mergers (dotted line) have higher SFRs by $\sim0.3$~dex compared to all star-forming galaxies (solid line). Right: Star-forming galaxies binned and colour-coded by merger fraction ($N_\textrm{mergers}/N_\textrm{star-forming galaxies})$. Overplotted lines are the same as left plot. Of the galaxies that lie furthest above the SFMS, more than $50\%$ are unambiguous mergers. 
 \label{fig-mergers}}
 \end{figure*}
