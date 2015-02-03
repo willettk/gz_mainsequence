@@ -160,7 +160,7 @@ def plot_ms_arms_number(sf_sample,weighted=False,contour=False,plot_ssfr=False,v
             yval_scatter = morph_sample['MEDIAN_SFR'] - morph_sample['MEDIAN_MASS']
             ytextloc = -11.5
         else:
-            ax.set_ylim(-3.9,2)
+            ax.set_ylim(-2.9,2)
             ylabel='SFR '+r'$[\log\/M_\odot/\mathrm{yr}]$'
             yval_weighted = spirals['MEDIAN_SFR']
             yval_scatter = morph_sample['MEDIAN_SFR']
@@ -170,6 +170,9 @@ def plot_ms_arms_number(sf_sample,weighted=False,contour=False,plot_ssfr=False,v
             ax.set_xlabel('Stellar mass [log '+r'$\/M/M_\odot$]',fontsize=16)
         if idx < 3:
             ax.get_xaxis().set_ticks([])
+        else:
+            ax.get_xaxis().set_ticks([8.,9.,10.,11.])
+
         if idx == 0 or idx == 3:
             ax.set_ylabel(ylabel,fontsize=16)
         else:
@@ -199,11 +202,11 @@ def plot_ms_arms_number(sf_sample,weighted=False,contour=False,plot_ssfr=False,v
 
             plot_fits(label,morph_sample['MEDIAN_MASS'],yval_scatter,None,ax,c,verbose=verbose)
 
-        ax.text(6.2,ytextloc,r'$N_{arms} = $%s' % label, color='k',fontsize=18)
+        ax.text(8.2,ytextloc,r'$N_{arms} = $%s' % label, color='k',fontsize=18)
 
         # Plot the linear fits for all star-forming galaxies
         plot_fits('SF galaxies',mass,yval,None,ax,'black',lw=1,ls='-',verbose=verbose)
-        ax.set_xlim(6,11.5)
+        ax.set_xlim(8,11.5)
 
         '''
         # Print number of galaxies in each category
@@ -274,7 +277,7 @@ def plot_ms_arms_winding(sf_sample,weighted=False,contour=False,plot_ssfr=False,
             yval_weighted = spirals['MEDIAN_SFR'] - spirals['MEDIAN_MASS']
             yval_scatter = morph_sample['MEDIAN_SFR'] - morph_sample['MEDIAN_MASS']
         else:
-            ax.set_ylim(-4,2)
+            ax.set_ylim(-3,2)
             ytextloc = 1.3
             ylabel='SFR '+r'$[\log\/M_\odot/\mathrm{yr}]$'
             yval_weighted = spirals['MEDIAN_SFR']
@@ -287,6 +290,8 @@ def plot_ms_arms_winding(sf_sample,weighted=False,contour=False,plot_ssfr=False,
 
         if idx > 0:
             ax.get_yaxis().set_ticks([])
+
+        ax.get_xaxis().set_ticks([8.,9.,10.,11.])
 
         # Two sets of plots: one weights histogram by debiased vote fraction per galaxy; other shows discrete categories from GZ2 flags.
         if weighted:
@@ -317,14 +322,14 @@ def plot_ms_arms_winding(sf_sample,weighted=False,contour=False,plot_ssfr=False,
         if plot_ssfr:
             ax.set_ylim(-12,-8)
         else:
-            ax.set_ylim(-4,2)
+            ax.set_ylim(-3,2)
 
-        ax.text(6.2,ytextloc,r'$\phi_{arms} = $%s' % arm_label, color='k')
+        ax.text(8.2,ytextloc,r'$\phi_{arms} = $%s' % arm_label, color='k')
 
         # Plot the best linear fits
 
         plot_fits('SF galaxies',mass,yval,None,ax,'black',lw=1,ls='-')
-        ax.set_xlim(6,11.5)
+        ax.set_xlim(8,11.5)
 
         '''
         # Print number of galaxies in each category
@@ -386,7 +391,7 @@ def plot_ms_bars(sf_sample,contour=False,plot_ssfr=False,verbose=False):
 
         ax = fig.add_subplot(1,2,idx+1)
         h2 = ax.hist2d(mass,yval,bins=50,cmap = cm.gray_r, norm=LogNorm())
-        ax.set_ylim(-4,2)
+        ax.set_ylim(-3,2)
         ax.set_xlabel('Stellar mass (log '+r'$M/M_\odot$)',fontsize=20)
 
         if plot_ssfr:
@@ -395,13 +400,14 @@ def plot_ms_bars(sf_sample,contour=False,plot_ssfr=False,verbose=False):
             ylabel='sSFR '+r'$[\log\/\mathrm{yr}^{-1}]$'
             yval_morph = b['MEDIAN_SFR'] - b['MEDIAN_MASS']
         else:
-            ax.set_ylim(-4,2)
+            ax.set_ylim(-3,2)
             ytextloc = 1.4
             ylabel='SFR '+r'$[\log\/M_\odot/\mathrm{yr}]$'
             yval_morph = b['MEDIAN_SFR']
 
         if idx == 0:
             ax.set_ylabel('SFR '+r'$[\log\/M_\odot/\mathrm{yr}]$',fontsize=20)
+            ax.get_xaxis().set_ticks([8.0,8.5,9.0,9.5,10.0,10.5,11.0])
         else:
             ax.get_yaxis().set_ticks([])
 
@@ -414,13 +420,13 @@ def plot_ms_bars(sf_sample,contour=False,plot_ssfr=False,verbose=False):
         else:
             ax.scatter(b['MEDIAN_MASS'],yval_morph, s=2, color=c, marker='o')
 
-        ax.text(6.2,ytextloc,t,color=c,fontsize=18)
+        ax.text(8.2,ytextloc,t,color=c,fontsize=18)
 
         # Plot the best linear fit
 
         plot_fits(t,b['MEDIAN_MASS'],yval_morph,None,ax,c,verbose=verbose)
         plot_fits(t,mass,yval,None,ax,'black',lw=1,ls='-')
-        ax.set_xlim(6,11.5)
+        ax.set_xlim(8,11.5)
 
         '''
         # Print counts
@@ -455,8 +461,8 @@ def plot_ms_greenpeas(sf_sample):
 
     ax = fig.add_subplot(111)
     h = ax.hist2d(mass,sfr,bins=50,cmap = cm.gray_r, norm=LogNorm())
-    ax.set_xlim(6,11.5)
-    ax.set_ylim(-4,2)
+    ax.set_xlim(8,11.5)
+    ax.set_ylim(-3,2)
     ax.set_ylabel('log SFR '+r'$[M_\odot/\mathrm{yr}]$',fontsize=16)
     ax.set_xlabel('Stellar mass [log '+r'$\/M/M_\odot$]',fontsize=16)
 
@@ -467,7 +473,7 @@ def plot_ms_greenpeas(sf_sample):
 
     sc = ax.scatter(data['M_STELLAR'],np.log10(data['SFR']), color='green',s = 10, marker='o')
 
-    ax.text(6.2,1.3,'Green peas', color='green')
+    ax.text(8.2,1.3,'Green peas', color='green')
 
     # Plot the best linear fits
 
@@ -537,7 +543,7 @@ def sigma_mstar(sf_sample):
         ax.errorbar(mass_bins[gtr10],np.array(sigma_sfr)[gtr10],yerr=np.array(sigma_sfr_err)[gtr10],color=c,capsize=0)
 
     # Final plot labels and ranges
-    ax.set_xlim(6,11.5)
+    ax.set_xlim(8,11.5)
     ax.set_ylim(0,1.2)
     ax.set_ylabel(r'$\sigma_{SFR}~[\log M_\odot/\mathrm{yr}]$',fontsize=16)
     ax.set_xlabel('Stellar mass [log '+r'$\/M/M_\odot$]',fontsize=16)
@@ -580,7 +586,7 @@ def sigma_mstar(sf_sample):
         ax.errorbar(mass_bins[gtr10],np.array(sigma_sfr)[gtr10],yerr=np.zeros_like(sigma_sfr)[gtr10],color=c,capsize=0)
 
     # Final plot labels and ranges
-    ax.set_xlim(6,11.5)
+    ax.set_xlim(8,11.5)
     ax.set_ylim(0,1.2)
     ax.set_ylabel(r'$\sigma_{SFR}~[\log M_\odot/\mathrm{yr}]$',fontsize=16)
     ax.set_xlabel('Stellar mass [log '+r'$\/M/M_\odot$]',fontsize=16)
@@ -622,7 +628,7 @@ def sigma_mstar(sf_sample):
         ax.errorbar(mass_bins[gtr10],np.array(sigma_sfr)[gtr10],yerr=np.array(sigma_sfr_err)[gtr10],color=c,capsize=0)
 
     # Final plot labels and ranges
-    ax.set_xlim(6,11.5)
+    ax.set_xlim(8,11.5)
     ax.set_ylim(0,1.2)
     ax.set_ylabel(r'$\sigma_{SFR}~[\log M_\odot/\mathrm{yr}]$',fontsize=16)
     ax.set_xlabel('Stellar mass [log '+r'$\/M/M_\odot$]',fontsize=16)
@@ -662,7 +668,7 @@ def sigma_mstar(sf_sample):
     ax.errorbar(mass_bins[gtr10],np.array(sigma_sfr)[gtr10],yerr=np.array(sigma_sfr_err)[gtr10],color='red',capsize=0)
 
     # Final plot labels and ranges
-    ax.set_xlim(6,11.5)
+    ax.set_xlim(8,11.5)
     ax.set_ylim(0,1.2)
     ax.set_ylabel(r'$\sigma_{SFR}~[\log M_\odot/\mathrm{yr}]$',fontsize=16)
     ax.set_xlabel('Stellar mass [log '+r'$\/M/M_\odot$]',fontsize=16)
@@ -701,16 +707,16 @@ def plot_ms_mergers_both(sf_sample,plot_ssfr=False,verbose=False):
         yval_mergers = sf_mergers['MEDIAN_SFR'] - sf_mergers['MEDIAN_MASS']
         filestr += '_ssfr'
     else:
-        ylim1 = (-4,2)
+        ylim1 = (-3,2)
         ylabel='SFR '+r'$[\log\/M_\odot/\mathrm{yr}]$'
         yval = sfr
         yval_mergers = sf_mergers['MEDIAN_SFR']
 
     # Plot star-forming galaxies
 
-    ax1 = fig.add_axes([0.07,0.10,0.42,0.85])
+    ax1 = fig.add_axes([0.05,0.10,0.42,0.85])
     h = ax1.hist2d(mass,yval,bins=50,cmap = cm.gray_r, norm=LogNorm())
-    ax1.set_xlim(6,11.5)
+    ax1.set_xlim(8,11.5)
     ax1.set_ylim(ylim1)
     ax1.set_ylabel(ylabel,fontsize=16)
     ax1.set_xlabel('Stellar mass [log '+r'$\/M/M_\odot$]',fontsize=16)
@@ -730,7 +736,7 @@ def plot_ms_mergers_both(sf_sample,plot_ssfr=False,verbose=False):
         ytextloc = (-11.0,-11.5)
     else:
         yval_mergers_plot = sfr_mergers_plot
-        ytextloc = (1.3,0.9)
+        ytextloc = (1.5,1.2)
 
     rms = []
     xarr = np.linspace(-1,1,200)
@@ -745,16 +751,16 @@ def plot_ms_mergers_both(sf_sample,plot_ssfr=False,verbose=False):
         print 'Best fit for mergers data: same sigma_a, sigma_b as star-forming galaxies'
         print ''
 
-    ax1.text(6.2,ytextloc[0],'Mergers', color='black',fontsize=20)
-    ax1.text(6.2,ytextloc[1],'Offset = %.3f dex' % offset, color='black',fontsize=15)
+    ax1.text(8.1,ytextloc[0],'Mergers', color='black',fontsize=18)
+    ax1.text(8.1,ytextloc[1],'Offset = %.3f dex' % offset, color='black',fontsize=13)
 
     # Set the colorbars and labels
 
-    axcb1 = plt.axes([0.40, 0.20, 0.03, 0.25]) 
+    axcb1 = plt.axes([0.38, 0.20, 0.03, 0.25]) 
     cb1 = plt.colorbar(sc,cax = axcb1, orientation="vertical",ticks=[1,3,5,10])
     cb1.set_label('Mass ratio',fontsize=14)
 
-    ax1.xaxis.labelpad = 20
+    ax1.xaxis.labelpad = 15
     #---------------------------------
     # Merger fraction
     #---------------------------------
@@ -770,10 +776,10 @@ def plot_ms_mergers_both(sf_sample,plot_ssfr=False,verbose=False):
 
     # Plot star-forming galaxies
 
-    ax2 = fig.add_axes([0.460,0.10,0.45,0.85])
+    ax2 = fig.add_axes([0.458,0.10,0.45,0.85])
     levels=10**(np.linspace(0,5,15))
     CS = ax2.contour(mass_bins[1:],yval_bins[1:],h.T,levels,colors='black')
-    ax2.set_xlim(6,11.5)
+    ax2.set_xlim(8,11.5)
     ax2.set_ylim(ylim1)
     ax2.set_xlabel('Stellar mass [log '+r'$\/M/M_\odot$]',fontsize=16)
 
@@ -782,14 +788,16 @@ def plot_ms_mergers_both(sf_sample,plot_ssfr=False,verbose=False):
     mf = hm / h
     im = ax2.imshow(mf.T, interpolation='nearest', origin='lower',extent=(mass_bins[0],mass_bins[-1],yval_bins[0],yval_bins[-1]),vmin=0.,vmax=1.,cmap=cm.jet)
 
-    axcb2 = plt.axes([0.90, 0.10, 0.02, 0.85]) 
+    axcb2 = plt.axes([0.91, 0.10, 0.02, 0.85]) 
     cb2 = plt.colorbar(im,cax = axcb2, orientation="vertical")
     cb2.set_label('Merger fraction',fontsize=16)
 
-    ax2.text(6.2,ytextloc[0],'Merger fraction', color='black',fontsize=20)
+    ax2.text(8.1,ytextloc[0],'Merger fraction', color='black',fontsize=18)
     if plot_ssfr:
         ax2.set_aspect('auto')
+    ax2.set_aspect(0.71)
 
+    ax2.set_xticklabels([' ',8.5,9.0,9.5,10.0,10.5,11.0,11.5])
     ax2.set_yticklabels([])
 
     # Plot the best linear fits
@@ -797,7 +805,7 @@ def plot_ms_mergers_both(sf_sample,plot_ssfr=False,verbose=False):
     a1,a0 = plot_fits('Star-forming galaxies',mass,yval,None,ax2,'black',lw=3,ls='-')
     uline = ax2.plot(np.linspace(6,12,100),np.polyval([a1,a0+offset],np.linspace(6,12,100)),color='red',linestyle='--',linewidth=3)
 
-    ax2.xaxis.labelpad = 20
+    ax2.xaxis.labelpad = 15
 
     #fig.set_tight_layout(True)
     fig.savefig('%s/ms_mergers_both%s.pdf' % (fig_path,filestr), dpi=200)
@@ -1194,7 +1202,7 @@ def tm_bar_trigger(sf_sample):
 
     ax1 = fig.add_subplot(221)
     h = ax1.hist2d(mass,sfr,bins=50,cmap = cm.gray_r, norm=LogNorm())
-    ax1.set_xlim(6,11.5)
+    ax1.set_xlim(8,11.5)
     ax1.set_ylim(-3.9,2)
     ax1.get_xaxis().set_ticks([])
     onearm_nobar = sf_sample[spiral & an_1 & unbarred]
@@ -1205,7 +1213,7 @@ def tm_bar_trigger(sf_sample):
 
     ax2 = fig.add_subplot(222)
     h = ax2.hist2d(mass,sfr,bins=50,cmap = cm.gray_r, norm=LogNorm())
-    ax2.set_xlim(6,11.5)
+    ax2.set_xlim(8,11.5)
     ax2.set_ylim(-3.9,2)
     ax2.get_xaxis().set_ticks([])
     ax2.get_yaxis().set_ticks([])
@@ -1226,7 +1234,7 @@ def tm_bar_trigger(sf_sample):
 
     ax3 = fig.add_subplot(223)
     h = ax3.hist2d(mass,sfr,bins=50,cmap = cm.gray_r, norm=LogNorm())
-    ax3.set_xlim(6,11.5)
+    ax3.set_xlim(8,11.5)
     ax3.set_ylim(-3.9,2)
     merger_nobar = data[sf_mergers & unbarred_m]
     mb = ax3.scatter(merger_nobar['MEDIAN_MASS'],merger_nobar['MEDIAN_SFR'],c=merger_nobar['mass_ratio'], edgecolor='none',s = 50, marker='.', cmap=cm.RdBu, vmin=1.,vmax=10.)
@@ -1240,7 +1248,7 @@ def tm_bar_trigger(sf_sample):
 
     ax4 = fig.add_subplot(224)
     h = ax4.hist2d(mass,sfr,bins=50,cmap = cm.gray_r, norm=LogNorm())
-    ax4.set_xlim(6,11.5)
+    ax4.set_xlim(8,11.5)
     ax4.set_ylim(-3.9,2)
     ax4.get_yaxis().set_ticks([])
     merger_bar = data[sf_mergers & barred_m]
@@ -1297,7 +1305,7 @@ def plot_ms_bulge(sf_sample,weighted=False,contour=False,plurality=False,verbose
 
         ax = fig.add_subplot(2,2,idx+1)
         h = ax.hist2d(mass,sfr,bins=50,cmap = cm.gray_r, norm=LogNorm())
-        ax.set_ylim(-4,2)
+        ax.set_ylim(-3,2)
         if idx in (0,1):
             ax.get_xaxis().set_ticks([])
         if idx in (1,3):
@@ -1344,7 +1352,7 @@ def plot_ms_bulge(sf_sample,weighted=False,contour=False,plurality=False,verbose
         # Plot the best linear fits
 
         plot_fits(bulge_label,mass,sfr,None,ax,'black',lw=1,ls='-')
-        ax.set_xlim(6,11.5)
+        ax.set_xlim(8,11.5)
 
     # Set the colorbar and labels at the end
 
@@ -1661,7 +1669,7 @@ def sfr_completeness(data):
     h = ax.hist2d(mass_sf,sfr_sf,bins=50,cmap = cm.gray_r, norm=LogNorm())
 
     ax.scatter(mass_all,sfr_all)
-    ax.set_xlim(6,11.5)
+    ax.set_xlim(8,11.5)
 
     return None
 
