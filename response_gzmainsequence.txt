@@ -1,0 +1,70 @@
+We thank the reviewer for the thoughtful read and suggestions for improving this manuscript. We have addressed all of the issues, primarily centered on analyzing a smaller sample of galaxies due to concerns about completeness of star formation rates at lower masses. The main scientific conclusion of this paper --- namely that changes in disk morphology do not affect the position of a galaxy on the star-forming main sequence --- have not changed as a result of this new analysis.  
+
+A more detailed response and list of the changes is attached below. We hope the manuscript is now ready for publication. 
+
+
+
+Reviewer's Comments:
+
+Comments to the Author
+The paper « Galaxy Zoo: the dependence of the star formation-stellar mass relation on spiral disk morphology » compares the positions of star-forming galaxies of various disk morphologies to the best fitting line of the SFR-M* relation. This study presents an interesting discussion of e.g. the role of multiple arms in disk galaxies but suffers from a major problem that strongly limits the interpretation. All the analysis relies on the comparison of a sub-sample of the galaxies with a reference trend shown in the figures with a black solid line. It is the definition of this line, more precisely its slope and normalization that seems probmematic to me. 
+
+Although this is not clearly stated in the text, this line was apparently obtained by fitting the whole sample of star-forming galaxies with no restriction in stellar mass or SFR. I believe that such fit can be misleading for the following reason. There is necessarily a completeness limit in SFR and this can be seen in the distribution of grey squares that represent the full sample in all the figures. Since all figures have overlayed on these gray squares some colored contours or points, the easiest is to look at the middle figure in Fig.2 where the full sample can be best seen. By eye, I would say that the completeness limit (which is obviously above the detection limit) in SFR is above 0.01 Msun/yr and probably not very far from 0.1 Msun/yr. This naturally implies that the stellar mass range around 10^7-10^8 Msun does not provide a robust measurement of the SFR-M* main sequence and should not be used to determine the best-fitting black solid line. 
+
+    The original sample used did not have any explicit cut on mass or SFR. 
+    We have assessed the completeness of the sample (including a V/V_max test)
+    as well as consulting estimates from the original MPA-JHU paper (Brinchmann
+    et al. 2004). They state that the sample is complete above stellar masses
+    of 10^8 M_sun; we have adopted that same cutoff for all analysis in this
+    paper. 
+    
+    This eliminated 692 galaxies (less than 2%) star-forming galaxies from the
+    sample; we have redone all analyses in the paper on this new sample. 
+    The bulk of the results have not changed, and new fits and uncertainties
+    are given in Table 1. 
+
+    Summary of changes:
+
+        - arms number: 2-armed spirals no longer fall below the main sequence.
+            5-armed spirals fall slightly below the main sequence, but this
+            may be the result of smaller statistical samples. 
+        - arm pitch angle: no change
+        - bar: no change
+        - mergers: slight decrease (5%) in the average SFR increase for a merging
+            galaxy, from 0.307 to 0.286 dex.
+
+    We have also put in a more explicit discussion of how the overall
+    trend line is fit, including a discussion of weighting, in Section 2.
+
+The authors do not discuss at all the completeness of the sample but this is an important information for the following reason: at low masses, i.e. in the 10^7-8 Msun range, the fraction of galaxies with an enhanced sSFR is artificially enhanced leading to an overestimate of the sSFR in this range and therefore to an underestimate of the slope of the SFR-M* relation. The fact that the slope of the SFR-M* relation is affected by this effect can be seen in Fig.1 where all colored contours in each one of the 6 panels have their barycenter and central contours systematically above the black solid line. I would expect that if the authors were to only fit the full sample in the range where the sample is complete in SFR, they would find a better agreement between their contours and the black line. 
+
+    This is confirmed; in particular, the agreement between 2-armed spirals
+    and the entire SF population is now closer. The sample of 5+-armed spirals
+    is the only morphology to show any offset toward lower SFR at a given mass;
+    we discuss tentative reasons for this in Section 3. 
+
+    The trend for 1-armed spirals to be slightly increased in SFR per stellar
+    mass is confirmed in the mass-limited sample. We interpret this as
+    a signal of the presence of merging galaxies and tidal tails, as before.
+
+As a result, we would also expect the point made in the 6th paragraph of Section 3 to be revised. In that paragraph, it is written that two-armed spiral galaxies extend slightly below the SFMS. This statement suffers in my opinion from two uncertainties. First the one that I mentioned above, i.e. the reference line is biased by a domain affected by completeness. Second, this Narms=2 subsample contains 20 times more galaxies than Narms=1 and 6 times more than Narms=3, hence before concluding that the galaxies with Narms=2 include galaxies with low sSFR and interpreting this result, the authors should first make sure that this cannot be explained by a simple statistical effect, namely that one needs a very large sample of galaxies to start sampling the low sSFR galaxies.
+
+    The mild offset in 2-armed spirals does not appear when restricting
+    the mass and SFR range of the sample. We have removed the discussion
+    of this in Section 3. 
+
+In its present stage, the paper is not ready for publication since it does not provide a reliable justification of the slope of the SFR-M* relation for the whole sample of star-forming galaxies which is then used as a reference to discuss the position of various disk morphologies. We suggest that the author clearly establish a range in SFR and M* within which their galaxies fairly sample the SFR-M* relation, determine the slope of their reference trend in this range and not over the full galaxy sample including the very low SFR and M* ranges where the sample is biased due to incompleteness, and then use this new reference trend to make their comparison. If instead the authors consider their sample to fairly sample the SFR-M* relation they should explain why and explain the reason why all their subsamples are systematically biased toward higher sSFR in Fig.1. Finally, if they wish to keep their interpretation of an evidence of quenching of Narms=2 galaxies, they should discuss its statistical meaning, e.g. by randomly selecting in that sample 289 galaxies as in the Narm=1 sample and determining the % of cases where they get such low sSFR.
+
+    As discussed above, our results are now limited to a mass range of
+    10^8 < M/M_sun < 10^11.5, with star formation rates limited by the
+    corresponding signal-to-noise ratios (10^-3 < SFR/(M_sun/yr) < 10^2). 
+    All our analyses in this paper (plus other references in the literature
+    that use this sample) indicates that this is a complete sample
+    and does not suffer from the biases that would be present in a non-volume-
+    limited dataset. 
+
+These changes should be very easy to make since they only concern the reference trend and they do not alter the main conclusions of the paper that rely on the comparison of the positions of each subsample, which remain unchanged e.g. in Fig.1 it will remain true that the various colored contours do not exhibit any major difference from one another. Similarly for the barred and unbarred galaxies in Fig.4 which will remain comparable. 
+
+    All figures and fits have been revised for the new mass limits. 
+
+
