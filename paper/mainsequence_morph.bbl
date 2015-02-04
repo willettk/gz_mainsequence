@@ -1,4 +1,4 @@
-\begin{thebibliography}{58}
+\begin{thebibliography}{57}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
 \bibitem[{{Abazajian} {et~al}\mbox{.}(2009){Abazajian}, {Adelman-McCarthy},
@@ -265,11 +265,6 @@
   {Bianchi}, {Donas}, {Lee}, {Madore}, {Milliard}, {Szalay}, {Welsh}, \&
   {Yi}}]{sal07}
 {Salim} S. {et~al.}, 2007, \apjs, 173, 267
-
-\bibitem[{{Schawinski} {et~al}\mbox{.}(2014){Schawinski}, {Urry}, {Simmons},
-  {Fortson}, {Kaviraj}, {Keel}, {Lintott}, {Masters}, {Nichol}, {Sarzi},
-  {Skibba}, {Treister}, {Willett}, {Wong}, \& {Yi}}]{sch14}
-{Schawinski} K. {et~al.}, 2014, \mnras, 440, 889
 
 \bibitem[{{Schiminovich} {et~al}\mbox{.}(2007){Schiminovich}, {Wyder},
   {Martin}, {Johnson}, {Salim}, {Seibert}, {Treyer}, {Budav{\'a}ri}, {Hoopes},
