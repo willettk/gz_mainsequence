@@ -914,6 +914,10 @@ def fracdev(sf_sample):
         data = f[1].data
 
     sf_mergers = data[(data['bpt'] == 1)]
+    
+    with fits.open('%s/mergers/mergers_mpajhu_bpt.fits' % gzm_path) as f:
+        mdata = f[1].data
+    print 'Mergers: %10i' % np.sum((mdata['bpt'] == 1) & (mdata['MEDIAN_MASS'] >= 8.))
 
     axc = fig.add_subplot(111)    # The big subplot
     axc.spines['top'].set_color('none')
