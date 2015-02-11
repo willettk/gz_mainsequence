@@ -14,6 +14,8 @@
 \usepackage[draft]{hyperref}
 \bibliographystyle{mn2e}
 
+\input macros.tex	
+
 \newcommand{\mytilde}{\textasciitilde}
 
 \title[Disk galaxy morphology and the star-forming main sequence]{Galaxy Zoo: the dependence of the star formation-stellar mass relation on spiral disk morphology}
@@ -156,7 +158,7 @@ We analyze the dependence of the star-forming main sequence for three different 
 As a control sample, we also analyze the fits to the underlying star-forming main sequence relation for star-forming disks as measured in a sample of local SDSS galaxies (Figures~\ref{fig-number}-\ref{fig-bar}, \ref{fig-mergers}). As previously demonstrated with SDSS data \citep[e.g.,][]{bri04}, there is a tight correlation between $M_\star$ and SFR, with galaxies in the process of quenching lowering their SFR and falling below the trend. The relationship extends over at least 3~orders of magnitude in both $M_\star$ and SFR. Fits to the SFMS for all subsamples in this paper are listed in Table~\ref{tbl-fits}.
 
 \begin{figure*}
-\includegraphics[angle=0,width=7.0in]{figures/masslim/ms_arms_number_weighted_contour.pdf}
+\includegraphics[angle=0,width=7.0in]{ms_arms_number_weighted_contour.pdf}
 \caption{Total star formation rate as a function of stellar mass; grayscale colors are the distribution of all star-forming galaxies in SDSS from the MPA-JHU DR7 catalog. Coloured contours in each panel show spiral galaxies weighted by the GZ2 likelihoods of hosting 1, 2, 3, 4, more than four, or ``uncertain'' numbers of spiral arms, respectively. Dotted lines show the weighted least-squares linear fit to each population as split by arm multiplicity; the solid line is the fit to all star-forming galaxies. 
 \label{fig-number}}
 \end{figure*}
@@ -172,13 +174,13 @@ We have repeated the analysis above for the sub-sample of disk galaxies for whic
 The pitch angle of the spiral arms also has no significant change on the star-forming main sequence relation (Figure~\ref{fig-winding}). We separate galaxies by their relative pitch angles (defined as ``tight'', ``medium'', and ``loose''); the pitch angle is typically used as one of the primary parameters for separating galaxies along the Hubble tuning fork. \citet{wil13} show, however, that pitch angle only weakly correlates with Hubble type from expert visual classifications, and that the bulge-to-disk ratio is a more important driver. There is no significant shift with respect to the SFMS as a function of pitch angle for spiral galaxies. The small increase above the main sequence for loosely-wound galaxies is also consistent with \citet{cas13}, who show that this morphology also correlates with close pairs and interactions. 
 
 \begin{figure*}
-\includegraphics[angle=0,width=7.0in]{figures/masslim/ms_arms_winding.pdf}
+\includegraphics[angle=0,width=7.0in]{ms_arms_winding.pdf}
 \caption{Total star formation rate as a function of stellar mass; grayscale colors are the same as in Figure~\ref{fig-number}. From left to right: red, green, and blue points are spiral galaxies with ``tight'', ``medium'', and ``loose'' winding spiral arms as identified by GZ2 morphology flags. Dotted lines show the weighted least-squares linear fit as split by pitch angle; the solid line is the fit to all star-forming galaxies. The slight positive offset in SFR for loosely-wound spiral arms is interpreted as contamination by merging pairs of galaxies (Section~\ref{sec-discussion}).
 \label{fig-winding}}
 \end{figure*}
 
 \begin{figure*}
-\includegraphics[angle=0,width=7.0in]{figures/masslim/ms_arms_winding_weighted.pdf}
+\includegraphics[angle=0,width=7.0in]{ms_arms_winding_weighted.pdf}
 \caption{Same as Figure~\ref{fig-winding}, but with colormaps showing all spiral galaxies weighted by the GZ2 vote fractions for ``tight'', ``medium'', and ``loose'' winding spiral arms. 
 \label{fig-winding_weighted}}
 \end{figure*}
@@ -186,7 +188,7 @@ The pitch angle of the spiral arms also has no significant change on the star-fo
 It should also be noted that the galaxies in GZ2 flagged as a function of pitch angle are not representative of the true vote distribution. The points in Figure~\ref{fig-winding} would suggest that there are relatively few spiral galaxies overall, and that most are either tightly or loosely wound. In fact, the plurality classification for most galaxies is for medium-winding; the spread in votes is typically large, though, and so users rarely agree on the ``medium'' option at the 80\% level which sets the flag. An alternative method is to analyze the morphology of spiral galaxies by directly weighting them as a function of the pitch angle categories (Figure~\ref{fig-winding_weighted}), which has the advantage of including all spiral galaxies. This shows an even tighter agreement between the samples separated by pitch angle and that of the full star-forming sample.
 
 \begin{figure*}
-\includegraphics[angle=0,width=7.0in]{figures/masslim/ms_bar_contour.pdf}
+\includegraphics[angle=0,width=7.0in]{ms_bar_contour.pdf}
 \caption{Total star formation rate as a function of stellar mass; grayscale colors are the same as in Figure~\ref{fig-number}. Left: blue contours show the distribution of barred galaxies ($p_\textrm{bar}\ge0.4$ for previously-identified disks) from GZ2. Right: red contours are the distribution of remaining disk galaxy population with no evidence for a strong bar ($p_\textrm{bar}<0.4$). Dotted lines show the weighted least-squares linear fit to the barred/unbarred population; the solid line is the fit to all star-forming galaxies. 
 \label{fig-bar}}
 \end{figure*}
@@ -196,7 +198,7 @@ Finally, we examine the effect of a large-scale galactic bar on the star-forming
 The agreement of all sub-varieties of star-forming galaxies is supported by the close agreement to the linear fits to the data for all well-sampled categories (Table~\ref{tbl-fits}). This tracks only the slope and offset of the distribution, however, and not its width. We thus also compare the sample standard deviation ($\sigma_{SFR}$) to the star-forming galaxy population over its various morphological subsamples. The value of $\sigma_{SFR}$ monotonically decreases with increasing mass over the range $8.0<\log(M/M_\odot)<11.5$. For all morphological populations examined in this paper, the widths of their distributions are consistent with the broader population (Figure~\ref{fig-sigma}). 
 
 \begin{figure}
-\includegraphics[angle=0,width=3.5in]{figures/masslim/sigma_mstar.pdf}
+\includegraphics[angle=0,width=3.5in]{sigma_mstar.pdf}
 \caption{Width of the star-forming main sequence ($\sigma_{SFR}$) as a function of stellar mass, as measured by the sample standard deviation. Black points represent the entire star-forming population. Disk subsamples are overplotted as solid lines; colours are the same as the respective plots in Figures~\ref{fig-number}, \ref{fig-winding}, \ref{fig-bar} and \ref{fig-mergers}. Morphological categories or mass ranges with fewer than 10 galaxies/bin are not plotted; this includes all galaxies with 3, 4, and 5+ spiral arms.
 \label{fig-sigma}}
 \end{figure}
@@ -210,7 +212,7 @@ We have also examined all the populations of galaxies described above (bars, arm
 \section{Discussion}\label{sec-discussion}
 
 \begin{figure*}
-\includegraphics[angle=0,width=7.0in]{figures/masslim/ms_mergers_both.pdf}
+\includegraphics[angle=0,width=7.0in]{ms_mergers_both.pdf}
 \caption{Total star formation rate as a function of stellar mass; grayscale colors are the same as in Figure~\ref{fig-number}. Left: Coloured points show 2,978~merging galaxies from \citet{dar10a}. Mergers are colour-coded by the mass ratio of the primary and secondary galaxies; there is no clear difference in the merging populations with regard to the SFMS when comparing major to minor mergers. When fixing the slope of the star-forming main sequence and allowing the offset to vary, mergers (dotted line) have higher SFRs by $\sim0.3$~dex compared to all star-forming galaxies (solid line). Right: Star-forming galaxies binned and colour-coded by merger fraction ($N_\textrm{mergers}/N_\textrm{star-forming galaxies})$. Overplotted lines are the same as left plot. Of the galaxies that lie furthest above the SFMS, more than $50\%$ are unambiguous mergers. 
 \label{fig-mergers}}
 \end{figure*}
