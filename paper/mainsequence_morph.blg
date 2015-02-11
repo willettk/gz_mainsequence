@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2013)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: mainsequence_morph.aux
+The style file: mn2e.bst
+Database file #1: kwrefs.bib
+You've used 57 entries,
+            2983 wiz_defined-function locations,
+            964 strings with 28835 characters,
+and the built_in function-call counts, 62086 in all, are:
+= -- 3704
+> -- 9578
+< -- 2
++ -- 2940
+- -- 2886
+* -- 5220
+:= -- 11804
+add.period$ -- 0
+call.type$ -- 57
+change.case$ -- 1187
+chr.to.int$ -- 55
+cite$ -- 57
+duplicate$ -- 974
+empty$ -- 1498
+format.name$ -- 2993
+if$ -- 12017
+int.to.chr$ -- 3
+int.to.str$ -- 1
+missing$ -- 56
+newline$ -- 175
+num.names$ -- 230
+pop$ -- 1124
+preamble$ -- 1
+purify$ -- 1187
+quote$ -- 0
+skip$ -- 1736
+stack$ -- 0
+substring$ -- 1213
+swap$ -- 68
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 513
+warning$ -- 0
+while$ -- 232
+width$ -- 0
+write$ -- 573

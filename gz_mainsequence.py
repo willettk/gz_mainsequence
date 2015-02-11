@@ -1,4 +1,4 @@
-# Branch - make all plots using only a lower limit of M_star = 10**8 M_sun
+# Mass-limited - all data uses only a lower limit of M_star = 10**8 M_sun
 
 import numpy as np
 import time

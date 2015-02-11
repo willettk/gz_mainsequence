@@ -1,6 +1,6 @@
 gzmainsequence
 ===============
 
-Working draft (currently v2) of paper on GZ2 results and SFR-stellar mass relation (Willett et al. 2015).
+Data, code, figures, and draft of "Galaxy Zoo: the dependence of the star formation-stellar mass relation on spiral disk morphology" (K.W. Willett et al). Accepted to Monthly Notices of the Royal Astronomical Society on 11 Feb 2015. 
 
-Please contact Kyle Willett (```willett@physics.umn.edu```) if you want to use any data or text from this paper.
+Please contact Kyle Willett (```willett@physics.umn.edu```) for questions on any data or text from this paper.
